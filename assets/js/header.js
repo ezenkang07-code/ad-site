@@ -157,13 +157,17 @@
     }
   }
 
-  // 스크롤 및 유휴 상태 감지 (스크롤 시 노출, 유휴 5초 후 자동 숨김, 호버 및 포커스 보호)
+  // 스크롤 및 유휴 상태 감지 (최상단 상시 노출, 스크롤 시 노출, 스크롤 후 유휴 5초 시 자동 숨김, 상단 마우스 이동 시 재노출)
   function bindHeaderVisibility(container) {
     const headerEl = container.querySelector ? container.querySelector('.header') : null;
     if (!headerEl) return;
 
     let pointerInside = false;
     clearTimeout(headerIdleTimer);
+
+    function isAtTop() {
+      return (window.pageYOffset || document.documentElement.scrollTop || 0) <= 10;
+    }
 
     function show() {
       clearTimeout(headerIdleTimer);
@@ -172,8 +176,20 @@
 
     function scheduleHide() {
       clearTimeout(headerIdleTimer);
+      // 최상단에 머무를 때는 헤더를 숨기지 않고 상시 노출
+      if (isAtTop()) {
+        show();
+        return;
+      }
+
       headerIdleTimer = setTimeout(function () {
+        if (isAtTop()) {
+          show();
+          return;
+        }
         if (pointerInside || (document.activeElement && headerEl.contains(document.activeElement))) return;
+        if (headerEl.classList.contains('nav-open') || headerEl.querySelector('.nav-dropdown.is-open')) return;
+
         headerEl.classList.add('is-idle-hidden');
         headerEl.classList.remove('nav-open');
         const toggle = headerEl.querySelector('.nav-toggle');
@@ -188,13 +204,28 @@
       }, 5000);
     }
 
+    function onScrollVisibility() {
+      show();
+      if (!isAtTop()) {
+        scheduleHide();
+      }
+    }
+
     window.removeEventListener('scroll', onScrollVisibility);
     window.addEventListener('scroll', onScrollVisibility, { passive: true });
 
-    function onScrollVisibility() {
-      show();
-      scheduleHide();
+    // PC 화면에서 마우스 커서를 화면 상단(80px 이내)으로 가져갈 경우 헤더 다시 노출
+    function onMouseMove(e) {
+      if (e.clientY <= 80) {
+        show();
+        if (!isAtTop()) {
+          scheduleHide();
+        }
+      }
     }
+
+    window.removeEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
 
     headerEl.addEventListener('pointerenter', function (e) {
       if (e.pointerType === 'touch') return;
@@ -204,13 +235,24 @@
 
     headerEl.addEventListener('pointerleave', function () {
       pointerInside = false;
-      scheduleHide();
+      if (!isAtTop()) {
+        scheduleHide();
+      }
     });
 
     headerEl.addEventListener('focusin', show);
-    headerEl.addEventListener('focusout', scheduleHide);
+    headerEl.addEventListener('focusout', function () {
+      if (!isAtTop()) {
+        scheduleHide();
+      }
+    });
 
-    scheduleHide();
+    // 초기 상태: 최상단이면 항상 노출, 이미 스크롤되어 있으면 5초 후 숨김 예약
+    if (isAtTop()) {
+      show();
+    } else {
+      scheduleHide();
+    }
   }
 
   // 헤더 렌더링 함수

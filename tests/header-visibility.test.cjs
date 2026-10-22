@@ -1,4 +1,4 @@
-﻿const {chromium}=require('playwright');
+const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const path=require('node:path');
 (async()=>{
@@ -7,6 +7,7 @@ const path=require('node:path');
  const page=await browser.newPage({viewport:{width:1440,height:900}});
  await page.route('https://code.jquery.com/jquery-3.7.1.min.js',r=>r.fulfill({path:path.resolve('FITCALC/assets/js/jquery-3.7.1.min.js'),contentType:'text/javascript'}));
  await page.goto('http://127.0.0.1:8000/weight-goal.html');
+ await page.evaluate(()=>scrollTo(0,300));
  await page.mouse.move(800,500);
  await page.waitForFunction(()=>document.querySelector('.header').classList.contains('is-idle-hidden'));
  await page.evaluate(()=>scrollTo(0,500));
