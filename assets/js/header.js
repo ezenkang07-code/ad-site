@@ -157,7 +157,7 @@
     }
   }
 
-  // 스크롤 및 유휴 상태 감지 (스크롤 시 노출, 유휴 1초 후 자동 숨김, 호버 및 포커스 보호)
+  // 스크롤 및 유휴 상태 감지 (스크롤 시 노출, 유휴 5초 후 자동 숨김, 호버 및 포커스 보호)
   function bindHeaderVisibility(container) {
     const headerEl = container.querySelector ? container.querySelector('.header') : null;
     if (!headerEl) return;
@@ -185,7 +185,7 @@
         if (dropdown) dropdown.classList.remove('is-open');
         const dropdownToggle = headerEl.querySelector('.nav-dropdown-toggle');
         if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
-      },);
+      }, 5000);
     }
 
     window.removeEventListener('scroll', onScrollVisibility);
