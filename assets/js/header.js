@@ -185,7 +185,7 @@
         if (dropdown) dropdown.classList.remove('is-open');
         const dropdownToggle = headerEl.querySelector('.nav-dropdown-toggle');
         if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
-      }, 1000);
+      }, 3500);
     }
 
     window.removeEventListener('scroll', onScrollVisibility);
