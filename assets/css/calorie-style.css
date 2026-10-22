@@ -1,0 +1,743 @@
+/* Calorie page hero */
+.cal-hero {
+  padding: 72px 0 54px;
+}
+
+.cal-hero-content {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.cal-hero-copy {
+  max-width: 680px;
+}
+
+.cal-hero-badge,
+.cal-visual-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.cal-hero-copy h1 {
+  margin-bottom: 18px;
+  font-size: 3.2rem;
+}
+
+.cal-hero-subtitle {
+  margin-bottom: 18px;
+  color: var(--dark);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.cal-hero-description {
+  margin-bottom: 26px;
+  line-height: 1.85;
+}
+
+.cal-hero-btn {
+  min-height: 58px;
+  padding: 0 26px;
+}
+
+.cal-hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.cal-visual-card {
+  width: min(100%, 420px);
+  padding: 30px;
+  border: 1px solid rgba(53, 201, 165, 0.18);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(155deg, rgba(53, 201, 165, 0.14), #fff 76%);
+  box-shadow: var(--shadow);
+}
+
+.cal-visual-badge {
+  background: #fff;
+  margin-bottom: 24px;
+}
+
+.cal-visual-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.cal-visual-number span {
+  color: var(--gray);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cal-visual-number strong {
+  margin: 8px 0 0;
+  color: var(--dark);
+  font-size: 3.8rem;
+  line-height: 1.1;
+}
+
+.cal-visual-number small {
+  color: var(--mint-dark);
+  font-weight: 700;
+}
+
+.cal-visual-scale {
+  height: 8px;
+  margin: 22px 4px 12px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--mint-light);
+}
+
+.cal-visual-scale span {
+  display: block;
+  width: 72%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--mint);
+}
+
+.cal-visual-card > p {
+  text-align: center;
+  font-size: 0.86rem;
+}
+
+/* Calculator form and result */
+.cal-calculator-section {
+  padding: 72px 0 36px;
+}
+
+.cal-calculator-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 26px;
+  padding: 28px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.cal-form-panel,
+.cal-result-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(113, 128, 150, 0.1);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fff, #f8fbfa);
+}
+
+.cal-input-group {
+  margin-bottom: 20px;
+}
+
+.cal-field-label,
+.cal-choice-group legend {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cal-choice-group legend {
+  padding: 0;
+}
+
+.cal-field-note {
+  margin: -3px 0 10px;
+  color: var(--gray);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.cal-choice-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cal-gender-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 58px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 15px;
+  background: #fff;
+  color: var(--dark);
+  font-weight: 700;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cal-gender-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+  box-shadow: 0 0 0 2px rgba(53, 201, 165, 0.12);
+}
+
+.cal-check {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint);
+  color: #fff;
+  font-size: 0.78rem;
+  opacity: 0;
+}
+
+.cal-gender-option.is-selected .cal-check {
+  opacity: 1;
+}
+
+.cal-number-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cal-number-wrap input {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 14px 48px 14px 16px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 15px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.cal-number-wrap input:focus-visible,
+.cal-gender-option:focus-visible,
+.cal-activity-option:focus-visible,
+.cal-goal-option:focus-visible,
+.cal-faq-question:focus-visible,
+.cal-submit:focus-visible,
+.cal-reset:focus-visible {
+  outline: 3px solid rgba(21, 167, 126, 0.3);
+  outline-offset: 2px;
+}
+
+.cal-number-wrap input:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 4px rgba(53, 201, 165, 0.1);
+}
+
+.cal-number-wrap > span {
+  position: absolute;
+  right: 16px;
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cal-slider {
+  width: 100%;
+  min-height: 34px;
+  margin-top: 4px;
+  accent-color: var(--mint);
+  cursor: pointer;
+}
+
+.cal-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray);
+  font-size: 0.74rem;
+}
+
+.cal-error {
+  min-height: 18px;
+  margin-top: 5px;
+  color: #c74646;
+  font-size: 0.8rem;
+}
+
+.cal-number-wrap input.cal-invalid {
+  border-color: #c74646;
+}
+
+.cal-choice-group {
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+}
+
+.cal-activity-options {
+  display: grid;
+  gap: 8px;
+}
+
+.cal-activity-option {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 13px;
+  background: #fff;
+  text-align: left;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cal-activity-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+}
+
+.cal-activity-title {
+  color: var(--dark);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cal-activity-desc {
+  grid-column: 1;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.cal-activity-option strong {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--mint-dark);
+  font-size: 0.9rem;
+}
+
+.cal-goal-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.cal-goal-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  min-height: 126px;
+  padding: 12px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 13px;
+  background: #fff;
+  text-align: left;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cal-goal-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+}
+
+.cal-goal-option > span {
+  font-size: 1.25rem;
+}
+
+.cal-goal-option strong {
+  color: var(--dark);
+  font-size: 0.85rem;
+}
+
+.cal-goal-option small {
+  color: var(--gray);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.cal-submit {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 18px;
+}
+
+.cal-result-column {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.cal-result-card {
+  border-color: rgba(53, 201, 165, 0.15);
+  background: linear-gradient(180deg, #f6fff9, #fff 72%);
+}
+
+.cal-result-heading span {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 7px 11px;
+  border-radius: 99px;
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cal-result-main {
+  margin: 18px 0;
+  text-align: center;
+}
+
+.cal-result-label {
+  margin-bottom: 4px;
+  font-size: 0.94rem;
+}
+
+.cal-result-main > strong {
+  display: block;
+  color: var(--dark);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.cal-kcal-unit {
+  color: var(--mint-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.cal-goal-message {
+  margin-top: 12px;
+  line-height: 1.65;
+}
+
+.cal-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.cal-detail-list > div {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid rgba(53, 201, 165, 0.09);
+  border-radius: 11px;
+  background: rgba(53, 201, 165, 0.035);
+}
+
+.cal-detail-list dt {
+  margin-bottom: 5px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.cal-detail-list dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--dark);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.cal-result-disclaimer {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.cal-reset {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 14px;
+}
+
+/* Energy chart */
+.cal-chart {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.cal-chart-heading {
+  margin-bottom: 18px;
+}
+
+.cal-chart-heading h3 {
+  font-size: 1.12rem;
+}
+
+.cal-chart-row {
+  display: grid;
+  grid-template-columns: 160px minmax(60px, 1fr) 90px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.cal-chart-label,
+.cal-chart-row > strong {
+  color: var(--dark);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.cal-chart-track {
+  height: 18px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--gray-light);
+}
+
+.cal-chart-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.7s ease;
+}
+
+.cal-bmr-bar {
+  background: var(--mint);
+}
+
+.cal-tdee-bar {
+  background: #1c9e6d;
+}
+
+.cal-chart-row > strong {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Energy, guide, information and FAQ sections */
+.cal-energy-cards,
+.cal-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.cal-energy-card {
+  padding: 22px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.cal-energy-card > span {
+  font-size: 1.6rem;
+}
+
+.cal-energy-card h3 {
+  margin: 10px 0 8px;
+  font-size: 1.05rem;
+}
+
+.cal-energy-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.cal-guide-section,
+.cal-info-section,
+.cal-faq-section {
+  padding: 72px 0;
+}
+
+.cal-info-panel {
+  padding: 30px;
+  border: 1px solid rgba(53, 201, 165, 0.13);
+  border-radius: var(--radius-lg);
+  background: var(--mint-soft);
+}
+
+.cal-info-panel h2 {
+  margin-bottom: 16px;
+}
+
+.cal-info-panel p:not(.eyebrow) {
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.cal-faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cal-faq-item {
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.cal-faq-question {
+  display: flex;
+  width: 100%;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  color: var(--dark);
+  font-weight: 700;
+  text-align: left;
+}
+
+.cal-faq-question::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--mint-dark);
+  font-size: 1.25rem;
+}
+
+.cal-faq-item.is-open .cal-faq-question::after {
+  content: "−";
+}
+
+.cal-faq-answer {
+  display: none;
+  padding: 0 18px 18px;
+}
+
+.cal-faq-item.is-open .cal-faq-answer {
+  display: block;
+}
+
+.cal-faq-answer p {
+  line-height: 1.75;
+}
+
+.cal-notice-section {
+  padding-bottom: 72px;
+}
+
+.cal-notice-section .notice-box p {
+  margin: 10px 0;
+  line-height: 1.75;
+}
+
+@media (max-width: 1024px) {
+  .cal-hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    gap: 28px;
+  }
+
+  .cal-calculator-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .cal-hero {
+    padding: 42px 0 32px;
+  }
+
+  .cal-hero-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .cal-hero-copy h1 {
+    font-size: 2rem;
+  }
+
+  .cal-desktop-break {
+    display: none;
+  }
+
+  .cal-hero-btn {
+    width: 100%;
+    padding: 0 14px;
+    font-size: 0.9rem;
+  }
+
+  .cal-visual-card {
+    padding: 22px;
+  }
+
+  .cal-calculator-section,
+  .cal-guide-section,
+  .cal-info-section,
+  .cal-faq-section {
+    padding: 52px 0;
+  }
+
+  .cal-calculator-card {
+    gap: 18px;
+    padding: 14px;
+  }
+
+  .cal-form-panel,
+  .cal-result-card,
+  .cal-chart {
+    padding: 17px;
+  }
+
+  .cal-result-main > strong {
+    font-size: 2.6rem;
+  }
+
+  .cal-goal-options,
+  .cal-energy-cards,
+  .cal-guide-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cal-goal-option {
+    min-height: 0;
+  }
+
+  .cal-chart-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .cal-chart-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .cal-chart-row > strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cal-info-panel {
+    padding: 22px;
+  }
+
+  .cal-notice-section {
+    padding-bottom: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cal-chart-bar {
+    transition: none;
+  }
+}

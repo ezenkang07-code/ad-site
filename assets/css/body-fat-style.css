@@ -1,0 +1,853 @@
+/* Body-fat estimator palette and hero */
+:root {
+  --bf-fat: #35c9a5;
+  --bf-lean: #4a90e2;
+}
+
+.bf-hero {
+  padding: 72px 0 58px;
+  background: var(--mint-soft);
+}
+
+.bf-hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.bf-hero-copy h1 {
+  max-width: 650px;
+  margin-bottom: 18px;
+  color: var(--dark);
+  font-size: 3.15rem;
+  line-height: 1.18;
+}
+
+.bf-hero-lead {
+  margin-bottom: 15px;
+  color: var(--dark);
+  font-size: 1.17rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.bf-hero-description {
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.bf-hero-button {
+  min-height: 56px;
+  padding: 0 24px;
+}
+
+.bf-hero-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bf-hero-card {
+  width: min(100%, 420px);
+  padding: 24px;
+  border: 1px solid rgba(53, 201, 165, 0.17);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.bf-hero-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--dark-soft);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.bf-hero-card-top span:last-child {
+  color: var(--mint-dark);
+}
+
+.bf-ruler-graphic {
+  display: flex;
+  min-height: 176px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #f0fbf6, #f8fbfa);
+}
+
+.bf-ruler-icon {
+  font-size: 4.5rem;
+}
+
+.bf-ruler-line {
+  display: flex;
+  width: 78%;
+  height: 14px;
+  justify-content: space-between;
+  border-top: 2px solid var(--mint);
+}
+
+.bf-ruler-line i {
+  display: block;
+  width: 1px;
+  height: 7px;
+  background: var(--mint-dark);
+}
+
+.bf-ruler-line i:nth-child(5n + 1) {
+  height: 12px;
+}
+
+.bf-hero-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bf-hero-metric span,
+.bf-hero-metric small {
+  color: var(--gray);
+  font-size: 0.73rem;
+}
+
+.bf-hero-metric strong {
+  color: var(--dark);
+  font-size: 1.3rem;
+}
+
+.bf-hero-card > p {
+  margin-top: 12px;
+  color: var(--gray);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+/* Calculator form and controls */
+.bf-calculator-section {
+  padding: 72px 0 50px;
+}
+
+.bf-calculator-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 25px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.bf-form-panel,
+.bf-result-card,
+.bf-chart-panel {
+  min-width: 0;
+  padding: 21px;
+  border: 1px solid rgba(113, 128, 150, 0.1);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fff, #f8fbfa);
+}
+
+.bf-field-group {
+  min-width: 0;
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+
+.bf-field-group legend,
+.bf-field-group > label {
+  display: block;
+  margin: 0 0 9px;
+  padding: 0;
+  color: var(--dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.bf-field-group > label > span {
+  margin-left: 4px;
+  color: var(--gray);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.bf-helper,
+.bf-measure-note {
+  margin: 0 0 10px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.bf-gender-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bf-gender-option {
+  display: flex;
+  min-height: 53px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark-soft);
+  font-weight: 700;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.bf-gender-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+}
+
+.bf-gender-option > span:nth-child(2) {
+  font-size: 1.15rem;
+}
+
+.bf-check {
+  display: grid;
+  width: 17px;
+  height: 17px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  color: #fff;
+  font-size: 0.65rem;
+  opacity: 0;
+}
+
+.bf-gender-option.is-selected .bf-check {
+  opacity: 1;
+}
+
+.bf-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 14px;
+}
+
+.bf-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bf-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  min-height: 49px;
+  padding: 10px 48px 10px 13px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.bf-input-wrap input:focus-visible,
+.bf-gender-option:focus-visible,
+.bf-help:focus-visible,
+.bf-submit:focus-visible,
+.bf-reset:focus-visible,
+.bf-faq-question:focus-visible {
+  outline: 3px solid rgba(21, 167, 126, 0.3);
+  outline-offset: 2px;
+}
+
+.bf-input-wrap input:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 4px rgba(53, 201, 165, 0.1);
+}
+
+.bf-input-wrap > span {
+  position: absolute;
+  right: 13px;
+  color: var(--gray);
+  font-size: 0.79rem;
+  font-weight: 700;
+}
+
+.bf-slider {
+  width: 100%;
+  min-height: 29px;
+  margin-top: 3px;
+  accent-color: var(--mint);
+  cursor: pointer;
+}
+
+.bf-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray);
+  font-size: 0.66rem;
+}
+
+.bf-error {
+  min-height: 16px;
+  margin-top: 4px;
+  color: #c74646;
+  font-size: 0.72rem;
+}
+
+.bf-input-wrap input.bf-invalid {
+  border-color: #c74646;
+}
+
+.bf-help {
+  display: inline-grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border: 1px solid rgba(21, 167, 126, 0.42);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--mint-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+.bf-tip {
+  min-height: 32px;
+  margin-top: 6px;
+  color: var(--gray);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.bf-is-hidden {
+  display: none;
+}
+
+.bf-measure-note {
+  margin: 2px 0 14px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: var(--mint-soft);
+}
+
+.bf-submit {
+  width: 100%;
+  min-height: 55px;
+}
+
+/* Result and body composition charts */
+.bf-result-column {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.bf-result-card {
+  border-color: rgba(53, 201, 165, 0.16);
+  background: linear-gradient(180deg, #f6fff9, #fff 76%);
+}
+
+.bf-result-badge {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 7px 11px;
+  border-radius: 99px;
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.bf-result-prompt {
+  margin-top: 14px;
+  line-height: 1.65;
+}
+
+#bodyFatResultContent {
+  animation: bf-result-appear 0.38s ease both;
+}
+
+@keyframes bf-result-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bf-result-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 10px 14px;
+  text-align: center;
+}
+
+.bf-result-main p {
+  color: var(--dark-soft);
+  font-size: 0.9rem;
+}
+
+.bf-result-main strong {
+  color: var(--dark);
+  font-size: 2.8rem;
+  line-height: 1.12;
+}
+
+.bf-result-main small {
+  color: var(--gray);
+  font-size: 0.73rem;
+}
+
+.bf-composition-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.bf-composition-results > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.bf-composition-results span {
+  color: var(--gray);
+  font-size: 0.74rem;
+}
+
+.bf-composition-results strong {
+  font-size: 1.1rem;
+}
+
+.bf-fat-result strong,
+.bf-fat-card h3 { color: var(--bf-fat); }
+.bf-lean-result strong,
+.bf-lean-card h3 { color: var(--bf-lean); }
+
+.bf-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 13px 0 0;
+}
+
+.bf-detail-list > div {
+  min-width: 0;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: rgba(53, 201, 165, 0.04);
+}
+
+.bf-detail-list dt {
+  margin-bottom: 4px;
+  color: var(--gray);
+  font-size: 0.68rem;
+}
+
+.bf-detail-list dd {
+  margin: 0;
+  color: var(--dark);
+  font-size: 0.79rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.bf-result-note {
+  margin-top: 12px;
+  color: var(--gray);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.bf-reset {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 13px;
+}
+
+.bf-analysis {
+  display: grid;
+  gap: 14px;
+  animation: bf-result-appear 0.42s ease both;
+}
+
+.bf-analysis.bf-is-hidden {
+  display: none;
+}
+
+.bf-chart-panel {
+  background: #fff;
+  box-shadow: 0 11px 26px rgba(23, 55, 43, 0.05);
+}
+
+.bf-panel-heading {
+  margin-bottom: 12px;
+}
+
+.bf-panel-heading h3 {
+  font-size: 1rem;
+}
+
+.bf-donut-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.bf-donut {
+  --bf-fat-share: 20%;
+  position: relative;
+  display: grid;
+  width: min(100%, 170px);
+  flex: 0 1 170px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--bf-fat) 0 var(--bf-fat-share), var(--bf-lean) var(--bf-fat-share) 100%);
+  transition: background 0.45s ease;
+}
+
+.bf-donut::before {
+  content: "";
+  position: absolute;
+  width: 67%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.bf-donut span {
+  position: relative;
+  color: var(--dark);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.bf-chart-legend {
+  display: grid;
+  gap: 10px;
+  min-width: 130px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bf-chart-legend li {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  color: var(--dark-soft);
+  font-size: 0.72rem;
+}
+
+.bf-chart-legend li strong {
+  color: var(--dark);
+  font-size: 0.74rem;
+}
+
+.bf-fat-dot,
+.bf-lean-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.bf-fat-dot { background: var(--bf-fat); }
+.bf-lean-dot { background: var(--bf-lean); }
+
+.bf-bar-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.8fr) minmax(55px, 1.5fr) auto;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.bf-bar-row > span {
+  color: var(--dark-soft);
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+.bf-bar-track {
+  height: 15px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--gray-light);
+}
+
+.bf-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.65s ease;
+}
+
+.bf-fat-bar { background: var(--bf-fat); }
+.bf-lean-bar { background: var(--bf-lean); }
+
+.bf-bar-row > strong {
+  color: var(--dark);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.bf-info-cards,
+.bf-guide-grid,
+.bf-measure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.bf-info-card,
+.bf-measure-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-top: 3px solid var(--bf-accent, var(--mint));
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(23, 55, 43, 0.05);
+}
+
+.bf-info-card > span,
+.bf-measure-card > span {
+  font-size: 1.25rem;
+}
+
+.bf-info-card h3,
+.bf-measure-card h3 {
+  margin: 8px 0 6px;
+  color: var(--dark);
+  font-size: 0.88rem;
+}
+
+.bf-info-card p,
+.bf-measure-card p {
+  color: var(--gray);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.bf-fat-card { --bf-accent: var(--bf-fat); }
+.bf-fat-mass-card { --bf-accent: #73cdb5; }
+.bf-lean-card { --bf-accent: var(--bf-lean); }
+
+/* Measurement guide and BMI context */
+.bf-measure-section,
+.bf-bmi-section,
+.bf-info-section,
+.bf-guide-section,
+.bf-faq-section {
+  padding: 72px 0;
+}
+
+.bf-measure-card {
+  padding: 21px;
+  --bf-accent: var(--mint);
+}
+
+.bf-measure-card:nth-child(2) { --bf-accent: #4a90e2; }
+.bf-measure-card:nth-child(3) { --bf-accent: #f5a623; }
+
+.bf-measure-footnote {
+  margin-top: 14px;
+  color: var(--gray);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.bf-measure-footnote a {
+  color: var(--mint-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bf-bmi-section {
+  background: var(--mint-soft);
+}
+
+.bf-bmi-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.bf-bmi-content > div {
+  max-width: 780px;
+}
+
+.bf-bmi-content h2 {
+  margin-bottom: 10px;
+}
+
+.bf-bmi-content p {
+  line-height: 1.75;
+}
+
+.bf-bmi-link {
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 0 17px;
+}
+
+.bf-info-panel {
+  padding: 27px;
+  border: 1px solid rgba(53, 201, 165, 0.14);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.bf-info-panel h2 {
+  margin-bottom: 13px;
+}
+
+.bf-info-panel p:not(.eyebrow) {
+  margin-top: 9px;
+  line-height: 1.75;
+}
+
+.bf-step {
+  display: block;
+  margin: 8px 0;
+  color: var(--mint-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.bf-guide-grid .guide-card {
+  min-width: 0;
+}
+
+/* FAQ and notice */
+.bf-faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bf-faq-item {
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.bf-faq-question {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--dark);
+  font-weight: 700;
+  text-align: left;
+}
+
+.bf-faq-question:focus-visible,
+.bf-gender-option:focus-visible,
+.bf-submit:focus-visible,
+.bf-reset:focus-visible,
+.bf-bmi-link:focus-visible {
+  outline: 3px solid rgba(21, 167, 126, 0.3);
+  outline-offset: 2px;
+}
+
+.bf-faq-question::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--mint-dark);
+  font-size: 1.15rem;
+}
+
+.bf-faq-item.is-open .bf-faq-question::after { content: "−"; }
+
+.bf-faq-answer {
+  display: none;
+  padding: 0 16px 16px;
+}
+
+.bf-faq-item.is-open .bf-faq-answer { display: block; }
+.bf-faq-answer p { line-height: 1.7; }
+
+.bf-notice-section {
+  padding-bottom: 72px;
+}
+
+.bf-notice-section .notice-box p {
+  margin-top: 10px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1024px) {
+  .bf-hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 0.85fr);
+    gap: 28px;
+  }
+
+  .bf-hero-copy h1 { font-size: 2.65rem; }
+  .bf-calculator-card { grid-template-columns: minmax(0, 1fr); }
+  .bf-field-grid { gap: 3px 12px; }
+}
+
+@media (max-width: 767px) {
+  .bf-hero { padding: 45px 0 42px; }
+  .bf-hero-content { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .bf-hero-copy h1 { font-size: 2rem; }
+  .bf-hero-lead { font-size: 1.04rem; }
+  .bf-hero-button { width: 100%; }
+  .bf-hero-card { padding: 18px; }
+  .bf-calculator-section,
+  .bf-measure-section,
+  .bf-bmi-section,
+  .bf-info-section,
+  .bf-guide-section,
+  .bf-faq-section { padding: 52px 0; }
+  .bf-calculator-card { gap: 13px; padding: 12px; }
+  .bf-form-panel,
+  .bf-result-card,
+  .bf-chart-panel { padding: 15px; }
+  .bf-field-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .bf-info-cards,
+  .bf-guide-grid,
+  .bf-measure-grid { grid-template-columns: minmax(0, 1fr); }
+  .bf-donut-layout { flex-direction: column; gap: 18px; }
+  .bf-donut { width: min(62vw, 170px); flex-basis: auto; }
+  .bf-chart-legend { width: 100%; }
+  .bf-bar-row { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .bf-bar-row > span { grid-column: 1; grid-row: 1; }
+  .bf-bar-row > strong { grid-column: 2; grid-row: 1; }
+  .bf-bar-track { grid-column: 1 / -1; grid-row: 2; }
+  .bf-bmi-content { align-items: flex-start; flex-direction: column; }
+  .bf-bmi-link { width: 100%; justify-content: center; }
+  .bf-info-panel { padding: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #bodyFatResultContent,
+  .bf-analysis { animation: none; }
+  .bf-bar,
+  .bf-donut { transition: none; }
+}

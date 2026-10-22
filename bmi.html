@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FITCALC | BMI 계산기</title>
+  <meta name="description" content="BMI 계산기와 건강 관리 가이드를 제공하는 FITCALC 웹사이트입니다." />
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+  <link rel="stylesheet" href="assets/css/commons.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body data-fitcalc-page="bmi">
+  <div id="site-header"></div>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="hero-badge">Healthy Living • Smart Check</span>
+          <h1>내 몸의 건강 지표, BMI부터 확인해보세요!</h1>
+          <p class="hero-subtitle">
+            키와 몸무게만 입력하면 나의 체질량지수를 간편하게 계산할 수 있어요.
+          </p>
+          <p class="hero-description">
+            복잡한 계산은 필요 없어요.<br />
+            현재 나의 BMI와 체중 분류를 확인하고 건강 관리의 첫걸음을 시작해보세요.
+          </p>
+          <div class="hero-icons" aria-label="건강 관리 아이콘">
+            <span>💚</span>
+            <span>⚖️</span>
+            <span>📏</span>
+            <span>🏃</span>
+          </div>
+          <a href="#calculator" class="primary-btn hero-btn">BMI 계산하기 ↓</a>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card">
+            <div class="visual-badge">BMI Insight</div>
+            <div class="mini-chart">
+              <span class="bar bar-1"></span>
+              <span class="bar bar-2"></span>
+              <span class="bar bar-3"></span>
+              <span class="bar bar-4"></span>
+              <span class="bar bar-5"></span>
+            </div>
+            <div class="visual-metric">
+              <strong>22.5</strong>
+              <small>정상 범위</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">Health Check</p>
+          <h2>⚖️ BMI 계산기</h2>
+          <p>키와 몸무게를 입력하고 나의 BMI 수치와 체중 분류를 확인해보세요.</p>
+        </div>
+
+        <div class="calculator-card">
+          <div class="calculator-panel form-panel">
+            <div class="input-group height-input">
+              <label for="heightInput">키를 입력해주세요</label>
+              <div class="input-wrap">
+                <input id="heightInput" type="number" min="80" max="250" step="1" value="170" inputmode="numeric"
+                  aria-describedby="heightError" />
+                <span class="unit">cm</span>
+              </div>
+              <input id="heightSlider" class="range-slider" type="range" min="100" max="220" step="1" value="170"
+                aria-label="키 슬라이더" />
+              <div class="slider-meta">
+                <span>100cm</span>
+                <span>220cm</span>
+              </div>
+              <p id="heightError" class="error-message" aria-live="polite"></p>
+            </div>
+
+            <div class="input-group weight-input">
+              <label for="weightInput">몸무게를 입력해주세요</label>
+              <div class="input-wrap">
+                <input id="weightInput" type="number" min="20" max="300" step="0.1" value="65" inputmode="decimal"
+                  aria-describedby="weightError" />
+                <span class="unit">kg</span>
+              </div>
+              <input id="weightSlider" class="range-slider" type="range" min="20" max="200" step="0.1" value="65"
+                aria-label="몸무게 슬라이더" />
+              <div class="slider-meta">
+                <span>20kg</span>
+                <span>200kg</span>
+              </div>
+              <p id="weightError" class="error-message" aria-live="polite"></p>
+            </div>
+
+            <button type="button" id="calculateBtn" class="primary-btn calculate-btn">
+              나의 BMI 계산하기 💚
+            </button>
+          </div>
+
+          <div class="calculator-panel result-panel" aria-live="polite">
+            <div class="result-card" id="resultCard">
+              <div class="result-header">
+                <span class="result-badge">💚 계산 완료!</span>
+              </div>
+
+              <div class="result-main">
+                <p class="result-label">나의 BMI는</p>
+                <div class="bmi-value" id="bmiValue">--</div>
+                <div class="bmi-category" id="bmiCategory">분류 대기 중</div>
+              </div>
+
+              <div class="bmi-gauge" aria-label="BMI 게이지">
+                <div class="gauge-track">
+                  <span class="gauge-segment segment-1"></span>
+                  <span class="gauge-segment segment-2"></span>
+                  <span class="gauge-segment segment-3"></span>
+                  <span class="gauge-segment segment-4"></span>
+                  <span class="gauge-segment segment-5"></span>
+                  <span class="gauge-segment segment-6"></span>
+                  <span class="gauge-pointer" id="gaugePointer"></span>
+                </div>
+                <div class="gauge-labels">
+                  <span>저체중</span>
+                  <span>정상</span>
+                  <span>비만 전단계</span>
+                  <span>1단계</span>
+                  <span>2단계</span>
+                  <span>3단계</span>
+                </div>
+              </div>
+
+              <div class="weight-range" id="weightRange">
+                키와 몸무게를 입력해 주세요.
+              </div>
+
+              <div class="result-meta">
+                <div class="meta-item">
+                  <span>키</span>
+                  <strong id="resultHeight">-</strong>
+                </div>
+                <div class="meta-item">
+                  <span>몸무게</span>
+                  <strong id="resultWeight">-</strong>
+                </div>
+                <div class="meta-item">
+                  <span>BMI</span>
+                  <strong id="resultBMI">-</strong>
+                </div>
+                <div class="meta-item">
+                  <span>체중 분류</span>
+                  <strong id="resultCategory">-</strong>
+                </div>
+              </div>
+
+              <p class="result-tip" id="resultTip">
+                키와 몸무게를 입력한 후 계산 버튼을 눌러주세요.
+              </p>
+
+              <button type="button" class="secondary-btn reset-btn" id="resetBtn">
+                다시 계산하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="guide-section">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">How to Use</p>
+          <h2>💡 이렇게 사용해보세요</h2>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <div class="guide-icon">📏</div>
+            <h3>키 입력</h3>
+            <p>현재 자신의 키를 cm 단위로 입력해주세요.</p>
+          </article>
+
+          <article class="guide-card">
+            <div class="guide-icon">⚖️</div>
+            <h3>몸무게 입력</h3>
+            <p>현재 몸무게를 kg 단위로 입력해주세요.</p>
+          </article>
+
+          <article class="guide-card">
+            <div class="guide-icon">💚</div>
+            <h3>BMI 결과 확인</h3>
+            <p>BMI 수치와 체중 분류를 확인해보세요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="container info-layout">
+        <div class="info-copy">
+          <div class="section-heading left">
+            <p class="eyebrow">About BMI</p>
+            <h2>BMI란 무엇인가요?</h2>
+          </div>
+          <p>
+            BMI(Body Mass Index)는 체중과 키를 이용하여 계산하는 체질량지수입니다.
+          </p>
+          <div class="formula-box">
+            <span>공식</span>
+            <strong>BMI = 체중(kg) ÷ 키(m)²</strong>
+          </div>
+        </div>
+
+        <div class="faq-section" aria-label="BMI FAQ">
+          <div class="faq-item active">
+            <button class="faq-question" type="button" aria-expanded="true">
+              Q. BMI가 높으면 반드시 건강에 문제가 있나요?
+            </button>
+            <div class="faq-answer">
+              <p>
+                BMI는 참고 지표일 뿐이며, 근육량, 연령, 생활 습관, 건강 상태에 따라 해석이 달라질 수 있습니다.
+                BMI만으로 건강 상태를 단정하기보다는 다양한 정보를 함께 확인하는 것이 중요합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Q. BMI와 체지방률은 같은 의미인가요?
+            </button>
+            <div class="faq-answer">
+              <p>
+                아닙니다. BMI는 키와 체중을 이용한 지수이고, 체지방률은 체내 지방 비율을 의미합니다.
+                둘은 서로 다른 지표이므로 함께 보아야 더 정확한 건강 상태를 이해할 수 있습니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Q. 운동을 많이 하는 사람도 BMI가 높게 나올 수 있나요?
+            </button>
+            <div class="faq-answer">
+              <p>
+                네, 가능합니다. 근육량이 많은 경우 체중이 증가해 BMI가 높게 나타날 수 있습니다.
+                이 경우에는 BMI뿐 아니라 체지방률, 근육량, 활동량 등을 함께 고려하는 것이 좋습니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              Q. 어린이와 청소년도 같은 BMI 기준을 사용하나요?
+            </button>
+            <div class="faq-answer">
+              <p>
+                아닙니다. 어린이와 청소년은 연령과 성별을 반영한 별도의 기준을 사용합니다.
+                현재 기준은 일반적인 성인 기준을 적용한 참고용 지표입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="criteria-section">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">BMI Reference</p>
+          <h2>📊 BMI 분류 기준 알아보기</h2>
+        </div>
+
+        <div class="table-wrap">
+          <table class="criteria-table">
+            <thead>
+              <tr>
+                <th>BMI 범주</th>
+                <th>BMI 수치</th>
+                <th>색상 표시</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-category="저체중">
+                <td>저체중</td>
+                <td>18.5 미만</td>
+                <td><span class="dot blue"></span> Blue</td>
+              </tr>
+              <tr data-category="정상" class="is-active">
+                <td>정상</td>
+                <td>18.5 이상 ~ 23 미만</td>
+                <td><span class="dot green"></span> Green</td>
+              </tr>
+              <tr data-category="비만 전단계">
+                <td>비만 전단계</td>
+                <td>23 이상 ~ 25 미만</td>
+                <td><span class="dot yellow"></span> Yellow</td>
+              </tr>
+              <tr data-category="1단계 비만">
+                <td>1단계 비만</td>
+                <td>25 이상 ~ 30 미만</td>
+                <td><span class="dot orange"></span> Orange</td>
+              </tr>
+              <tr data-category="2단계 비만">
+                <td>2단계 비만</td>
+                <td>30 이상 ~ 35 미만</td>
+                <td><span class="dot coral"></span> Coral</td>
+              </tr>
+              <tr data-category="3단계 비만">
+                <td>3단계 비만</td>
+                <td>35 이상</td>
+                <td><span class="dot red"></span> Red</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice-section">
+      <div class="container">
+        <div class="notice-box">
+          <h3>꼭 확인해주세요</h3>
+          <ul>
+            <li>BMI는 키와 몸무게를 이용한 참고 지표이며 체지방량을 직접 측정하지 않습니다.</li>
+            <li>근육량, 연령, 임신 여부 등에 따라 해석이 달라질 수 있습니다.</li>
+            <li>현재 분류 기준은 일반적인 성인용이며 어린이와 청소년에게 그대로 적용하지 않습니다.</li>
+            <li>정확한 건강 상태 평가는 의료 전문가와 상담해주세요.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    window.FITCALC_PAGE = {
+      page: 'bmi',
+      header: {
+        logo: 'FITCALC',
+        logoHref: 'index.html#home',
+        nav: [
+          { key: 'home', label: 'HOME', href: 'index.html#home' },
+          { key: 'bmi', label: 'BMI 계산기', href: 'bmi.html#home' },
+          { key: 'bmr', label: '기초대사량 계산기', href: 'bmr.html#home' },
+          { key: 'calorie', label: '권장 칼로리 계산기', href: 'calorie.html#home' },
+          { key: 'guide', label: 'GUIDE', href: 'index.html#guide' }
+        ]
+      },
+      footer: {
+        brand: 'FITCALC',
+        description: '건강한 일상을 위한 스마트한 건강 계산기',
+        year: '2026'
+      }
+    };
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    if (!window.jQuery) {
+      document.write('<script src="assets/js/jquery-3.7.1.min.js"><\/script>');
+    }
+  </script>
+  <!-- 헤더 & 푸터 컴포넌트 분리 로드 -->
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

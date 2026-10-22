@@ -1,0 +1,1058 @@
+/* Exercise hero */
+.ex-hero {
+  padding: 72px 0 58px;
+  background: var(--mint-soft);
+}
+
+.ex-hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.ex-hero-copy h1 {
+  max-width: 650px;
+  margin-bottom: 18px;
+  color: var(--dark);
+  font-size: 3.15rem;
+  line-height: 1.18;
+}
+
+.ex-hero-lead {
+  margin-bottom: 15px;
+  color: var(--dark);
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.ex-hero-description {
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.ex-hero-button {
+  min-height: 56px;
+  padding: 0 24px;
+}
+
+.ex-hero-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ex-hero-card {
+  width: min(100%, 430px);
+  padding: 24px;
+  border: 1px solid rgba(53, 201, 165, 0.17);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.ex-hero-card-top,
+.ex-hero-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ex-hero-card-top {
+  color: var(--dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.ex-hero-card-top span:last-child {
+  color: var(--mint-dark);
+}
+
+.ex-runner-icon {
+  display: grid;
+  min-height: 145px;
+  place-items: center;
+  margin: 16px 0 4px;
+  border-radius: 17px;
+  background: linear-gradient(140deg, #f0fbf6, #f8fbfa);
+  font-size: 5rem;
+}
+
+.ex-heartline {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 23px;
+  margin: 0 10px 16px;
+}
+
+.ex-heartline span {
+  flex: 1;
+  height: 2px;
+  background: var(--mint-light);
+}
+
+.ex-heartline i {
+  display: block;
+  width: 90px;
+  height: 20px;
+  background: no-repeat center / 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 24'%3E%3Cpath d='M0 12h27l7-8 8 17 9-20 8 11h41' fill='none' stroke='%2335c9a5' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.ex-hero-metrics > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px;
+  border-radius: 13px;
+  background: #f8fbfa;
+}
+
+.ex-hero-metrics small {
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.ex-hero-metrics strong {
+  color: var(--dark);
+  font-size: 1.55rem;
+}
+
+.ex-hero-metrics strong span {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.ex-hero-card > p {
+  margin-top: 12px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+/* Main calculator form and result */
+.ex-calculator-section {
+  padding: 72px 0 50px;
+}
+
+.ex-calculator-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 25px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.ex-form-panel,
+.ex-result-card,
+.ex-chart-panel,
+.ex-comparison-panel {
+  min-width: 0;
+  padding: 21px;
+  border: 1px solid rgba(113, 128, 150, 0.1);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fff, #f8fbfa);
+}
+
+.ex-field-group {
+  min-width: 0;
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+}
+
+.ex-field-group legend,
+.ex-field-label {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ex-sport-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ex-sport-option {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 84px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 5px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ex-sport-option:hover {
+  transform: translateY(-2px);
+}
+
+.ex-sport-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+}
+
+.ex-sport-icon {
+  font-size: 1.35rem;
+}
+
+.ex-sport-check {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  color: #fff;
+  font-size: 0.62rem;
+  opacity: 0;
+}
+
+.ex-sport-option.is-selected .ex-sport-check {
+  opacity: 1;
+}
+
+.ex-intensity-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  padding: 5px;
+  border-radius: 13px;
+  background: #f1f5f3;
+}
+
+.ex-intensity-option {
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--gray);
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ex-intensity-option.is-selected {
+  background: #fff;
+  color: var(--mint-dark);
+  box-shadow: 0 2px 8px rgba(23, 55, 43, 0.08);
+}
+
+.ex-intensity-description {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 9px;
+  margin-top: 10px;
+  color: var(--gray);
+  font-size: 0.76rem;
+}
+
+.ex-intensity-description strong {
+  color: var(--dark-soft);
+}
+
+.ex-met-chip {
+  margin-left: auto;
+  padding: 5px 8px;
+  border-radius: 99px;
+  background: #e9f7f1;
+  color: var(--mint-dark);
+  white-space: nowrap;
+}
+
+.ex-helper {
+  margin-top: 9px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.ex-number-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ex-number-wrap input {
+  width: 100%;
+  min-width: 0;
+  min-height: 55px;
+  padding: 12px 55px 12px 15px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 13px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.ex-number-wrap input:focus-visible,
+.ex-time-inputs input:focus-visible,
+.ex-quick-time button:focus-visible,
+.ex-sport-option:focus-visible,
+.ex-intensity-option:focus-visible,
+.ex-submit:focus-visible,
+.ex-reset:focus-visible,
+.ex-faq-question:focus-visible {
+  outline: 3px solid rgba(21, 167, 126, 0.3);
+  outline-offset: 2px;
+}
+
+.ex-number-wrap input:focus,
+.ex-time-inputs input:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 4px rgba(53, 201, 165, 0.1);
+}
+
+.ex-number-wrap > span {
+  position: absolute;
+  right: 14px;
+  color: var(--gray);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.ex-weight-slider {
+  width: 100%;
+  min-height: 34px;
+  margin-top: 4px;
+  accent-color: var(--mint);
+  cursor: pointer;
+}
+
+.ex-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.ex-time-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ex-time-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--gray);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ex-time-inputs input {
+  width: 100%;
+  min-width: 0;
+  min-height: 53px;
+  padding: 10px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ex-quick-time {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.ex-quick-time button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 99px;
+  background: #fff;
+  color: var(--dark-soft);
+  font-size: 0.77rem;
+  font-weight: 700;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.ex-quick-time button.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+}
+
+.ex-error {
+  min-height: 18px;
+  margin-top: 5px;
+  color: #c74646;
+  font-size: 0.79rem;
+}
+
+.ex-number-wrap input.ex-invalid,
+.ex-time-inputs input.ex-invalid {
+  border-color: #c74646;
+}
+
+.ex-submit {
+  width: 100%;
+  min-height: 57px;
+  padding: 0 16px;
+}
+
+.ex-result-column {
+  display: grid;
+  gap: 15px;
+  min-width: 0;
+}
+
+.ex-result-card {
+  border-color: rgba(53, 201, 165, 0.16);
+  background: linear-gradient(180deg, #f6fff9, #fff 76%);
+}
+
+.ex-result-badge {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 7px 11px;
+  border-radius: 99px;
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ex-result-prompt {
+  margin-top: 15px;
+  line-height: 1.7;
+}
+
+.ex-result-content {
+  animation: ex-result-appear 0.38s ease both;
+}
+
+@keyframes ex-result-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ex-result-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 16px;
+  text-align: center;
+}
+
+.ex-result-main p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.ex-result-main strong {
+  color: var(--dark);
+  font-size: 3rem;
+  line-height: 1.12;
+}
+
+.ex-result-main > span {
+  margin-top: 5px;
+  color: var(--mint-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ex-net-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: 13px;
+  background: rgba(53, 201, 165, 0.08);
+}
+
+.ex-net-result > div {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ex-net-result span {
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.ex-net-result strong {
+  color: var(--dark);
+  font-size: 1.15rem;
+}
+
+.ex-net-result p {
+  max-width: 55%;
+  color: var(--gray);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.ex-result-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.ex-result-details > div {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(53, 201, 165, 0.1);
+  border-radius: 11px;
+  background: rgba(53, 201, 165, 0.035);
+}
+
+.ex-result-details dt {
+  margin-bottom: 5px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.ex-result-details dd {
+  margin: 0;
+  color: var(--dark);
+  font-size: 0.86rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ex-result-note {
+  margin-top: 13px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.ex-reset {
+  width: 100%;
+  min-height: 47px;
+  margin-top: 14px;
+}
+
+.ex-is-hidden {
+  display: none;
+}
+
+.ex-analysis {
+  display: grid;
+  gap: 15px;
+  animation: ex-result-appear 0.42s ease both;
+}
+
+.ex-analysis.ex-is-hidden {
+  display: none;
+}
+
+/* Gross and net calorie graph */
+.ex-chart-panel,
+.ex-comparison-panel {
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(23, 55, 43, 0.055);
+}
+
+.ex-panel-heading {
+  margin-bottom: 12px;
+}
+
+.ex-panel-heading h3 {
+  font-size: 1.05rem;
+}
+
+.ex-chart-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.9fr) minmax(70px, 1.5fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 13px;
+}
+
+.ex-chart-row > span {
+  color: var(--dark-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.ex-chart-track {
+  height: 17px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--gray-light);
+}
+
+.ex-chart-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.65s ease;
+}
+
+.ex-gross-bar {
+  background: var(--mint-dark);
+}
+
+.ex-net-bar {
+  background: #9addca;
+}
+
+.ex-chart-row > strong {
+  color: var(--dark);
+  font-size: 0.77rem;
+  white-space: nowrap;
+}
+
+/* Duration and exercise comparisons */
+.ex-comparison-context {
+  margin: -2px 0 12px;
+  color: var(--gray);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.ex-duration-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ex-duration-item {
+  min-width: 0;
+  padding: 11px 8px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: 11px;
+  background: #fbfdfc;
+  text-align: center;
+}
+
+.ex-duration-item.is-current {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+}
+
+.ex-duration-item span,
+.ex-duration-item strong {
+  display: block;
+}
+
+.ex-duration-item span {
+  color: var(--gray);
+  font-size: 0.68rem;
+}
+
+.ex-duration-item strong {
+  margin-top: 5px;
+  color: var(--dark);
+  font-size: 0.84rem;
+}
+
+.ex-duration-item.is-current strong {
+  color: var(--mint-dark);
+}
+
+.ex-mini-track {
+  height: 4px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #eaf0ed;
+}
+
+.ex-mini-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--mint);
+}
+
+.ex-exercise-comparison {
+  display: grid;
+  gap: 9px;
+}
+
+.ex-compare-row {
+  display: grid;
+  grid-template-columns: 78px minmax(50px, 1fr) 72px;
+  align-items: center;
+  gap: 9px;
+}
+
+.ex-compare-name {
+  color: var(--dark-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.ex-compare-track {
+  height: 13px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--gray-light);
+}
+
+.ex-compare-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #9addca;
+  transition: width 0.55s ease;
+}
+
+.ex-compare-row.is-current .ex-compare-bar {
+  background: var(--mint-dark);
+}
+
+.ex-compare-row > strong {
+  color: var(--dark);
+  font-size: 0.74rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Summary, MET explainer, guide and FAQ */
+.ex-summary-grid,
+.ex-principle-grid,
+.ex-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ex-summary-card,
+.ex-principle-card {
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(23, 55, 43, 0.05);
+}
+
+.ex-summary-card > span,
+.ex-principle-card > span {
+  font-size: 1.3rem;
+}
+
+.ex-summary-card h3,
+.ex-principle-card h3 {
+  margin: 8px 0 6px;
+  color: var(--dark);
+  font-size: 0.87rem;
+}
+
+.ex-summary-card strong {
+  display: block;
+  color: var(--mint-dark);
+  font-size: 1.05rem;
+}
+
+.ex-summary-card p,
+.ex-principle-card p {
+  margin-top: 7px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.ex-principle-section,
+.ex-guide-section,
+.ex-faq-section {
+  padding: 72px 0;
+}
+
+.ex-principle-card {
+  padding: 22px;
+}
+
+.ex-principle-card:nth-child(2) > span {
+  color: #d08b32;
+}
+
+.ex-principle-card:nth-child(3) > span {
+  color: var(--mint-dark);
+}
+
+.ex-principle-card h3 {
+  font-size: 1rem;
+}
+
+.ex-principle-card p {
+  font-size: 0.86rem;
+}
+
+.ex-source-note {
+  max-width: 950px;
+  margin: 20px auto 0;
+  color: var(--gray);
+  font-size: 0.77rem;
+  line-height: 1.7;
+}
+
+.ex-source-note a {
+  color: var(--mint-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ex-guide-grid .guide-card {
+  min-width: 0;
+}
+
+.ex-step {
+  display: block;
+  margin: 8px 0;
+  color: var(--mint-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.ex-faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ex-faq-item {
+  margin-bottom: 11px;
+  overflow: hidden;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.ex-faq-question {
+  display: flex;
+  width: 100%;
+  min-height: 55px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 17px;
+  color: var(--dark);
+  font-weight: 700;
+  text-align: left;
+}
+
+.ex-faq-question::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--mint-dark);
+  font-size: 1.2rem;
+}
+
+.ex-faq-item.is-open .ex-faq-question::after {
+  content: "−";
+}
+
+.ex-faq-answer {
+  display: none;
+  padding: 0 17px 17px;
+}
+
+.ex-faq-item.is-open .ex-faq-answer {
+  display: block;
+}
+
+.ex-faq-answer p {
+  line-height: 1.75;
+}
+
+.ex-notice-section {
+  padding-bottom: 72px;
+}
+
+.ex-notice-section .notice-box p {
+  margin-top: 10px;
+  line-height: 1.75;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 1024px) {
+  .ex-hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+    gap: 28px;
+  }
+
+  .ex-hero-copy h1 {
+    font-size: 2.65rem;
+  }
+
+  .ex-calculator-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ex-sport-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .ex-hero {
+    padding: 45px 0 42px;
+  }
+
+  .ex-hero-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 27px;
+  }
+
+  .ex-hero-copy h1 {
+    font-size: 2rem;
+  }
+
+  .ex-hero-lead {
+    font-size: 1.04rem;
+  }
+
+  .ex-hero-button {
+    width: 100%;
+  }
+
+  .ex-hero-card {
+    padding: 18px;
+  }
+
+  .ex-calculator-section,
+  .ex-principle-section,
+  .ex-guide-section,
+  .ex-faq-section {
+    padding: 52px 0;
+  }
+
+  .ex-calculator-card {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .ex-form-panel,
+  .ex-result-card,
+  .ex-chart-panel,
+  .ex-comparison-panel {
+    padding: 15px;
+  }
+
+  .ex-sport-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ex-sport-option {
+    min-height: 74px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 12px;
+  }
+
+  .ex-intensity-option {
+    font-size: 0.77rem;
+  }
+
+  .ex-time-inputs {
+    gap: 7px;
+  }
+
+  .ex-time-inputs label {
+    gap: 5px;
+    font-size: 0.75rem;
+  }
+
+  .ex-time-inputs input {
+    padding: 8px;
+  }
+
+  .ex-chart-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .ex-chart-row > span {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .ex-chart-row > strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .ex-chart-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .ex-duration-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ex-summary-grid,
+  .ex-principle-grid,
+  .ex-guide-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ex-result-details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ex-net-result {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ex-net-result p {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ex-result-content,
+  .ex-analysis {
+    animation: none;
+  }
+
+  .ex-chart-bar,
+  .ex-compare-bar,
+  .ex-sport-option,
+  .ex-intensity-option,
+  .ex-quick-time button {
+    transition: none;
+  }
+}

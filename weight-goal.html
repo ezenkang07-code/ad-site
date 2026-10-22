@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 목표 체중 기간 계산기</title>
+    <meta name="description" content="현재 체중, 목표 체중, 사용자가 가정한 주간 변화량을 바탕으로 목표 기간을 단순 계산해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/weight-goal-style.css" />
+  </head>
+  <body data-fitcalc-page="goal">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="wg-hero">
+        <div class="container wg-hero-content">
+          <div class="wg-hero-copy">
+            <p class="eyebrow">Goal Planning</p>
+            <h1>🎯 목표 체중까지 얼마나 걸릴까요?</h1>
+            <p class="wg-hero-lead">현재 체중과 목표 체중을 입력하면<br />목표 달성까지 걸리는 예상 기간을 확인할 수 있어요.</p>
+            <p class="wg-hero-description">
+              체중 변화는 개인의 생활 습관과 신체 상태에 따라 달라집니다.<br />
+              FITCALC에서 목표 체중까지의 차이를 계산하고 선택한 변화 속도를 바탕으로 예상 일정을 확인해보세요.
+            </p>
+            <a class="primary-btn wg-hero-button" href="#calculator">목표 기간 계산하기 ↓</a>
+          </div>
+          <div class="wg-hero-visual" aria-hidden="true">
+            <div class="wg-hero-card">
+              <div class="wg-hero-card-head"><span>FITCALC / GOAL PLAN</span><span>단순 계산 예시</span></div>
+              <div class="wg-hero-target"><span class="wg-hero-target-icon">🎯</span><div><small>목표까지 변화량</small><strong>−5.0 <span>kg</span></strong></div></div>
+              <div class="wg-hero-timeline"><span class="wg-timeline-start"></span><span class="wg-timeline-line"></span><span class="wg-timeline-end"></span></div>
+              <div class="wg-hero-timeline-labels"><span>70kg 시작</span><strong>약 10주</strong><span>65kg 목표</span></div>
+              <p>선택한 주간 변화량을 일정하게 가정한 예시입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="wg-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Weight Goal Planner</p>
+            <h2>🎯 목표 체중 기간 계산기</h2>
+            <p>현재 체중, 목표 체중, 예상 주간 변화량을 입력하고<br />목표까지 걸리는 기간을 계산해보세요.</p>
+          </div>
+
+          <div class="wg-calculator-card">
+            <div class="wg-form-panel">
+              <div class="wg-input-group">
+                <label class="wg-field-label" for="currentWeight">현재 체중을 입력해주세요</label>
+                <div class="wg-number-wrap"><input id="currentWeight" type="number" min="20" max="200" step="0.1" value="70" inputmode="decimal" aria-describedby="currentWeightError" /><span>kg</span></div>
+                <input id="currentWeightSlider" class="wg-slider" type="range" min="20" max="200" step="0.1" value="70" aria-label="현재 체중 슬라이더" />
+                <div class="wg-range-labels"><span>20kg</span><span>200kg</span></div>
+                <p id="currentWeightError" class="wg-error" aria-live="polite"></p>
+              </div>
+
+              <div class="wg-input-group">
+                <label class="wg-field-label" for="targetWeight">목표 체중을 입력해주세요</label>
+                <div class="wg-number-wrap"><input id="targetWeight" type="number" min="20" max="200" step="0.1" value="65" inputmode="decimal" aria-describedby="targetWeightError" /><span>kg</span></div>
+                <input id="targetWeightSlider" class="wg-slider" type="range" min="20" max="200" step="0.1" value="65" aria-label="목표 체중 슬라이더" />
+                <div class="wg-range-labels"><span>20kg</span><span>200kg</span></div>
+                <p id="targetWeightError" class="wg-error" aria-live="polite"></p>
+                <div class="wg-goal-type" aria-live="polite"><span>목표 유형</span><strong id="goalTypeValue">체중 감량</strong></div>
+              </div>
+
+              <fieldset class="wg-input-group wg-rate-group">
+                <legend class="wg-field-label">일주일에 어느 정도 체중 변화를 예상하시나요?</legend>
+                <p class="wg-helper">주간 변화량은 사용자가 가정하는 값이며, 개인에게 권장하는 감량 또는 증량 속도가 아닙니다.</p>
+                <div class="wg-rate-options" role="group" aria-label="주간 체중 변화량 선택">
+                  <button type="button" class="wg-rate-option" data-rate="0.1" aria-pressed="false">0.1kg / 주</button>
+                  <button type="button" class="wg-rate-option is-selected" data-rate="0.25" aria-pressed="true">0.25kg / 주</button>
+                  <button type="button" class="wg-rate-option" data-rate="0.5" aria-pressed="false">0.5kg / 주</button>
+                  <button type="button" class="wg-rate-option" data-rate="custom" aria-pressed="false">직접 입력</button>
+                </div>
+                <div id="customRateGroup" class="wg-custom-rate wg-is-hidden">
+                  <label for="customWeeklyRate">주간 변화량 직접 입력</label>
+                  <div class="wg-number-wrap"><input id="customWeeklyRate" type="number" min="0" step="any" inputmode="decimal" aria-describedby="weeklyRateError" /><span>kg / 주</span></div>
+                </div>
+                <p id="weeklyRateError" class="wg-error" aria-live="polite"></p>
+              </fieldset>
+
+              <div class="wg-input-group">
+                <label class="wg-field-label" for="startDate">언제부터 시작하시나요?</label>
+                <input id="startDate" class="wg-date-input" type="date" aria-describedby="startDateError" />
+                <p id="startDateError" class="wg-error" aria-live="polite"></p>
+              </div>
+
+              <button type="button" id="calculateWeightGoal" class="primary-btn wg-submit">목표 기간 계산하기 🎯</button>
+            </div>
+
+            <div class="wg-result-column">
+              <section id="weightResultCard" class="wg-result-card" aria-live="polite" aria-atomic="true">
+                <div class="wg-result-status"><span id="weightResultBadge">🎯 목표 기간 결과가 여기에 표시됩니다.</span></div>
+                <p id="weightResultPrompt" class="wg-result-prompt">정보를 입력한 후 계산 버튼을 눌러주세요.</p>
+                <div id="weightResultContent" class="wg-result-content wg-is-hidden">
+                  <div class="wg-result-main">
+                    <p class="wg-result-label">목표 체중까지 예상 기간</p>
+                    <strong id="estimatedWeeks">약 10주</strong>
+                    <span id="estimatedDays">약 70일</span>
+                    <small id="estimatedMonths">약 2.3개월</small>
+                  </div>
+                  <div class="wg-target-date"><span>예상 목표 달성 날짜</span><strong id="estimatedDate">2026년 12월 17일</strong></div>
+                  <p id="goalMessage" class="wg-goal-message"></p>
+                  <dl class="wg-detail-list">
+                    <div><dt>현재 체중</dt><dd id="resultCurrentWeight">-</dd></div>
+                    <div><dt>목표 체중</dt><dd id="resultTargetWeight">-</dd></div>
+                    <div><dt>목표 유형</dt><dd id="resultGoalType">-</dd></div>
+                    <div><dt>목표 변화량</dt><dd id="resultDifference">-</dd></div>
+                    <div><dt>주간 변화량</dt><dd id="resultWeeklyRate">-</dd></div>
+                    <div><dt>시작 날짜</dt><dd id="resultStartDate">-</dd></div>
+                  </dl>
+                  <p class="wg-result-caveat">이 결과는 선택한 주간 변화량이 일정하게 유지된다고 가정한 단순 계산 결과입니다. 실제 체중 변화는 개인에 따라 달라질 수 있으며, 예상 날짜는 달성을 보장하지 않습니다.</p>
+                  <button type="button" id="resetWeightGoal" class="secondary-btn wg-reset">다시 계산하기</button>
+                </div>
+              </section>
+
+              <div id="weightAnalysis" class="wg-analysis wg-is-hidden">
+                <section class="wg-chart-panel" aria-labelledby="weightChartTitle">
+                  <div class="wg-panel-heading"><p class="eyebrow">Linear Estimate</p><h3 id="weightChartTitle">📈 목표 체중 변화 예상 그래프</h3></div>
+                  <div class="wg-chart-legend"><span><i class="wg-legend-dot wg-start-dot"></i>시작 체중</span><span><i class="wg-legend-dot wg-target-dot"></i>목표 체중</span></div>
+                  <svg id="weightChart" class="wg-chart" viewBox="0 0 640 310" role="img" aria-labelledby="weightChartTitle weightChartDescription">
+                    <desc id="weightChartDescription">선택한 주간 체중 변화량이 일정하게 유지된다고 가정한 시작 체중에서 목표 체중까지의 직선 그래프입니다.</desc>
+                    <g class="wg-chart-grid"><line x1="62" y1="40" x2="590" y2="40"></line><line x1="62" y1="100" x2="590" y2="100"></line><line x1="62" y1="160" x2="590" y2="160"></line><line x1="62" y1="220" x2="590" y2="220"></line></g>
+                    <line class="wg-chart-axis" x1="62" y1="35" x2="62" y2="222"></line><line class="wg-chart-axis" x1="62" y1="222" x2="592" y2="222"></line>
+                    <text class="wg-axis-title" x="22" y="26">체중(kg)</text><text class="wg-axis-title" x="485" y="286">경과 주 수</text>
+                    <g id="weightChartYAxisLabels"></g>
+                    <g id="weightChartPlot"></g>
+                  </svg>
+                  <ul id="weightChartData" class="wg-chart-data" aria-label="예상 체중 지점"></ul>
+                  <p class="wg-chart-note">그래프는 선택한 속도를 선형으로 적용한 계획 시각화이며 실제 체중 변화 예측 모델이 아닙니다.</p>
+                </section>
+
+                <section class="wg-plan-panel" aria-labelledby="weightPlanTitle">
+                  <div class="wg-panel-heading"><p class="eyebrow">Plan Overview</p><h3 id="weightPlanTitle">🎯 나의 목표 체중 계획</h3></div>
+                  <p class="wg-plan-note">실제 달성률이 아닌 시작점과 목표점을 나타냅니다.</p>
+                  <div id="weightPlanTrack" class="wg-plan-track">
+                    <span class="wg-plan-connector"></span>
+                    <span class="wg-plan-marker wg-plan-origin"></span>
+                    <span class="wg-plan-marker wg-plan-target"></span>
+                  </div>
+                  <div class="wg-plan-labels"><span><small>시작</small><strong id="planCurrentWeight">70kg</strong></span><span class="wg-plan-change" id="planChange">5kg 감량</span><span><small>목표</small><strong id="planTargetWeight">65kg</strong></span></div>
+                </section>
+
+                <div class="wg-summary-grid" aria-label="목표 계획 요약">
+                  <article class="wg-summary-card"><span aria-hidden="true">⚖️</span><h3>목표 변화량</h3><strong id="summaryDifference">5kg 감량</strong></article>
+                  <article class="wg-summary-card"><span aria-hidden="true">📅</span><h3>예상 소요 기간</h3><strong id="summaryDuration">약 10주</strong></article>
+                  <article class="wg-summary-card"><span aria-hidden="true">🎯</span><h3>예상 달성 날짜</h3><strong id="summaryDate">2026년 12월 17일</strong></article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="guide" class="wg-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="wg-guide-grid">
+            <article class="guide-card"><div class="guide-icon">⚖️</div><span class="wg-step">STEP 01</span><h3>현재 체중과 목표 체중 입력</h3><p>현재 체중과 목표 체중을 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">📅</div><span class="wg-step">STEP 02</span><h3>주간 변화량과 시작 날짜 선택</h3><p>가정할 주간 변화 속도와 시작 날짜를 선택해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🎯</div><span class="wg-step">STEP 03</span><h3>예상 기간 확인</h3><p>목표 체중까지의 예상 기간과 계산상 목표 달성 날짜를 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="wg-info-section">
+        <div class="container"><article class="wg-info-panel">
+          <p class="eyebrow">Goal Planning Guide</p>
+          <h2>🌱 목표 체중 계획은 어떻게 세울까요?</h2>
+          <p>체중은 식사, 활동량, 수면, 건강 상태, 체성분 변화 등 다양한 요인에 영향을 받습니다.</p>
+          <p>따라서 실제 체중은 매주 일정하게 증가하거나 감소하지 않을 수 있습니다. 본 계산기는 사용자가 설정한 변화 속도를 바탕으로 일정을 단순 계산하는 도구입니다.</p>
+          <p>계산 결과는 계획을 이해하기 위한 참고 정보로 활용해주세요. 목표 체중이 개인에게 적절한지 여부는 이 계산기만으로 판단할 수 없습니다.</p>
+        </article></div>
+      </section>
+
+      <section class="wg-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="wg-faq-list">
+            <div class="wg-faq-item is-open"><button type="button" class="wg-faq-question" aria-expanded="true">Q. 목표 체중까지 걸리는 기간은 어떻게 계산하나요?</button><div class="wg-faq-answer"><p>목표 체중과 현재 체중의 차이를 절대값으로 구한 뒤 사용자가 선택한 주간 변화량으로 나눕니다. 예상 일수는 계산된 주 수에 7을 곱한 값을 올림하여 표시합니다.</p></div></div>
+            <div class="wg-faq-item"><button type="button" class="wg-faq-question" aria-expanded="false">Q. 실제 체중도 매주 일정하게 변하나요?</button><div class="wg-faq-answer"><p>아닙니다. 실제 체중은 식사, 활동량, 수분 변화, 수면, 건강 상태 등 여러 요인에 따라 달라질 수 있습니다. 그래프는 사용자가 정한 속도를 일정하게 가정한 선형 계획입니다.</p></div></div>
+            <div class="wg-faq-item"><button type="button" class="wg-faq-question" aria-expanded="false">Q. 예상 달성 날짜는 정확한가요?</button><div class="wg-faq-answer"><p>예상 날짜는 입력한 시작 날짜와 주간 변화량을 바탕으로 계산한 날짜이며 실제 달성을 보장하지 않습니다.</p></div></div>
+            <div class="wg-faq-item"><button type="button" class="wg-faq-question" aria-expanded="false">Q. 체중 감량과 체중 증가 모두 계산할 수 있나요?</button><div class="wg-faq-answer"><p>현재 체중과 목표 체중을 비교해 감량 또는 증가 유형을 자동으로 구분하고, 두 방향 모두 같은 방식으로 예상 기간을 계산합니다.</p></div></div>
+            <div class="wg-faq-item"><button type="button" class="wg-faq-question" aria-expanded="false">Q. 목표 체중을 어떻게 설정해야 하나요?</button><div class="wg-faq-answer"><p>적절한 목표 체중은 개인의 건강 상태와 신체 특성에 따라 다릅니다. 이 계산기는 목표의 적절성을 판단하지 않으며, 필요하면 의료 또는 영양 전문가와 상담해주세요.</p></div></div>
+            <div class="wg-faq-item"><button type="button" class="wg-faq-question" aria-expanded="false">Q. 체중이 예상대로 변하지 않으면 어떻게 해야 하나요?</button><div class="wg-faq-answer"><p>예상과 실제 변화가 다를 수 있습니다. 무리하게 속도를 높이기보다 생활 여건과 건강 상태를 살펴보고, 어려움이 있다면 전문가의 도움을 받아보세요.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section wg-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 현재 체중과 목표 체중의 차이, 사용자가 설정한 주간 체중 변화량을 이용하여 예상 소요 기간을 계산하는 도구입니다.</p>
+          <p>실제 체중 변화는 개인의 신체 상태, 식습관, 활동량, 수분 변화 등에 따라 달라질 수 있습니다. 계산 결과는 의학적 예측이나 목표 달성을 보장하는 정보가 아닙니다.</p>
+          <p>무리한 체중 감량 또는 증가를 위한 행동을 권장하지 않습니다. 특정 질환이 있거나 체중 관리에 어려움이 있는 경우 의료 전문가 또는 영양 전문가와 상담해주세요.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/weight-goal-main.js"></script>
+  </body>
+</html>

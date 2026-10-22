@@ -1,0 +1,48 @@
+.wl-section { padding: 72px 0; background: var(--mint-soft); scroll-margin-top: 100px; }
+.wl-section [hidden] { display: none !important; }
+.wl-section .wl-card { min-width: 0; background: var(--white); border: 1px solid var(--gray-light); border-radius: var(--radius-md); padding: 25px; box-shadow: var(--shadow); }
+.wl-toolbar,.wl-entry-footer,.wl-chart-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.wl-toolbar { margin-bottom: 18px; }
+.wl-toolbar a { color: var(--mint-dark); font-weight: 700; }
+.wl-kpis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-bottom: 22px; }
+.wl-kpis strong { display: block; font-size: clamp(1.6rem,3vw,2.15rem); font-weight: 800; margin: 10px 0; letter-spacing: -.04em; }
+.wl-kpis p:last-child,.wl-caption { font-size: .8rem; color: var(--gray); }
+.wl-section .wl-down { color: #2466c5; } .wl-section .wl-up { color: #c43e49; }
+.wl-entry { margin-bottom: 24px; }
+.wl-entry > p { margin: 8px 0 20px; }
+.wl-section form { display: grid; grid-template-columns: 1fr .8fr 1.3fr auto; gap: 14px; align-items: start; }
+.wl-section label { display: block; margin-bottom: 7px; font-size: .85rem; font-weight: 700; }
+.wl-section label span { color: var(--gray); font-weight: 400; }
+.wl-section input { width: 100%; min-width: 0; height: 48px; padding: 10px 12px; border: 1px solid var(--gray-medium); border-radius: var(--radius-sm); background: white; color: var(--dark); }
+.wl-section input[aria-invalid="true"] { border-color: #c43e49; }
+.wl-section button { min-height: 40px; padding: 9px 16px; }
+.wl-section form > button { margin-top: 27px; min-height: 48px; }
+.wl-section :is(button,input,a,[tabindex]):focus-visible { outline: 3px solid #2466c5; outline-offset: 3px; }
+.wl-section button:disabled { opacity: .45; cursor: default; transform: none; }
+.wl-error { color: #c43e49; font-size: .78rem; margin-top: 5px; }
+.wl-entry-footer { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-light); }
+.wl-entry-footer p { font-size: .85rem; }
+.wl-warning:not(:empty) { padding: 12px; margin-bottom: 16px; background: #fff4de; border-radius: var(--radius-sm); color: #795214; }
+.wl-analysis { display: grid; grid-template-columns: 1.05fr 1fr; gap: 22px; }
+.wl-chart-heading h3 { font-size: 1.15rem; }
+.wl-periods { display: flex; gap: 3px; padding: 3px; background: var(--mint-soft); border-radius: 12px; }
+.wl-periods button { padding: 6px 10px; border-radius: 9px; color: var(--dark-soft); }
+.wl-periods [aria-pressed="true"] { background: var(--mint-dark); color: white; }
+.wl-caption { margin: 12px 0 18px; line-height: 1.6; }
+.wl-chart-wrap { position: relative; height: 300px; }
+.wl-table-wrap { overflow: auto; max-height: 345px; }
+.wl-section table { width: 100%; border-collapse: collapse; font-size: .8rem; text-align: left; }
+.wl-section th { color: var(--gray); background: var(--mint-soft); position: sticky; top: 0; font-weight: 700; }
+.wl-section :is(th,td) { padding: 12px 9px; border-bottom: 1px solid var(--gray-light); vertical-align: middle; }
+.wl-section td:not(:nth-child(4)) { white-space: nowrap; }
+.wl-section td:nth-child(4) { min-width: 80px; max-width: 160px; overflow-wrap: anywhere; }
+.wl-section td button { color: #b53945; background: #fff3f4; border-radius: 8px; padding: 7px 10px; }
+.wl-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+#wl-chart-empty { font-size: .85rem; color: var(--gray); margin-top: 12px; }
+@media(max-width:1024px) { .wl-analysis { grid-template-columns: minmax(0,1fr); } .wl-section form { grid-template-columns: 1fr 1fr; } }
+@media(max-width:600px) { .wl-section { padding: 52px 0; } .wl-kpis { grid-template-columns: minmax(0,1fr); gap: 12px; } .wl-section .wl-card { padding: 18px; } .wl-section form { grid-template-columns: minmax(0,1fr); } .wl-section form > button { margin-top: 0; } .wl-entry-footer button { width: 100%; } .wl-chart-wrap { height: 250px; } }
+.wl-goal-settings { margin-bottom: 22px; }
+.wl-goal-settings input { max-width: 240px; margin: 4px 0 10px; }
+.wl-goal-settings p { font-size: .85rem; }
+.wl-section h1 { margin-bottom: 12px; }
+.wl-chart-wrap canvas { max-width: 100%; }

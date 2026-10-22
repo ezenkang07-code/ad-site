@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 하루 물 섭취량 계산기</title>
+    <meta name="description" content="체중과 활동 정보를 바탕으로 하루 물 섭취 참고량과 물컵 환산을 확인해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/water-style.css" />
+  </head>
+  <body data-fitcalc-page="water">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="water-hero">
+        <div class="container water-hero-content">
+          <div class="water-hero-copy">
+            <p class="eyebrow">Hydration Guide</p>
+            <h1>💧 오늘 물은 얼마나 마셔야 할까요?</h1>
+            <p class="water-hero-lead">나의 생활 패턴을 바탕으로<br />하루 물 섭취 참고량을 간편하게 계산해보세요.</p>
+            <p class="water-hero-description">수분은 일상생활과 신체 기능 유지에 중요한 역할을 합니다.<br />FITCALC에서 체중과 활동 정보를 입력하고 하루 수분 섭취 계획을 세우는 데 참고해보세요.</p>
+            <a class="primary-btn water-hero-button" href="#calculator">물 섭취량 계산하기 ↓</a>
+          </div>
+          <div class="water-hero-visual" aria-hidden="true">
+            <div class="water-hero-card">
+              <div class="water-hero-card-head"><span>FITCALC / HYDRATION</span><span>참고량 예시</span></div>
+              <div class="water-glass-scene"><span class="water-drop water-drop-one">💧</span><div class="water-glass"><i></i></div><span class="water-drop water-drop-two">💧</span></div>
+              <div class="water-hero-amount"><strong>1,950 <small>mL</small></strong><span>65kg × 30mL의 단순 예시</span></div>
+              <p>개인별 수분 필요량을 처방하는 값이 아닙니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="water-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Daily Hydration</p>
+            <h2>💧 하루 물 섭취량 계산기</h2>
+            <p>체중과 활동 정보를 입력하고<br />하루 물 섭취 참고량을 확인해보세요.</p>
+          </div>
+
+          <div class="water-calculator-card">
+            <div class="water-form-panel">
+              <div class="water-field-group">
+                <label class="water-field-label" for="waterWeight">현재 체중을 입력해주세요</label>
+                <div class="water-number-wrap"><input id="waterWeight" type="number" min="20" max="200" step="0.1" value="65" inputmode="decimal" aria-describedby="waterWeightError" /><span>kg</span></div>
+                <input id="waterWeightSlider" class="water-slider" type="range" min="20" max="200" step="0.1" value="65" aria-label="체중 슬라이더" />
+                <div class="water-range-labels"><span>20kg</span><span>200kg</span></div>
+                <p id="waterWeightError" class="water-error" aria-live="polite"></p>
+              </div>
+
+              <fieldset class="water-field-group">
+                <legend>평소 활동량을 선택해주세요</legend>
+                <div class="water-choice-grid" role="group" aria-label="활동량 선택">
+                  <button type="button" class="water-choice is-selected" data-activity="low" aria-pressed="true"><span class="water-choice-check" aria-hidden="true">✓</span><strong>낮음</strong><small>주로 앉아서 생활하는 경우</small></button>
+                  <button type="button" class="water-choice" data-activity="moderate" aria-pressed="false"><span class="water-choice-check" aria-hidden="true">✓</span><strong>보통</strong><small>일상적인 이동과 가벼운 활동</small></button>
+                  <button type="button" class="water-choice" data-activity="high" aria-pressed="false"><span class="water-choice-check" aria-hidden="true">✓</span><strong>높음</strong><small>신체 활동이 많은 생활</small></button>
+                </div>
+                <p id="activityError" class="water-error" aria-live="polite"></p>
+              </fieldset>
+
+              <fieldset class="water-field-group">
+                <legend>하루 운동 시간을 입력해주세요</legend>
+                <div class="water-time-inputs">
+                  <label for="waterExerciseHours"><span class="sr-only">운동 시간</span><input id="waterExerciseHours" type="number" min="0" max="12" step="1" value="0" inputmode="numeric" aria-describedby="exerciseTimeError" /><span>시간</span></label>
+                  <label for="waterExerciseMinutes"><span class="sr-only">운동 분</span><input id="waterExerciseMinutes" type="number" min="0" max="59" step="1" value="30" inputmode="numeric" aria-describedby="exerciseTimeError" /><span>분</span></label>
+                </div>
+                <div class="water-quick-time" role="group" aria-label="운동 시간 빠른 선택">
+                  <button type="button" data-minutes="0">운동 안 함</button>
+                  <button type="button" data-minutes="15">15분</button>
+                  <button type="button" data-minutes="30" class="is-selected" aria-pressed="true">30분</button>
+                  <button type="button" data-minutes="60">60분</button>
+                  <button type="button" data-minutes="90">90분</button>
+                </div>
+                <p class="water-helper">운동 시간은 활동 정보입니다. 시간만으로 땀 배출량을 정확히 계산하지 않습니다.</p>
+                <p id="exerciseTimeError" class="water-error" aria-live="polite"></p>
+              </fieldset>
+
+              <fieldset class="water-field-group">
+                <legend>주로 어떤 환경에서 활동하시나요?</legend>
+                <div class="water-choice-grid water-climate-grid" role="group" aria-label="활동 환경 선택">
+                  <button type="button" class="water-choice" data-climate="cool" aria-pressed="false"><span class="water-choice-check" aria-hidden="true">✓</span><strong>서늘한 환경</strong><small>기온이 낮거나 시원한 환경</small></button>
+                  <button type="button" class="water-choice is-selected" data-climate="mild" aria-pressed="true"><span class="water-choice-check" aria-hidden="true">✓</span><strong>일반적인 환경</strong><small>실내 및 온화한 환경</small></button>
+                  <button type="button" class="water-choice" data-climate="hot" aria-pressed="false"><span class="water-choice-check" aria-hidden="true">✓</span><strong>더운 환경</strong><small>기온이 높고 더운 환경</small></button>
+                </div>
+                <p class="water-helper">기온 외에도 습도, 운동 강도, 개인의 발한량에 따라 수분 손실은 달라질 수 있습니다.</p>
+                <p id="climateError" class="water-error" aria-live="polite"></p>
+              </fieldset>
+
+              <label class="water-field-label" for="glassSize">물컵 용량을 선택해주세요</label>
+              <div class="water-cup-options" id="glassSizeOptions" role="group" aria-label="물컵 용량 선택">
+                <button type="button" data-glass="150">150mL</button>
+                <button type="button" data-glass="200">200mL</button>
+                <button type="button" data-glass="250" class="is-selected" aria-pressed="true">250mL</button>
+                <button type="button" data-glass="300">300mL</button>
+                <button type="button" data-glass="500">500mL</button>
+              </div>
+              <input id="glassSize" type="hidden" value="250" />
+
+              <details class="water-sweat-details">
+                <summary>💦 운동 중 수분 손실도 참고하고 싶나요?</summary>
+                <p class="water-helper">운동 전후 체중 변화와 운동 중 수분 섭취·소변량으로 계산하는 별도 참고값입니다. 하루 기본 참고량에 더하지 않습니다.</p>
+                <div class="water-sweat-grid">
+                  <div><label for="preExerciseWeight">운동 전 체중</label><div class="water-number-wrap"><input id="preExerciseWeight" type="number" min="20" max="200" step="0.1" inputmode="decimal" aria-describedby="sweatError" /><span>kg</span></div></div>
+                  <div><label for="postExerciseWeight">운동 후 체중</label><div class="water-number-wrap"><input id="postExerciseWeight" type="number" min="20" max="200" step="0.1" inputmode="decimal" aria-describedby="sweatError" /><span>kg</span></div></div>
+                  <div><label for="exerciseFluidMl">운동 중 마신 음료량</label><div class="water-number-wrap"><input id="exerciseFluidMl" type="number" min="0" max="20000" step="1" value="0" inputmode="numeric" aria-describedby="sweatError" /><span>mL</span></div></div>
+                  <div><label for="exerciseUrineMl">운동 중 소변량 <small>(선택)</small></label><div class="water-number-wrap"><input id="exerciseUrineMl" type="number" min="0" max="20000" step="1" value="0" inputmode="numeric" aria-describedby="sweatError" /><span>mL</span></div></div>
+                </div>
+                <button type="button" id="calculateSweatLoss" class="water-inline-button">별도 수분 손실 추정</button>
+                <p id="sweatError" class="water-error" aria-live="polite"></p>
+                <div id="sweatResult" class="water-sweat-result water-is-hidden" aria-live="polite"><span>운동 중 추정 총 발한량</span><strong id="sweatLiters">—</strong><small>운동 전후 체중 차이와 입력한 수분량으로 구한 별도 추정치입니다.</small></div>
+              </details>
+
+              <button type="button" id="calculateWater" class="primary-btn water-submit">물 섭취량 계산하기 💧</button>
+            </div>
+
+            <div class="water-result-column">
+              <section id="waterResultCard" class="water-result-card" aria-live="polite" aria-atomic="true">
+                <span id="waterResultBadge" class="water-result-badge">💧 물 섭취량 결과가 여기에 표시됩니다.</span>
+                <p id="waterResultPrompt" class="water-result-prompt">체중과 활동 정보를 입력한 후 계산 버튼을 눌러주세요.</p>
+                <div id="waterResultContent" class="water-result-content water-is-hidden">
+                  <div class="water-result-main"><p>하루 물 섭취 참고량</p><strong id="waterMl">1,950mL</strong><span id="waterLiters">약 1.95L</span></div>
+                  <div class="water-glass-result"><span id="glassCapacityText">250mL 물컵 기준</span><strong id="glassCount">약 7.8컵</strong><small id="glassCountWhole">나누어 마실 때 약 8컵 환산</small></div>
+                  <div id="waterGuidance" class="water-guidance"></div>
+                  <dl class="water-result-details">
+                    <div><dt>체중</dt><dd id="resultWaterWeight">65kg</dd></div>
+                    <div><dt>활동량</dt><dd id="resultWaterActivity">보통</dd></div>
+                    <div><dt>운동 시간</dt><dd id="resultExerciseTime">0시간 30분</dd></div>
+                    <div><dt>기온 환경</dt><dd id="resultClimate">일반적인 환경</dd></div>
+                  </dl>
+                  <p class="water-result-note">이 수치는 체중을 기준으로 계산한 간단한 참고용 추정치입니다. 실제 수분 필요량은 개인의 건강 상태, 음식 섭취, 활동량, 환경 등에 따라 달라질 수 있습니다.</p>
+                </div>
+                <button type="button" id="resetWaterCalculator" class="secondary-btn water-reset">다시 계산하기</button>
+              </section>
+
+              <div id="waterAnalysis" class="water-analysis water-is-hidden">
+                <section class="water-visual-panel" aria-labelledby="waterVisualTitle">
+                  <div class="water-panel-heading"><p class="eyebrow">Daily Reference</p><h3 id="waterVisualTitle">💧 나의 하루 물 섭취 참고량</h3></div>
+                  <div class="water-bottle-layout">
+                    <div class="water-bottle" role="img" aria-label="물병 용량 대비 계산 참고량 시각화"><div id="waterBottleFill" class="water-bottle-fill"></div><span class="water-bottle-cap"></span></div>
+                    <div class="water-bottle-copy"><strong id="bottleReference">1,950mL</strong><span>물병 용량 2,000mL 기준</span><p>물병 용량 대비 참고량을 나타낸 그래픽이며 실제 섭취 진행률이 아닙니다.</p></div>
+                  </div>
+                </section>
+
+                <section class="water-schedule-panel" aria-labelledby="scheduleTitle">
+                  <div class="water-panel-heading"><p class="eyebrow">Example Schedule</p><h3 id="scheduleTitle">🕒 하루 물 섭취 계획 예시</h3></div>
+                  <p class="water-helper">편의상 나눈 일정 예시입니다. 의학적으로 권장되는 시간대별 섭취량이 아닙니다.</p>
+                  <div id="waterSchedule" class="water-schedule-grid"></div>
+                  <p class="water-schedule-total">배분 합계 <strong>100%</strong></p>
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <section class="water-log-section" aria-labelledby="waterLogTitle">
+            <div class="water-log-heading"><div><p class="eyebrow">Today Log</p><h2 id="waterLogTitle">✅ 오늘 마신 물 기록하기</h2><p>기록한 물은 이 기기에 오늘 날짜 기준으로 저장됩니다.</p></div><button type="button" id="clearWaterLog" class="water-clear-button">기록 삭제</button></div>
+            <div class="water-log-entry">
+              <button type="button" id="addCupWater" class="primary-btn water-add-cup">물 1컵 추가 <span id="logCupSizeLabel">250mL</span></button>
+              <div class="water-log-custom"><label for="customWaterMl">직접 입력</label><div class="water-number-wrap"><input id="customWaterMl" type="number" min="1" max="20000" step="1" inputmode="numeric" aria-describedby="waterLogError" /><span>mL</span></div><button type="button" id="addCustomWater" class="water-inline-button">기록 추가</button></div>
+              <p id="waterLogError" class="water-error" aria-live="polite"></p>
+            </div>
+            <div class="water-log-summary" aria-live="polite"><div><span>오늘 마신 물</span><strong id="todayWaterTotal">0mL</strong></div><div><span>참고량 대비 기록</span><strong id="todayWaterProgressText">참고량 계산 후 표시</strong></div></div>
+            <div id="todayWaterProgressTrack" class="water-progress-track" role="progressbar" aria-label="오늘 물 섭취 기록 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="참고량 계산 후 표시"><i id="todayWaterProgress"></i></div>
+            <p class="water-log-note">진행률은 직접 기록한 물의 양을 현재 계산 참고량과 비교한 값입니다. 참고량을 넘겨도 기록값은 그대로 표시합니다.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="water-info-section">
+        <div class="container">
+          <div class="water-info-grid">
+            <article class="water-info-card"><span aria-hidden="true">💧</span><h3>하루 물 섭취 참고량</h3><p>체중을 이용한 간단한 경험식으로 계산한 참고용 수치입니다.</p></article>
+            <article class="water-info-card"><span aria-hidden="true">🥤</span><h3>물컵 개수</h3><p>계산된 참고량을 선택한 물컵 용량으로 환산한 값입니다.</p></article>
+            <article class="water-info-card"><span aria-hidden="true">🌡️</span><h3>활동 및 환경</h3><p>운동과 기온 환경에 따라 수분 손실량이 달라질 수 있습니다.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="water-total-section">
+        <div class="container water-total-panel">
+          <p class="eyebrow">Hydration Context</p>
+          <h2>💡 물 섭취량과 총 수분 섭취량은 다를까요?</h2>
+          <p>사람은 마시는 물뿐 아니라 다양한 음료와 음식에서도 수분을 섭취합니다. 따라서 하루에 마시는 물의 양과 음식 및 음료를 포함한 총 수분 섭취량은 서로 다른 개념입니다.</p>
+          <p>본 계산기의 체중 기반 수치는 간편한 물 섭취 계획을 위한 참고값이며, 공식적인 총 수분 필요량과 동일하지 않습니다.</p>
+        </div>
+      </section>
+
+      <section id="guide" class="water-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="water-guide-grid">
+            <article class="guide-card"><div class="guide-icon">⚖️</div><span class="water-step">STEP 01</span><h3>체중 입력</h3><p>현재 체중을 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🏃</div><span class="water-step">STEP 02</span><h3>활동 정보 선택</h3><p>활동량, 운동 시간, 주로 활동하는 환경을 선택해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">💧</div><span class="water-step">STEP 03</span><h3>물 섭취 참고량 확인</h3><p>계산된 참고량과 물컵 개수, 하루 섭취 계획을 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="water-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="water-faq-list">
+            <div class="water-faq-item is-open"><button type="button" class="water-faq-question" aria-expanded="true">Q. 하루에 물을 얼마나 마셔야 하나요?</button><div class="water-faq-answer"><p>필요한 수분량은 음식과 음료 섭취, 활동, 환경, 건강 상태 등 여러 요인에 따라 다릅니다. 이 계산기는 체중을 이용한 단순 참고값을 제공하며 개인별 필요량을 확정하지 않습니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 물 섭취량은 어떻게 계산하나요?</button><div class="water-faq-answer"><p>체중(kg)에 30mL를 곱한 경험식으로 간단한 참고량을 계산합니다. 이는 공식적인 개인별 권장량이 아니라 계획을 위한 근사치입니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 체중에 따라 물 섭취량이 달라지나요?</button><div class="water-faq-answer"><p>이 도구의 체중 기반 경험식에서는 체중이 입력값으로 사용됩니다. 실제 수분 필요량은 체중 외에도 건강 상태, 식사, 활동, 환경에 따라 달라질 수 있습니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 운동을 많이 하면 물을 더 마셔야 하나요?</button><div class="water-faq-answer"><p>운동 중에는 발한 등으로 수분 손실이 달라질 수 있습니다. 시간만으로 손실량을 정확히 계산할 수 없으므로 갈증과 운동 상황, 전문가 안내를 함께 고려하세요.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 더운 날씨에는 수분 섭취량이 달라지나요?</button><div class="water-faq-answer"><p>더운 환경에서는 수분 손실이 늘 수 있지만 습도, 활동 강도, 개인 발한량 등도 영향을 줍니다. 이 계산기는 이를 고정된 추가량으로 환산하지 않습니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 커피나 차도 수분 섭취에 포함되나요?</button><div class="water-faq-answer"><p>음료도 수분 섭취에 기여할 수 있지만, 음료 종류와 섭취 상황에 따라 달라집니다. 본 계산기의 물컵 환산은 물의 양을 기준으로 합니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 음식에 포함된 수분도 고려해야 하나요?</button><div class="water-faq-answer"><p>네. 과일, 채소, 국물 등 음식에도 수분이 포함되므로 마시는 물의 양과 총 수분 섭취량은 같지 않습니다.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 물을 많이 마실수록 건강에 좋은가요?</button><div class="water-faq-answer"><p>무조건 많이 마시는 것이 좋은 것은 아닙니다. 짧은 시간에 과도한 수분을 섭취하는 것은 해로울 수 있습니다. 개인의 건강 상태와 전문가의 안내를 우선하세요.</p></div></div>
+            <div class="water-faq-item"><button type="button" class="water-faq-question" aria-expanded="false">Q. 계산 결과와 실제 필요한 수분량이 다른 이유는 무엇인가요?</button><div class="water-faq-answer"><p>계산은 체중에 기반한 간단한 경험식입니다. 음식, 음료, 활동량, 환경, 건강 상태 등 개인별 요인을 모두 반영하지 못합니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section water-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 일반적인 건강 상태의 성인이 일상적인 물 섭취 계획을 세울 때 참고하도록 체중 기반 수치를 계산합니다. 의학적으로 확정된 개인별 권장 섭취량이 아닙니다.</p>
+          <p>실제 수분 필요량은 나이, 활동량, 환경, 음식 섭취, 건강 상태 등에 따라 달라질 수 있습니다. 과도한 수분 섭취는 건강에 해로울 수 있으므로 계산 결과를 맞추기 위해 짧은 시간에 많은 양을 마시지 마세요.</p>
+          <p>신장질환, 심장질환 등으로 수분 섭취 제한이 필요한 경우 의료 전문가의 안내를 우선하세요. 운동 중 심한 발한이 있다면 수분뿐 아니라 전해질 손실도 고려해야 할 수 있습니다.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/water-main.js"></script>
+  </body>
+</html>

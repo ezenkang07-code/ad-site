@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 음식 칼로리 계산기</title>
+    <meta name="description" content="음식을 검색하고 섭취량별 칼로리와 영양소를 계산하세요. 날짜별 식단 기록, 영양소 분석, 직접 음식 입력을 제공합니다." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/food-style.css" />
+  </head>
+  <body data-fitcalc-page="food">
+    <div id="site-header"></div>
+    <main id="home" class="food-page">
+      <!-- Hero -->
+      <section class="food-hero">
+        <div class="container food-hero-grid">
+          <div>
+            <p class="eyebrow">Food &amp; Nutrition</p>
+            <h1>🍱 오늘 먹은 음식은<br />몇 칼로리일까요?</h1>
+            <p class="food-lead">음식을 검색하고 섭취량을 입력하면<br />칼로리와 주요 영양소를 간편하게 확인할 수 있어요.</p>
+            <p>밥, 과일, 고기, 간식부터 다양한 음식까지.<br />FITCALC에서 음식별 영양 정보를 확인하고 하루 섭취량을 한눈에 정리해보세요.</p>
+            <a class="primary-btn food-button" href="#calculator">음식 칼로리 계산하기 ↓</a>
+          </div>
+          <div class="food-hero-art" aria-hidden="true">
+            <div class="food-art-head"><span>FITCALC / FOOD DIARY</span><span>나의 식단 기록</span></div>
+            <div class="food-plate"><span>🥦</span><span>🍚</span><span>🍅</span><span>🥑</span></div>
+            <div class="food-art-chips"><span>🔍 음식 찾기</span><span>⚖️ 섭취량 기록</span><span>📊 영양소 확인</span></div>
+            <p>한 끼씩 기록하는 나의 하루</p>
+          </div>
+        </div>
+      </section>
+      <!-- Search and calculator -->
+      <section id="calculator" class="food-section food-tinted">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">Know Your Food</p><h2>🍽️ 음식 칼로리 계산기</h2><p>음식을 검색하고 섭취량을 설정하여 칼로리와 영양소를 계산해보세요.</p></div>
+          <div class="food-calculator-grid">
+            <div class="food-card">
+              <form id="food-form" novalidate>
+                <label for="food-search" class="food-label">01 <span>어떤 음식을 드셨나요?</span></label>
+                <input id="food-search" type="search" placeholder="음식 이름을 검색해보세요. 예: 바나나, 밥, 계란" autocomplete="off" role="combobox" aria-controls="food-search-results" aria-expanded="true" aria-autocomplete="list" aria-describedby="food-search-count food-selection-error" />
+                <div id="food-categories" class="food-chips" role="group" aria-label="음식 카테고리"></div>
+                <p id="food-search-count" class="food-small" role="status"></p>
+                <div id="food-search-results" class="food-search-results" role="listbox" aria-label="음식 검색 결과"></div>
+                <p id="food-selection-error" class="food-error" aria-live="polite"></p>
+                <button type="button" id="food-custom-toggle" class="food-text-button" aria-expanded="false" aria-controls="food-custom-panel">+ 음식 직접 입력하기</button>
+                <div id="food-selected" class="food-selected" hidden></div>
+                <div class="food-amount-field">
+                  <label for="food-grams" class="food-label">02 <span>얼마나 드셨나요?</span></label>
+                  <div class="food-number-wrap"><input id="food-grams" type="number" min="0.1" max="5000" step="0.1" value="100" inputmode="decimal" aria-describedby="food-amount-error food-range-note" /><span>g</span></div>
+                  <label for="food-slider" class="food-sr-only">섭취량 슬라이더 (1~1000g)</label>
+                  <input id="food-slider" type="range" min="1" max="1000" step="0.1" value="100" />
+                  <div class="food-between food-small"><span>1g</span><span>1000g</span></div>
+                  <div id="food-quick" class="food-chips" role="group" aria-label="섭취량 빠른 선택">
+                    <button type="button" data-grams="50" aria-pressed="false">50g</button><button type="button" data-grams="100" aria-pressed="true">100g</button><button type="button" data-grams="150" aria-pressed="false">150g</button><button type="button" data-grams="200" aria-pressed="false">200g</button><button type="button" data-grams="300" aria-pressed="false">300g</button>
+                  </div>
+                  <p id="food-range-note" class="food-small">직접 입력: 0 초과~5000g · 소수점 첫째 자리까지</p>
+                  <p id="food-amount-error" class="food-error" aria-live="polite"></p>
+                </div>
+                <button type="submit" class="primary-btn food-button food-full">음식 칼로리 계산하기 🍱</button>
+              </form>
+              <div id="food-custom-panel" class="food-custom-panel" hidden>
+                <h3>직접 영양 정보 입력</h3><p class="food-small">제품 영양성분표의 기준 중량과 수치를 입력해주세요. 영양소는 선택 사항이며 빈칸은 ‘정보 없음’으로 기록됩니다.</p>
+                <form id="food-custom-form" novalidate>
+                  <label for="custom-name">음식 이름 (필수)</label><input id="custom-name" maxlength="100" required />
+                  <div class="food-two">
+                    <div><label for="custom-base">기준 중량(g, 필수)</label><input id="custom-base" type="number" min="0.1" step="any" value="100" required /></div>
+                    <div><label for="custom-kcal">기준 열량(kcal, 필수)</label><input id="custom-kcal" type="number" min="0" step="any" required /></div>
+                  </div>
+                  <div class="food-three">
+                    <div><label for="custom-carbs">탄수화물(g)</label><input id="custom-carbs" type="number" min="0" step="any" placeholder="정보 없음" /></div>
+                    <div><label for="custom-protein">단백질(g)</label><input id="custom-protein" type="number" min="0" step="any" placeholder="정보 없음" /></div>
+                    <div><label for="custom-fat">지방(g)</label><input id="custom-fat" type="number" min="0" step="any" placeholder="정보 없음" /></div>
+                  </div>
+                  <p id="food-custom-error" class="food-error" aria-live="polite"></p>
+                  <button type="submit" class="secondary-btn food-button">이 음식으로 계산하기</button>
+                </form>
+              </div>
+            </div>
+            <div class="food-card food-result-panel">
+              <div id="food-result-empty" class="food-empty"><span aria-hidden="true">🍱</span><h3>음식 칼로리 결과가<br />여기에 표시됩니다.</h3><p>음식을 선택하고 섭취량을 입력한 후<br />계산 버튼을 눌러주세요.</p><div class="food-empty-tags"><span>칼로리</span><span>탄수화물</span><span>단백질</span><span>지방</span></div></div>
+              <div id="food-result" hidden>
+                <div id="food-result-data" aria-live="polite"></div>
+                <h3 class="food-chart-title">📊 음식 영양소 분석</h3>
+                <div id="food-nutrient-bars"></div>
+                <p class="food-small">세 막대는 동일한 g 단위 기준으로 비교합니다.</p>
+                <fieldset class="food-meal-choice"><legend>03 식사 구분</legend><div id="food-meal-options" class="food-chips" role="group" aria-label="식사 구분"><button type="button" data-meal="아침" aria-pressed="false">🌅 아침</button><button type="button" data-meal="점심" aria-pressed="true">☀️ 점심</button><button type="button" data-meal="저녁" aria-pressed="false">🌙 저녁</button><button type="button" data-meal="간식" aria-pressed="false">🍪 간식</button></div></fieldset>
+                <p id="food-add-date" class="food-small"></p>
+                <button type="button" id="food-add" class="primary-btn food-button food-full">+ 오늘 식단에 추가하기</button>
+                <button type="button" id="food-reset" class="food-text-button food-full">다시 계산하기</button>
+              </div>
+              <p id="food-status" class="food-status" role="status"></p>
+            </div>
+          </div>
+          <aside class="food-source-note"><h3>📚 영양 정보 출처</h3><p>USDA FoodData Central SR Legacy의 확인된 식품 12종을 제공합니다. 데이터 공개일 2019-04-01 · 확인일 2026-10-08. 음식별 원문과 출처는 선택 카드에서 확인할 수 있습니다. 등록되지 않은 음식은 직접 입력해주세요.</p><p>조리 방법·제품에 따라 영양성분이 다르며, 브랜드 제품은 제품별 영양성분표가 더 정확할 수 있습니다. 생것으로 표기된 데이터는 조리 전 중량 기준이며 생식 권장이 아닙니다.</p><a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer">USDA FoodData Central 살펴보기 ↗</a></aside>
+        </div>
+      </section>
+      <!-- Date-specific food diary -->
+      <section id="food-diary" class="food-section">
+        <div class="container">
+          <div class="section-heading"><p class="eyebrow">Your Daily Diary</p><h2>🍽️ 오늘의 식단</h2><p>오늘 먹은 음식을 추가하고 하루 섭취 칼로리와 영양소를 확인해보세요.</p></div>
+          <div class="food-date-toolbar"><div class="food-date-controls"><button type="button" id="food-prev" class="food-outline" aria-label="이전 날짜">←</button><div><label for="food-date" class="food-sr-only">식단 기록 날짜</label><input id="food-date" type="date" min="1900-01-01" max="9999-12-31" aria-describedby="food-date-error" /></div><button type="button" id="food-next" class="food-outline" aria-label="다음 날짜">→</button><button type="button" id="food-today" class="food-outline">오늘</button></div><button type="button" id="food-clear" class="food-text-button food-danger">선택 날짜 전체 삭제</button></div>
+          <p id="food-date-error" class="food-error" aria-live="polite"></p>
+          <p id="food-storage-status" class="food-error" role="status"></p>
+          <p id="food-diary-date" class="food-small"></p>
+          <div id="food-meal-list" class="food-meal-grid"></div>
+          <div class="food-summary-grid">
+            <div class="food-card">
+              <p class="eyebrow">Daily Total</p><h3>하루 총 섭취 칼로리</h3><div id="food-daily-kcal" class="food-kcal" aria-live="polite">0 <small>kcal</small></div>
+              <h3 class="food-chart-title">🎯 하루 섭취 칼로리 목표</h3>
+              <label for="food-goal" class="food-small">사용자 설정 목표 (kcal)</label><input id="food-goal" type="number" min="0.1" step="any" value="2000" aria-describedby="food-goal-error" />
+              <p id="food-goal-error" class="food-error" aria-live="polite"></p>
+              <progress id="food-progress" max="100" value="0" aria-label="칼로리 목표 대비 진행률"></progress><p id="food-progress-text"></p>
+              <p class="food-small">목표는 의학적 처방이 아닌 사용자 설정 참고값입니다. 진행률은 건강 상태나 식사의 적절성을 판정하지 않습니다.</p>
+              <a href="calorie.html#home" class="food-text-button">권장 칼로리 계산기 바로가기 →</a>
+            </div>
+            <div class="food-card"><h3>📊 하루 영양소 분석</h3><div id="food-daily-macros" class="food-three food-macro-cards"></div><div class="food-donut-layout"><svg id="food-donut" viewBox="0 0 160 160" role="img" aria-label="영양소 환산 에너지 비율"><circle class="food-donut-track" cx="80" cy="80" r="59" /><g id="food-donut-parts"></g><text x="80" y="78" text-anchor="middle">영양소</text><text x="80" y="99" text-anchor="middle">에너지 비율</text></svg><div id="food-donut-legend"></div></div><p id="food-missing-note" class="food-small"></p><p class="food-small">탄수화물·단백질 4kcal/g, 지방 9kcal/g으로 환산한 합계가 100%입니다. 식이섬유와 데이터 기준 등으로 식품의 원본 열량 합계와 다를 수 있습니다.</p></div>
+          </div>
+          <div class="food-card food-meal-chart"><h3>📊 식사별 칼로리 비교</h3><div id="food-meal-bars"></div></div>
+          <p class="food-storage-note">🔒 식단과 목표는 이 기기의 브라우저(localStorage)에 날짜별로 저장됩니다. 다른 기기와 동기화되지 않으며, 브라우저 데이터 삭제 시 기록도 삭제됩니다. 직접 입력한 음식은 식단에 추가하면 함께 저장됩니다.</p>
+        </div>
+      </section>
+      <!-- Guide -->
+      <section id="guide" class="food-section food-tinted"><div class="container"><div class="section-heading center"><p class="eyebrow">Simple Steps</p><h2>💚 이렇게 사용해보세요</h2></div><div class="food-guide-grid">
+        <article class="food-card"><p class="eyebrow">STEP 01</p><h3>🔍 음식 검색</h3><p>먹은 음식의 이름을 검색하거나 직접 영양 정보를 입력해주세요.</p></article>
+        <article class="food-card"><p class="eyebrow">STEP 02</p><h3>⚖️ 섭취량 설정</h3><p>실제로 먹은 음식의 중량을 입력해주세요.</p></article>
+        <article class="food-card"><p class="eyebrow">STEP 03</p><h3>🔥 칼로리 계산</h3><p>칼로리와 탄수화물, 단백질, 지방의 양을 확인해주세요.</p></article>
+        <article class="food-card"><p class="eyebrow">STEP 04</p><h3>🍽️ 오늘 식단에 추가</h3><p>계산한 음식을 식단에 추가하고 하루 섭취량을 확인해주세요.</p></article>
+      </div></div></section>
+      <!-- FAQ and notice -->
+      <section class="food-section"><div class="container food-faq-container"><div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div><div id="food-faq"></div>
+        <aside class="food-notice"><h3>꼭 확인해주세요</h3><p>본 계산기는 음식 영양성분 데이터와 사용자가 입력한 섭취량을 바탕으로 칼로리 및 주요 영양소를 계산하는 도구입니다. 계산 결과는 실제 섭취량과 차이가 있을 수 있습니다.</p><p>음식의 종류, 조리 방법, 조리 전후 중량, 제품 구성, 식재료 등에 따라 영양성분이 달라질 수 있습니다. 칼로리 수치만으로 식사의 영양적 적절성이나 개인의 건강 상태를 판단할 수 없습니다.</p><p>극단적인 식사 제한이나 특정 영양소의 과도한 제한은 피해주세요. 특별한 영양 관리가 필요한 경우 의료 전문가 또는 영양 전문가와 상담해주세요.</p></aside>
+      </div></section>
+      <dialog id="food-edit-dialog" aria-labelledby="food-edit-title"><form id="food-edit-form" novalidate><h3 id="food-edit-title">섭취량 수정</h3><p id="food-edit-name"></p><label for="food-edit-grams">섭취량(g)</label><input id="food-edit-grams" type="number" min="0.1" max="5000" step="0.1" aria-describedby="food-edit-error" /><p id="food-edit-preview" aria-live="polite"></p><p id="food-edit-error" class="food-error" aria-live="polite"></p><div class="food-chips"><button type="submit" class="primary-btn food-button">수정 저장</button><button type="button" class="food-outline" id="food-edit-cancel">취소</button></div></form></dialog>
+      <dialog id="food-clear-dialog" aria-labelledby="food-clear-title"><h3 id="food-clear-title">선택 날짜의 기록을 삭제할까요?</h3><p id="food-clear-description"></p><div class="food-chips"><button type="button" id="food-clear-confirm" class="food-outline food-danger">이 날짜만 삭제</button><button type="button" id="food-clear-cancel" class="food-outline">취소</button></div></dialog>
+    </main>
+    <noscript>음식 검색과 계산, 식단 기록에는 JavaScript가 필요합니다. 브라우저에서 JavaScript를 활성화해주세요.</noscript>
+    <div id="site-footer"></div>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/food-data.js"></script>
+    <script src="assets/js/food-core.js"></script>
+    <script src="assets/js/food-storage.js"></script>
+    <script src="assets/js/food-main.js"></script>
+  </body>
+</html>

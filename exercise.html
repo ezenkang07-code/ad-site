@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 운동 칼로리 계산기</title>
+    <meta name="description" content="운동 종류, 강도, 체중, 시간을 입력해 MET 기반 예상 에너지 소비량을 계산해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/exercise-style.css" />
+  </head>
+  <body data-fitcalc-page="exercise">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="ex-hero">
+        <div class="container ex-hero-content">
+          <div class="ex-hero-copy">
+            <p class="eyebrow">Fitness Activity</p>
+            <h1>🏃 오늘 운동으로 얼마나 소모했을까요?</h1>
+            <p class="ex-hero-lead">운동 종류와 시간, 체중을 입력하면<br />예상 칼로리 소모량을 간편하게 확인할 수 있어요.</p>
+            <p class="ex-hero-description">걷기부터 달리기, 자전거, 수영까지.<br />다양한 운동의 예상 에너지 소비량을 계산하고 나의 운동 활동을 이해하는 데 참고해보세요.</p>
+            <a class="primary-btn ex-hero-button" href="#calculator">운동 칼로리 계산하기 ↓</a>
+          </div>
+          <div class="ex-hero-visual" aria-hidden="true">
+            <div class="ex-hero-card">
+              <div class="ex-hero-card-top"><span>FITCALC / MOVE</span><span>ACTIVITY</span></div>
+              <div class="ex-runner-icon">🏃</div>
+              <div class="ex-heartline"><span></span><i></i><span></span></div>
+              <div class="ex-hero-metrics"><div><small>운동 시간</small><strong>30 <span>분</span></strong></div><div><small>에너지 추정</small><strong>119 <span>kcal</span></strong></div></div>
+              <p>걷기 · 보통 강도 · 65kg 예시</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="ex-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Exercise Energy</p>
+            <h2>🔥 운동 칼로리 계산기</h2>
+            <p>운동 종류, 운동 강도, 체중, 운동 시간을 입력하고<br />예상 에너지 소비량을 확인해보세요.</p>
+          </div>
+
+          <div class="ex-calculator-card">
+            <div class="ex-form-panel">
+              <fieldset class="ex-field-group">
+                <legend>어떤 운동을 하셨나요?</legend>
+                <div class="ex-sport-grid" role="group" aria-label="운동 종류 선택">
+                  <button type="button" class="ex-sport-option is-selected" data-exercise="walking" aria-pressed="true"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🚶</span><span>걷기</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="running" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🏃</span><span>달리기</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="cycling" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🚴</span><span>자전거</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="swimming" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🏊</span><span>수영</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="rope" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🪢</span><span>줄넘기</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="hiking" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🥾</span><span>등산</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="yoga" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🧘</span><span>요가</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="strength" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🏋️</span><span>근력 운동</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="stairs" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">🪜</span><span>계단 오르기</span></button>
+                  <button type="button" class="ex-sport-option" data-exercise="dance" aria-pressed="false"><span class="ex-sport-check" aria-hidden="true">✓</span><span class="ex-sport-icon" aria-hidden="true">💃</span><span>댄스</span></button>
+                </div>
+                <p id="exerciseTypeError" class="ex-error" aria-live="polite"></p>
+              </fieldset>
+
+              <fieldset class="ex-field-group">
+                <legend>운동 강도를 선택해주세요</legend>
+                <div class="ex-intensity-control" role="group" aria-label="운동 강도 선택">
+                  <button type="button" class="ex-intensity-option" data-intensity="light" aria-pressed="false">가볍게</button>
+                  <button type="button" class="ex-intensity-option is-selected" data-intensity="moderate" aria-pressed="true">보통</button>
+                  <button type="button" class="ex-intensity-option" data-intensity="vigorous" aria-pressed="false">강하게</button>
+                </div>
+                <div class="ex-intensity-description"><span>선택한 운동 기준</span><strong id="intensityDescription">일반적인 속도로 걷기</strong><span class="ex-met-chip">적용 MET <b id="selectedMET">3.5</b></span></div>
+                <p class="ex-helper">강도 표현은 운동별 수행 방식의 예시이며, 모든 운동에서 같은 체감 강도를 뜻하지 않습니다.</p>
+                <p id="exerciseIntensityError" class="ex-error" aria-live="polite"></p>
+              </fieldset>
+
+              <div class="ex-field-group">
+                <label class="ex-field-label" for="exerciseWeight">현재 체중을 입력해주세요</label>
+                <div class="ex-number-wrap"><input id="exerciseWeight" type="number" min="20" max="200" step="0.1" value="65" inputmode="decimal" aria-describedby="exerciseWeightError" /><span>kg</span></div>
+                <input id="exerciseWeightSlider" class="ex-weight-slider" type="range" min="20" max="200" step="0.1" value="65" aria-label="체중 슬라이더" />
+                <div class="ex-range-labels"><span>20kg</span><span>200kg</span></div>
+                <p id="exerciseWeightError" class="ex-error" aria-live="polite"></p>
+              </div>
+
+              <fieldset class="ex-field-group ex-time-field">
+                <legend>운동 시간을 입력해주세요</legend>
+                <div class="ex-time-inputs">
+                  <label for="exerciseHours"><span class="sr-only">운동 시간</span><input id="exerciseHours" type="number" min="0" max="12" step="1" value="0" inputmode="numeric" aria-describedby="exerciseTimeError" /><span>시간</span></label>
+                  <label for="exerciseMinutes"><span class="sr-only">운동 분</span><input id="exerciseMinutes" type="number" min="0" max="59" step="1" value="30" inputmode="numeric" aria-describedby="exerciseTimeError" /><span>분</span></label>
+                </div>
+                <div class="ex-quick-time" role="group" aria-label="운동 시간 빠른 선택">
+                  <button type="button" data-minutes="15" aria-pressed="false">15분</button>
+                  <button type="button" data-minutes="30" class="is-selected" aria-pressed="true">30분</button>
+                  <button type="button" data-minutes="45" aria-pressed="false">45분</button>
+                  <button type="button" data-minutes="60" aria-pressed="false">60분</button>
+                  <button type="button" data-minutes="90" aria-pressed="false">90분</button>
+                </div>
+                <p class="ex-helper">직접 입력과 빠른 시간 선택은 서로 연동됩니다.</p>
+                <p id="exerciseTimeError" class="ex-error" aria-live="polite"></p>
+              </fieldset>
+
+              <button type="button" id="calculateExercise" class="primary-btn ex-submit">운동 칼로리 계산하기 🔥</button>
+            </div>
+
+            <div class="ex-result-column">
+              <section id="exerciseResultCard" class="ex-result-card" aria-live="polite" aria-atomic="true">
+                <span id="exerciseResultBadge" class="ex-result-badge">🔥 운동 칼로리 결과가 여기에 표시됩니다.</span>
+                <p id="exerciseResultPrompt" class="ex-result-prompt">운동 정보와 시간을 입력한 후 계산 버튼을 눌러주세요.</p>
+                <div id="exerciseResultContent" class="ex-result-content ex-is-hidden">
+                  <div class="ex-result-main"><p>운동 중 예상 총 에너지 소비량</p><strong id="grossCalories">119 kcal</strong><span>Gross Calories</span></div>
+                  <div class="ex-net-result"><div><span>안정 상태 대비 추가 소비량</span><strong id="netCalories">85 kcal</strong></div><p>총 소비량에서 안정 상태에 해당하는 에너지 추정분을 뺀 참고값입니다. 개인별 안정 시 대사량과 정확히 일치하지 않을 수 있습니다.</p></div>
+                  <dl class="ex-result-details">
+                    <div><dt>운동 종류</dt><dd id="resultExercise">걷기</dd></div>
+                    <div><dt>운동 강도</dt><dd id="resultIntensity">보통</dd></div>
+                    <div><dt>운동 시간</dt><dd id="resultDuration">30분</dd></div>
+                    <div><dt>체중</dt><dd id="resultWeight">65kg</dd></div>
+                    <div><dt>적용 MET</dt><dd id="resultMET">3.5</dd></div>
+                  </dl>
+                  <p class="ex-result-note">이 결과는 MET 값을 이용한 추정치입니다. 실제 소비량은 운동 속도, 수행 방식, 휴식 시간, 개인의 신체 상태 등에 따라 달라질 수 있습니다.</p>
+                </div>
+                <button type="button" id="resetExercise" class="secondary-btn ex-reset">다시 계산하기</button>
+              </section>
+
+              <div id="exerciseAnalysis" class="ex-analysis ex-is-hidden">
+                <section class="ex-chart-panel" aria-labelledby="exerciseChartTitle">
+                  <div class="ex-panel-heading"><p class="eyebrow">Energy Breakdown</p><h3 id="exerciseChartTitle">📊 운동 에너지 소비량 분석</h3></div>
+                  <div class="ex-chart-row"><span>운동 중 총 소비 칼로리</span><div class="ex-chart-track"><i id="grossBar" class="ex-chart-bar ex-gross-bar"></i></div><strong id="grossBarValue">119 kcal</strong></div>
+                  <div class="ex-chart-row"><span>안정 상태 대비 추가 소비</span><div class="ex-chart-track"><i id="netBar" class="ex-chart-bar ex-net-bar"></i></div><strong id="netBarValue">85 kcal</strong></div>
+                </section>
+
+                <section class="ex-comparison-panel" aria-labelledby="durationTitle">
+                  <div class="ex-panel-heading"><p class="eyebrow">Duration Estimate</p><h3 id="durationTitle">⏱️ 운동 시간에 따라 얼마나 달라질까요?</h3></div>
+                  <p class="ex-comparison-context" id="durationContext">같은 운동·강도·체중과 MET 값이 유지된다고 가정한 비교입니다.</p>
+                  <div id="durationComparison" class="ex-duration-grid"></div>
+                </section>
+
+                <section class="ex-comparison-panel" aria-labelledby="exerciseCompareTitle">
+                  <div class="ex-panel-heading"><p class="eyebrow">Activity Comparison</p><h3 id="exerciseCompareTitle">🏃 다른 운동과 비교해보세요</h3></div>
+                  <p class="ex-comparison-context" id="exerciseComparisonContext">같은 체중과 시간, 각 운동의 보통 강도 MET 값을 사용한 예상치입니다.</p>
+                  <div id="exerciseComparison" class="ex-exercise-comparison"></div>
+                  <p class="ex-helper">운동 종류별 '보통' 강도는 서로 같은 체감 강도를 의미하지 않습니다. 이 비교는 운동 추천이나 우열 평가가 아닙니다.</p>
+                </section>
+
+                <div class="ex-summary-grid" aria-label="운동 정보 요약">
+                  <article class="ex-summary-card"><span aria-hidden="true">🔥</span><h3>예상 총 소비 칼로리</h3><strong id="summaryGross">119 kcal</strong><p>운동 중 소비한 것으로 추정되는 총 에너지량입니다.</p></article>
+                  <article class="ex-summary-card"><span aria-hidden="true">⏱️</span><h3>운동 시간</h3><strong id="summaryDuration">30분</strong><p>선택한 운동을 수행한 총 시간입니다.</p></article>
+                  <article class="ex-summary-card"><span aria-hidden="true">💪</span><h3>운동 강도</h3><strong id="summaryIntensity">보통 · MET 3.5</strong><p>선택한 운동 방식에 적용한 MET 값입니다.</p></article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ex-principle-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How MET Works</p><h2>💡 운동 칼로리는 어떻게 계산하나요?</h2></div>
+          <div class="ex-principle-grid">
+            <article class="ex-principle-card"><span aria-hidden="true">📐</span><h3>MET 값</h3><p>MET는 안정 상태와 비교한 활동의 에너지 소비 수준을 나타내는 지표입니다. 1 MET는 표준적으로 안정 상태의 산소 소비량 약 3.5 ml/kg/min에 해당합니다.</p></article>
+            <article class="ex-principle-card"><span aria-hidden="true">⚖️</span><h3>입력 정보</h3><p>계산에는 운동 활동과 강도에 대응하는 MET, 체중, 운동 시간이 사용됩니다. 활동 분류와 실제 수행 방식이 결과에 영향을 줍니다.</p></article>
+            <article class="ex-principle-card"><span aria-hidden="true">🧮</span><h3>계산식</h3><p>총 소비량 = MET × 3.5 × 체중(kg) ÷ 200 × 시간(분). 추가 소비량은 MET 대신 max(0, MET − 1)을 적용한 참고 추정치입니다.</p></article>
+          </div>
+          <p class="ex-source-note">MET 대표값은 2024 Adult Compendium의 활동 정의를 참고해 UI의 세 강도 구간에 대응시킨 추정치입니다. 강도 구간은 모든 운동에서 같은 체감 강도를 뜻하지 않습니다. <a href="https://pacompendium.com/" target="_blank" rel="noopener noreferrer">2024 Compendium of Physical Activities</a> · <a href="https://pacompendium.com/adult-compendium/" target="_blank" rel="noopener noreferrer">Adult Compendium 활동 분류</a></p>
+        </div>
+      </section>
+
+      <section id="guide" class="ex-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="ex-guide-grid">
+            <article class="guide-card"><div class="guide-icon">🏃</div><span class="ex-step">STEP 01</span><h3>운동 종류 선택</h3><p>걷기, 달리기, 자전거, 수영 등 운동 종류를 선택해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">⏱️</div><span class="ex-step">STEP 02</span><h3>운동 정보 입력</h3><p>운동 강도, 체중, 운동 시간을 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🔥</div><span class="ex-step">STEP 03</span><h3>예상 칼로리 확인</h3><p>운동 중 예상 에너지 소비량과 운동별 비교 결과를 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ex-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="ex-faq-list">
+            <div class="ex-faq-item is-open"><button type="button" class="ex-faq-question" aria-expanded="true">Q. 운동 칼로리는 어떻게 계산하나요?</button><div class="ex-faq-answer"><p>선택한 운동 활동의 MET, 체중, 운동 시간을 사용해 예상 총 에너지 소비량을 계산합니다. 공식은 MET × 3.5 × 체중(kg) ÷ 200 × 운동 시간(분)입니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. MET는 무엇인가요?</button><div class="ex-faq-answer"><p>MET는 활동의 에너지 소비 수준을 표준 안정 상태와 비교하는 지표입니다. 활동 코드와 수행 조건에 따라 값이 달라질 수 있습니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. 같은 운동을 해도 사람마다 소비 칼로리가 다른가요?</button><div class="ex-faq-answer"><p>네. 실제 소비량은 체성분, 체력, 운동 속도, 경사, 휴식, 운동 수행 방식 등 다양한 요인에 따라 달라집니다. 이 계산기는 체중과 MET를 사용한 간편 추정치입니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. 운동 시간이 길어지면 칼로리 소비량도 증가하나요?</button><div class="ex-faq-answer"><p>이 계산식에서는 같은 MET와 체중이 유지된다고 가정하므로 시간에 비례해 추정값이 증가합니다. 실제 운동에서는 속도나 휴식 등으로 에너지 소비가 일정하지 않을 수 있습니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. 운동 강도가 높으면 항상 더 많은 칼로리를 소모하나요?</button><div class="ex-faq-answer"><p>활동별 MET가 높으면 같은 체중과 시간 조건에서 계산 결과가 커집니다. 다만 운동별 강도 설명은 서로 동일한 체감 강도를 의미하지 않고, 실제 소비량을 보장하지 않습니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. 스마트워치의 칼로리 수치와 왜 다른가요?</button><div class="ex-faq-answer"><p>기기별 측정 센서, 개인 설정, 알고리즘, 운동 종류와 수행 데이터가 달라 값이 다를 수 있습니다. 본 계산기는 일반 활동 MET를 이용한 추정치입니다.</p></div></div>
+            <div class="ex-faq-item"><button type="button" class="ex-faq-question" aria-expanded="false">Q. 총 소비 칼로리와 추가 소비 칼로리는 무엇이 다른가요?</button><div class="ex-faq-answer"><p>총 소비량은 운동 중 전체 에너지 추정치입니다. 추가 소비량은 그중 표준 안정 상태에 해당하는 1 MET분을 뺀 참고값이며, 개인별 안정 시 대사량과 정확히 일치하지 않을 수 있습니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section ex-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 운동 종류와 강도에 따른 MET 값을 이용하여 예상 에너지 소비량을 계산합니다. 결과는 실제 측정값이 아닌 추정치입니다.</p>
+          <p>운동 속도, 경사도, 휴식 시간, 체중, 체력 수준, 운동 수행 방식 등에 따라 실제 소비량은 달라질 수 있습니다.</p>
+          <p>계산 결과를 근거로 무리한 운동을 하거나 운동으로 소비한 칼로리만큼 반드시 추가 섭취해야 한다고 판단하지 마세요. 운동 계획은 개인의 건강 상태와 신체 능력에 맞게 조절해야 합니다.</p>
+          <p>특정 질환이나 운동 제한이 있는 경우 전문가와 상담해주세요.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/exercise-main.js"></script>
+  </body>
+</html>

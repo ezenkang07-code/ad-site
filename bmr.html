@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 기초대사량 계산기</title>
+    <meta
+      name="description"
+      content="FITCALC에서 나의 기초대사량과 하루 에너지 소비량을 계산해보세요."
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bmr-style.css" />
+  </head>
+  <body data-fitcalc-page="bmr">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="bmr-hero">
+        <div class="container bmr-hero-content">
+          <div class="bmr-hero-copy">
+            <span class="hero-badge">Healthy Living • Energy Check</span>
+            <h1>🔥 나의 기초대사량은 얼마나 될까요?</h1>
+            <p class="hero-subtitle">
+              나이, 성별, 키, 몸무게를 입력하면<br />
+              하루 기초대사량을 간편하게 계산할 수 있어요.
+            </p>
+            <p class="hero-description">
+              기초대사량은 우리 몸이 생명 유지에 사용하는 기본적인 에너지량입니다.<br />
+              나의 기초대사량을 확인하고 건강 관리에 필요한 에너지 정보를 알아보세요.
+            </p>
+            <div class="hero-icons" aria-label="기초대사량 아이콘">
+              <span>🔥</span>
+              <span>⚡</span>
+              <span>📊</span>
+              <span>🏃</span>
+            </div>
+            <a href="#calculator" class="primary-btn hero-btn">기초대사량 계산하기 ↓</a>
+          </div>
+
+          <div class="bmr-hero-visual" aria-hidden="true">
+            <div class="bmr-visual-card">
+              <div class="visual-badge">BMR Insight</div>
+              <div class="bmr-energy-ring">
+                <div class="ring-inner">
+                  <strong>1,593</strong>
+                  <small>kcal/day</small>
+                </div>
+              </div>
+              <div class="bmr-visual-meta">
+                <span>기초대사량</span>
+                <span>예상 에너지</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="bmr-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Energy Check</p>
+            <h2>🔥 기초대사량(BMR) 계산기</h2>
+            <p>나의 신체 정보를 입력하고 하루 기초대사량을 확인해보세요.</p>
+          </div>
+
+          <div class="bmr-calculator-card">
+            <div class="bmr-form-panel">
+              <div class="input-group">
+                <label class="field-label">성별을 선택해주세요</label>
+                <div class="gender-toggle" role="radiogroup" aria-label="성별 선택">
+                  <button type="button" class="gender-option" data-gender="male" aria-pressed="false">
+                    <span class="gender-check">✓</span>
+                    남성
+                  </button>
+                  <button type="button" class="gender-option" data-gender="female" aria-pressed="false">
+                    <span class="gender-check">✓</span>
+                    여성
+                  </button>
+                </div>
+                <p id="genderError" class="error-message" aria-live="polite"></p>
+              </div>
+
+              <div class="input-group">
+                <label for="ageInput">나이를 입력해주세요</label>
+                <div class="input-wrap">
+                  <input id="ageInput" type="number" min="18" max="100" step="1" value="25" inputmode="numeric" aria-describedby="ageError" />
+                  <span class="unit">세</span>
+                </div>
+                <p class="field-note">성인용 계산기입니다.</p>
+                <p id="ageError" class="error-message" aria-live="polite"></p>
+              </div>
+
+              <div class="input-group">
+                <label for="bmrHeightInput">키를 입력해주세요</label>
+                <div class="input-wrap">
+                  <input
+                    id="bmrHeightInput"
+                    type="number"
+                    min="100"
+                    max="220"
+                    step="0.1"
+                    value="170"
+                    inputmode="decimal"
+                    aria-describedby="heightError"
+                  />
+                  <span class="unit">cm</span>
+                </div>
+                <input
+                  id="heightSliderBmr"
+                  class="range-slider"
+                  type="range"
+                  min="100"
+                  max="220"
+                  step="0.1"
+                  value="170"
+                  aria-label="키 슬라이더"
+                />
+                <div class="slider-meta">
+                  <span>100cm</span>
+                  <span>220cm</span>
+                </div>
+                <p id="heightError" class="error-message" aria-live="polite"></p>
+              </div>
+
+              <div class="input-group">
+                <label for="bmrWeightInput">몸무게를 입력해주세요</label>
+                <div class="input-wrap">
+                  <input
+                    id="bmrWeightInput"
+                    type="number"
+                    min="20"
+                    max="200"
+                    step="0.1"
+                    value="65"
+                    inputmode="decimal"
+                    aria-describedby="weightError"
+                  />
+                  <span class="unit">kg</span>
+                </div>
+                <input
+                  id="weightSliderBmr"
+                  class="range-slider"
+                  type="range"
+                  min="20"
+                  max="200"
+                  step="0.1"
+                  value="65"
+                  aria-label="몸무게 슬라이더"
+                />
+                <div class="slider-meta">
+                  <span>20kg</span>
+                  <span>200kg</span>
+                </div>
+                <p id="weightError" class="error-message" aria-live="polite"></p>
+              </div>
+
+              <button type="button" id="calculateBmrBtn" class="primary-btn calculate-btn">
+                나의 기초대사량 계산하기 🔥
+              </button>
+            </div>
+
+            <div class="bmr-result-panel" aria-live="polite">
+              <div class="bmr-result-card" id="bmrResultCard">
+                <div class="result-header">
+                  <span class="result-badge">🔥 기초대사량 결과가 여기에 표시됩니다.</span>
+                </div>
+
+                <div class="bmr-result-main">
+                  <p class="result-label">나의 하루 기초대사량은</p>
+                  <div class="bmr-value" id="bmrValue">--</div>
+                  <div class="bmr-summary" id="bmrSummary">정보를 입력한 후 계산 버튼을 눌러주세요.</div>
+                </div>
+
+                <div class="bmr-detail-list">
+                  <div class="info-item">
+                    <span>성별</span>
+                    <strong id="resultGender">-</strong>
+                  </div>
+                  <div class="info-item">
+                    <span>나이</span>
+                    <strong id="resultAge">-</strong>
+                  </div>
+                  <div class="info-item">
+                    <span>키</span>
+                    <strong id="resultHeight">-</strong>
+                  </div>
+                  <div class="info-item">
+                    <span>몸무게</span>
+                    <strong id="resultWeight">-</strong>
+                  </div>
+                  <div class="info-item full-width">
+                    <span>기초대사량</span>
+                    <strong id="resultBmr">-</strong>
+                  </div>
+                </div>
+
+                <p class="result-note">계산 결과는 추정치이며 개인별 차이가 있을 수 있습니다.</p>
+
+                <button type="button" id="resetBmrBtn" class="secondary-btn reset-btn">
+                  다시 계산하기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bmr-activity-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Activity Level</p>
+            <h2>🏃 나의 평소 활동량은?</h2>
+          </div>
+
+          <div class="activity-options" role="radiogroup" aria-label="활동량 선택">
+            <button type="button" class="activity-option is-selected" data-factor="1.2">
+              <span class="activity-name">거의 활동하지 않음</span>
+              <span class="activity-desc">주로 앉아서 생활하며 운동이 거의 없는 경우</span>
+              <strong>1.2</strong>
+            </button>
+            <button type="button" class="activity-option" data-factor="1.375">
+              <span class="activity-name">가벼운 활동</span>
+              <span class="activity-desc">가벼운 운동을 주 1~3일 하는 경우</span>
+              <strong>1.375</strong>
+            </button>
+            <button type="button" class="activity-option" data-factor="1.55">
+              <span class="activity-name">보통 활동</span>
+              <span class="activity-desc">중간 강도의 운동을 주 3~5일 하는 경우</span>
+              <strong>1.55</strong>
+            </button>
+            <button type="button" class="activity-option" data-factor="1.725">
+              <span class="activity-name">활동량이 많음</span>
+              <span class="activity-desc">강도 높은 운동을 주 6~7일 하는 경우</span>
+              <strong>1.725</strong>
+            </button>
+            <button type="button" class="activity-option" data-factor="1.9">
+              <span class="activity-name">매우 높은 활동량</span>
+              <span class="activity-desc">매우 강한 운동이나 육체 노동을 자주 하는 경우</span>
+              <strong>1.9</strong>
+            </button>
+          </div>
+
+          <div class="tdee-panel" id="tdeePanel">
+            <div class="tdee-summary">
+              <span class="eyebrow">TDEE Estimate</span>
+              <h3>하루 예상 총 에너지 소비량</h3>
+            </div>
+            <div class="tdee-value" id="tdeeValue">약 1,963 kcal</div>
+            <p>
+              현재 활동량을 기준으로 하루 동안 소비하는 것으로 추정되는 총 에너지량입니다.
+              개인별 차이가 큰 추정치입니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bmr-chart-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Energy Compare</p>
+            <h2>📊 나의 하루 에너지 소비량</h2>
+          </div>
+
+          <div class="energy-chart" aria-label="에너지 소비량 비교 그래프">
+            <div class="chart-row">
+              <div class="chart-label">기초대사량(BMR)</div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar bar-bmr" id="barBmr"></div>
+              </div>
+              <div class="chart-value" id="bmrBarValue">0 kcal</div>
+            </div>
+            <div class="chart-row">
+              <div class="chart-label">총 에너지 소비량(TDEE)</div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar bar-tdee" id="barTdee"></div>
+              </div>
+              <div class="chart-value" id="tdeeBarValue">0 kcal</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bmr-info-card-section">
+        <div class="container">
+          <div class="bmr-info-card">
+            <h3>💡 기초대사량이란?</h3>
+            <p>
+              기초대사량(BMR)은 호흡, 체온 유지, 혈액순환 등 생명 유지에 필요한 기본적인 에너지 소비량입니다.
+            </p>
+            <p>
+              기초대사량은 하루 동안 먹어야 하는 최소 칼로리나 감량 목표 칼로리를 의미하지 않습니다.
+              개인의 실제 에너지 소비량은 활동량, 체성분, 건강 상태 등에 따라 달라질 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="guide" class="bmr-guide-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">How to Use</p>
+            <h2>💚 이렇게 사용해보세요</h2>
+          </div>
+
+          <div class="bmr-guide-grid">
+            <article class="guide-card">
+              <div class="guide-icon">📋</div>
+              <h3>신체 정보 입력</h3>
+              <p>성별, 나이, 키, 몸무게를 입력해주세요.</p>
+            </article>
+
+            <article class="guide-card">
+              <div class="guide-icon">🔥</div>
+              <h3>기초대사량 계산</h3>
+              <p>계산 버튼을 눌러 하루 기초대사량을 확인해주세요.</p>
+            </article>
+
+            <article class="guide-card">
+              <div class="guide-icon">🏃</div>
+              <h3>활동량 선택</h3>
+              <p>평소 활동량을 선택하면 예상 총 에너지 소비량까지 확인할 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bmr-faq-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">FAQ</p>
+            <h2>자주 묻는 질문</h2>
+          </div>
+
+          <div class="faq-section" aria-label="기초대사량 FAQ">
+            <div class="faq-item active">
+              <button class="faq-question" type="button" aria-expanded="true">
+                Q. 기초대사량과 하루 권장 칼로리는 같은가요?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  아닙니다. 기초대사량은 생명 유지에 필요한 기본 에너지량이며, 하루 권장 칼로리는 활동량, 목표, 건강 상태를 반영해 조절하는 값입니다.
+                  둘은 서로 다른 개념으로 함께 고려하는 것이 좋습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Q. 기초대사량이 높으면 무조건 좋은 건가요?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  높다는 것이 항상 좋다고 단정할 수는 없습니다. 기초대사량은 신체 구성, 연령, 체중, 활동량에 따라 달라지고 개인 차가 큽니다.
+                  건강한 생활 습관과 적절한 영양 관리가 더 중요합니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Q. 운동을 하면 기초대사량이 증가하나요?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  운동 습관은 근육량 유지와 체력 향상에 도움을 주어, 장기적으로 기초대사량에 영향을 줄 수 있습니다.
+                  다만 변화는 개인차가 크고 꾸준한 생활 습관이 핵심입니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Q. BMR과 TDEE는 어떤 차이가 있나요?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  BMR은 생명 유지에 필요한 기본 에너지량이고, TDEE는 활동량까지 반영한 하루 총 소비량입니다.
+                  계산 결과를 바탕으로 일일 에너지 필요량을 더 현실적으로 추정할 수 있습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Q. 기초대사량보다 적게 먹으면 반드시 살이 빠지나요?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  꼭 그런 것은 아닙니다. 매우 낮은 에너지 섭취는 피로, 집중력 저하, 건강 문제를 유발할 수 있으며
+                  개인의 상태와 생활 방식에 따라 적절한 섭취량은 달라집니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section">
+        <div class="container">
+          <div class="notice-box">
+            <h3>꼭 확인해주세요</h3>
+            <ul>
+              <li>본 계산기는 일반 성인을 대상으로 한 Mifflin-St Jeor 공식 기반의 추정 도구입니다.</li>
+              <li>계산 결과는 개인의 실제 기초대사량이나 총 에너지 소비량과 차이가 있을 수 있습니다.</li>
+              <li>임신, 수유, 질환, 특수한 신체 상태 등에서는 일반 계산식이 적절하지 않을 수 있습니다.</li>
+              <li>계산 결과를 근거로 무리한 식사 제한을 하지 마세요.</li>
+              <li>개인에게 적절한 섭취량과 건강 관리 계획은 의료 전문가 또는 영양 전문가와 상담하여 결정하는 것이 좋습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+      window.FITCALC_PAGE = {
+        page: 'bmr',
+        header: {
+          logo: 'FITCALC',
+          logoHref: 'bmr.html#home',
+          nav: [
+            { key: 'home', label: 'HOME', href: 'index.html#home' },
+            { key: 'bmi', label: 'BMI 계산기', href: 'bmi.html#home' },
+            { key: 'bmr', label: '기초대사량 계산기', href: 'bmr.html#home' },
+            { key: 'calorie', label: '권장 칼로리 계산기', href: 'calorie.html#home' },
+            { key: 'guide', label: 'GUIDE', href: 'index.html#guide' }
+          ]
+        },
+        footer: {
+          brand: 'FITCALC',
+          description: '건강한 일상을 위한 스마트한 건강 계산기',
+          year: '2026'
+        }
+      };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      if (!window.jQuery) {
+        document.write('<script src="assets/js/jquery-3.7.1.min.js"><\/script>');
+      }
+    </script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/bmr-main.js"></script>
+  </body>
+</html>

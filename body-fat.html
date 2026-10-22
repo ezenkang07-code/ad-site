@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 체지방률 추정 계산기</title>
+    <meta name="description" content="성별 공식과 신체 둘레를 이용해 US Navy 방식의 예상 체지방률과 체성분을 확인해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/body-fat-style.css" />
+  </head>
+  <body data-fitcalc-page="bodyfat">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="bf-hero">
+        <div class="container bf-hero-content">
+          <div class="bf-hero-copy">
+            <p class="eyebrow">Body Composition</p>
+            <h1>📏 나의 체지방률은 얼마나 될까요?</h1>
+            <p class="bf-hero-lead">신체 둘레와 기본 정보를 입력하면<br />예상 체지방률을 간편하게 계산할 수 있어요.</p>
+            <p class="bf-hero-description">체중이 같더라도 체지방량과 제지방량의 구성은 사람마다 다를 수 있습니다.<br />FITCALC에서 신체 둘레를 바탕으로 체지방률을 추정하고 체성분 정보를 확인해보세요.</p>
+            <a class="primary-btn bf-hero-button" href="#calculator">체지방률 계산하기 ↓</a>
+          </div>
+          <div class="bf-hero-visual" aria-hidden="true">
+            <div class="bf-hero-card">
+              <div class="bf-hero-card-top"><span>FITCALC / BODY MEASURE</span><span>ESTIMATE</span></div>
+              <div class="bf-ruler-graphic"><div class="bf-ruler-icon">📏</div><div class="bf-ruler-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="bf-hero-metric"><span>체성분을 둘레로 추정</span><strong>Body Composition</strong><small>US Navy 둘레 기반 공식</small></div>
+              <p>결과는 측정치가 아닌 추정값입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="bf-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Body Fat Estimate</p>
+            <h2>📏 체지방률 추정 계산기</h2>
+            <p>성별 공식과 신체 둘레를 입력하고<br />예상 체지방률과 체성분 정보를 확인해보세요.</p>
+          </div>
+
+          <div class="bf-calculator-card">
+            <div class="bf-form-panel">
+              <fieldset class="bf-field-group">
+                <legend>계산에 사용할 성별 공식을 선택해주세요</legend>
+                <p class="bf-helper">성별 선택은 공식의 둘레 항목과 계수를 고릅니다. 공식이 모든 개인의 신체 특성을 정확히 반영하지는 않습니다.</p>
+                <div class="bf-gender-options" role="group" aria-label="체지방률 계산 공식 선택">
+                  <button type="button" class="bf-gender-option" data-sex="male" aria-pressed="false"><span class="bf-check" aria-hidden="true">✓</span><span aria-hidden="true">♂</span>남성 공식</button>
+                  <button type="button" class="bf-gender-option" data-sex="female" aria-pressed="false"><span class="bf-check" aria-hidden="true">✓</span><span aria-hidden="true">♀</span>여성 공식</button>
+                </div>
+                <p id="sexError" class="bf-error" aria-live="polite"></p>
+              </fieldset>
+
+              <div class="bf-field-grid">
+                <div class="bf-field-group">
+                  <label for="bodyFatAge">나이 <span>성인용 · 공식 변수로 사용되지 않음</span></label>
+                  <div class="bf-input-wrap"><input id="bodyFatAge" type="number" min="18" max="100" step="1" value="25" inputmode="numeric" aria-describedby="ageError" /><span>세</span></div>
+                  <p id="ageError" class="bf-error" aria-live="polite"></p>
+                </div>
+                <div class="bf-field-group">
+                  <label for="bodyFatHeight">키</label>
+                  <div class="bf-input-wrap"><input id="bodyFatHeight" type="number" min="100" max="220" step="0.1" value="170" inputmode="decimal" aria-describedby="heightError" /><span>cm</span></div>
+                  <input id="bodyFatHeightSlider" class="bf-slider" type="range" min="100" max="220" step="0.1" value="170" aria-label="키 슬라이더" />
+                  <div class="bf-range-labels"><span>100cm</span><span>220cm</span></div>
+                  <p id="heightError" class="bf-error" aria-live="polite"></p>
+                </div>
+                <div class="bf-field-group">
+                  <label for="bodyFatWeight">현재 체중</label>
+                  <div class="bf-input-wrap"><input id="bodyFatWeight" type="number" min="20" max="200" step="0.1" value="65" inputmode="decimal" aria-describedby="weightError" /><span>kg</span></div>
+                  <input id="bodyFatWeightSlider" class="bf-slider" type="range" min="20" max="200" step="0.1" value="65" aria-label="체중 슬라이더" />
+                  <div class="bf-range-labels"><span>20kg</span><span>200kg</span></div>
+                  <p id="weightError" class="bf-error" aria-live="polite"></p>
+                </div>
+                <div class="bf-field-group">
+                  <label for="bodyFatNeck">목둘레 <span class="bf-help" aria-hidden="true">?</span></label>
+                  <div class="bf-input-wrap"><input id="bodyFatNeck" type="number" min="20" max="60" step="0.1" value="38" inputmode="decimal" aria-describedby="neckError neckTip" /><span>cm</span></div>
+                  <input id="bodyFatNeckSlider" class="bf-slider" type="range" min="20" max="60" step="0.1" value="38" aria-label="목둘레 슬라이더" />
+                  <div class="bf-range-labels"><span>20cm</span><span>60cm</span></div>
+                  <p id="neckTip" class="bf-tip">목 주변에 줄자를 수평으로 두르고, 앞쪽은 후두 아래로 지나가게 측정합니다. 목에 힘을 주거나 줄자를 조이지 마세요.</p>
+                  <p id="neckError" class="bf-error" aria-live="polite"></p>
+                </div>
+                <div class="bf-field-group">
+                  <label for="bodyFatWaist">허리둘레 <span class="bf-help" aria-hidden="true">?</span></label>
+                  <div class="bf-input-wrap"><input id="bodyFatWaist" type="number" min="40" max="180" step="0.1" value="80" inputmode="decimal" aria-describedby="waistError waistTip" /><span>cm</span></div>
+                  <input id="bodyFatWaistSlider" class="bf-slider" type="range" min="40" max="180" step="0.1" value="80" aria-label="허리둘레 슬라이더" />
+                  <div class="bf-range-labels"><span>40cm</span><span>180cm</span></div>
+                  <p id="waistTip" class="bf-tip">남성 공식은 배꼽 높이의 복부 둘레, 여성 공식은 허리의 가장 잘록한 부위를 수평으로 측정합니다.</p>
+                  <p id="waistError" class="bf-error" aria-live="polite"></p>
+                </div>
+                <div id="hipField" class="bf-field-group bf-is-hidden">
+                  <label for="bodyFatHip">엉덩이둘레 <span class="bf-help" aria-hidden="true">?</span></label>
+                  <div class="bf-input-wrap"><input id="bodyFatHip" type="number" min="50" max="180" step="0.1" value="95" inputmode="decimal" aria-describedby="hipError hipTip" /><span>cm</span></div>
+                  <input id="bodyFatHipSlider" class="bf-slider" type="range" min="50" max="180" step="0.1" value="95" aria-label="엉덩이둘레 슬라이더" />
+                  <div class="bf-range-labels"><span>50cm</span><span>180cm</span></div>
+                  <p id="hipTip" class="bf-tip">엉덩이의 가장 넓은 부위를 기준으로 줄자를 수평으로 둘러 측정합니다.</p>
+                  <p id="hipError" class="bf-error" aria-live="polite"></p>
+                </div>
+              </div>
+              <p class="bf-measure-note">측정 전 편안히 서서 숨을 자연스럽게 내쉰 뒤, 줄자를 피부에 닿게 하되 조이지 마세요. 가능한 한 같은 조건에서 반복 측정하는 것이 좋습니다.</p>
+              <button type="button" id="calculateBodyFat" class="primary-btn bf-submit">나의 체지방률 계산하기 📏</button>
+            </div>
+
+            <div class="bf-result-column">
+              <section class="bf-result-card" id="bodyFatResultCard" aria-live="polite" aria-atomic="true">
+                <span id="bodyFatResultBadge" class="bf-result-badge">📏 체지방률 결과가 여기에 표시됩니다.</span>
+                <p id="bodyFatResultPrompt" class="bf-result-prompt">신체 정보를 입력한 후 계산 버튼을 눌러주세요.</p>
+                <div id="bodyFatResultContent" class="bf-is-hidden">
+                  <div class="bf-result-main"><p>나의 예상 체지방률</p><strong id="bodyFatPercentage">20.0%</strong><small>US Navy 둘레 기반 추정값</small></div>
+                  <div class="bf-composition-results">
+                    <div class="bf-fat-result"><span>추정 체지방량</span><strong id="fatMass">14.0kg</strong></div>
+                    <div class="bf-lean-result"><span>추정 제지방량</span><strong id="leanMass">56.0kg</strong></div>
+                  </div>
+                  <dl class="bf-detail-list">
+                    <div><dt>계산 공식</dt><dd>US Navy</dd></div>
+                    <div><dt>성별 공식</dt><dd id="resultSex">-</dd></div>
+                    <div><dt>나이</dt><dd id="resultAge">-</dd></div>
+                    <div><dt>키</dt><dd id="resultHeight">-</dd></div>
+                    <div><dt>체중</dt><dd id="resultWeight">-</dd></div>
+                    <div><dt>목둘레</dt><dd id="resultNeck">-</dd></div>
+                    <div><dt>허리둘레</dt><dd id="resultWaist">-</dd></div>
+                    <div id="resultHipRow" class="bf-is-hidden"><dt>엉덩이둘레</dt><dd id="resultHip">-</dd></div>
+                  </dl>
+                  <p class="bf-result-note">이 결과는 신체 둘레를 이용한 추정치입니다. 실제 체지방률은 측정 방법과 개인의 신체 특성에 따라 차이가 있을 수 있습니다.</p>
+                </div>
+                <button type="button" id="resetBodyFat" class="secondary-btn bf-reset">다시 계산하기</button>
+              </section>
+
+              <div id="bodyFatAnalysis" class="bf-analysis bf-is-hidden">
+                <section class="bf-chart-panel" aria-labelledby="compositionChartTitle">
+                  <div class="bf-panel-heading"><p class="eyebrow">Composition Estimate</p><h3 id="compositionChartTitle">📊 나의 체성분 구성</h3></div>
+                  <div class="bf-donut-layout">
+                    <div id="compositionDonut" class="bf-donut" role="img" aria-label="체지방량과 제지방량 비율 차트"><span id="donutCenter">20.0%</span></div>
+                    <ul class="bf-chart-legend">
+                      <li><i class="bf-fat-dot"></i><span>체지방률</span><strong id="donutFatPercent">20.0%</strong></li>
+                      <li><i class="bf-lean-dot"></i><span>제지방 비율</span><strong id="donutLeanPercent">80.0%</strong></li>
+                      <li><i class="bf-fat-dot"></i><span>체지방량</span><strong id="donutFatMass">14.0kg</strong></li>
+                      <li><i class="bf-lean-dot"></i><span>제지방량</span><strong id="donutLeanMass">56.0kg</strong></li>
+                    </ul>
+                  </div>
+                </section>
+                <section class="bf-chart-panel" aria-labelledby="compositionBarTitle">
+                  <div class="bf-panel-heading"><p class="eyebrow">Mass Breakdown</p><h3 id="compositionBarTitle">⚖️ 체지방량과 제지방량 비교</h3></div>
+                  <div class="bf-bar-row"><span>체지방량(kg)</span><div class="bf-bar-track"><i id="fatMassBar" class="bf-bar bf-fat-bar"></i></div><strong id="fatMassBarValue">14.0kg</strong></div>
+                  <div class="bf-bar-row"><span>제지방량(kg)</span><div class="bf-bar-track"><i id="leanMassBar" class="bf-bar bf-lean-bar"></i></div><strong id="leanMassBarValue">56.0kg</strong></div>
+                </section>
+                <div class="bf-info-cards">
+                  <article class="bf-info-card bf-fat-card"><span aria-hidden="true">📏</span><h3>체지방률</h3><p>전체 체중에서 체지방이 차지하는 비율의 추정치입니다.</p></article>
+                  <article class="bf-info-card bf-fat-mass-card"><span aria-hidden="true">⚖️</span><h3>체지방량</h3><p>전체 체중 중 체지방에 해당하는 무게의 추정치입니다.</p></article>
+                  <article class="bf-info-card bf-lean-card"><span aria-hidden="true">💪</span><h3>제지방량</h3><p>전체 체중에서 체지방량을 제외한 나머지 무게입니다. 근육량과 같은 뜻은 아니며 수분, 뼈, 장기 등도 포함합니다.</p></article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bf-measure-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">Measurement Guide</p><h2>📐 신체 둘레는 어떻게 측정하나요?</h2></div>
+          <div class="bf-measure-grid">
+            <article class="bf-measure-card"><span aria-hidden="true">📏</span><h3>목둘레</h3><p>목 주변에 줄자를 수평으로 두르고 앞쪽은 후두 아래를 지나가게 합니다. 목을 긴장시키거나 줄자를 조이지 마세요.</p></article>
+            <article class="bf-measure-card"><span aria-hidden="true">↔️</span><h3>허리둘레</h3><p>남성 공식은 배꼽 높이의 복부 둘레, 여성 공식은 허리의 가장 잘록한 부위를 수평으로 잽니다. 배를 당기지 않습니다.</p></article>
+            <article class="bf-measure-card"><span aria-hidden="true">⭕</span><h3>엉덩이둘레</h3><p>여성 공식에서 사용합니다. 엉덩이의 가장 넓은 부위를 기준으로 줄자가 수평이 되게 측정합니다.</p></article>
+          </div>
+          <p class="bf-measure-footnote">줄자를 피부에 닿게 하되 눌러 조이지 말고, 가능한 한 같은 조건에서 측정하세요. 측정 위치의 차이가 결과에 영향을 줄 수 있습니다. 여성식은 공개된 US Navy 방식의 통상식(상수 −78.387)을 사용합니다. <a href="https://www.calculator.net/body-fat-calculator.html" target="_blank" rel="noopener noreferrer">공식과 측정 참고</a> · <a href="https://www.calculator.net/pdf/navy-physical-readiness-program.pdf" target="_blank" rel="noopener noreferrer">Navy 측정 안내 PDF</a></p>
+        </div>
+      </section>
+
+      <section class="bf-bmi-section">
+        <div class="container bf-bmi-content">
+          <div><p class="eyebrow">Related Measure</p><h2>💡 BMI와 체지방률은 무엇이 다른가요?</h2><p>BMI는 키와 체중으로 계산하는 체질량지수입니다. 체지방률은 전체 체중에서 체지방이 차지하는 비율을 뜻합니다. 두 지표는 서로 다르며 어느 하나만으로 건강 상태를 정확히 판단할 수 없습니다.</p></div>
+          <a class="secondary-btn bf-bmi-link" href="bmi.html#home">BMI 계산기 바로가기 →</a>
+        </div>
+      </section>
+
+      <section class="bf-info-section">
+        <div class="container bf-info-panel">
+          <p class="eyebrow">Understanding the Estimate</p>
+          <h2>📋 체지방률 결과를 어떻게 이해해야 하나요?</h2>
+          <p>체지방률은 개인의 나이, 신체 특성, 건강 상태, 측정 방법 등에 따라 해석이 달라질 수 있습니다. 이번 계산기는 신체 둘레를 이용한 추정값을 제공하며 특정 체지방률로 사용자를 건강, 비만, 위험 등으로 단정하지 않습니다.</p>
+          <p>검증되지 않은 단일 기준표를 건강 판정에 사용하지 마세요. 정확한 체성분 평가가 필요한 경우 적절한 검사와 전문가의 판단을 참고해주세요.</p>
+        </div>
+      </section>
+
+      <section id="guide" class="bf-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="bf-guide-grid">
+            <article class="guide-card"><div class="guide-icon">📏</div><span class="bf-step">STEP 01</span><h3>신체 정보 입력</h3><p>성별 공식, 나이, 키, 체중을 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">📐</div><span class="bf-step">STEP 02</span><h3>신체 둘레 측정</h3><p>목둘레, 허리둘레, 필요한 경우 엉덩이둘레를 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">📊</div><span class="bf-step">STEP 03</span><h3>체지방률 확인</h3><p>예상 체지방률과 체지방량, 제지방량을 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bf-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="bf-faq-list">
+            <div class="bf-faq-item is-open"><button type="button" class="bf-faq-question" aria-expanded="true">Q. 체지방률은 어떻게 계산하나요?</button><div class="bf-faq-answer"><p>성별 공식에 필요한 신체 둘레와 키를 inch로 변환한 뒤 US Navy 둘레 기반 식에 대입해 추정합니다. 계산된 체지방률과 체중으로 체지방량 및 제지방량을 구합니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. US Navy 체지방률 공식은 무엇인가요?</button><div class="bf-faq-answer"><p>허리·목둘레와 키(여성은 엉덩이둘레 포함)를 사용하는 회귀식입니다. 이 페이지는 길이 단위를 inch로 변환해 계산하며 결과는 추정치입니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 체지방률 계산에 왜 목둘레와 허리둘레가 필요한가요?</button><div class="bf-faq-answer"><p>둘레 기반 공식은 신체 둘레 차이와 키를 입력 변수로 사용합니다. 측정 위치와 줄자를 두르는 방법이 결과에 영향을 줄 수 있습니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 남성과 여성의 계산 공식은 왜 다른가요?</button><div class="bf-faq-answer"><p>공식은 성별에 따라 다른 둘레 항목과 계수를 사용하도록 개발되었습니다. 선택된 공식이 모든 개인의 체형을 똑같이 반영하는 것은 아닙니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 체지방률과 BMI는 무엇이 다른가요?</button><div class="bf-faq-answer"><p>BMI는 키와 체중을 이용한 지수이고, 체지방률은 전체 체중 중 체지방이 차지하는 비율입니다. 서로 다른 정보를 제공하며 각각 한계가 있습니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 제지방량은 근육량과 같은가요?</button><div class="bf-faq-answer"><p>아닙니다. 제지방량은 체중에서 체지방량을 제외한 값으로 근육뿐 아니라 수분, 뼈, 장기 등을 포함합니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 계산 결과는 실제 체지방률과 얼마나 차이가 날 수 있나요?</button><div class="bf-faq-answer"><p>개인의 체형, 둘레 측정 위치, 측정 도구 및 수행 방식 등에 따라 차이가 날 수 있습니다. 이 계산기는 실제 측정값을 대체하지 않습니다.</p></div></div>
+            <div class="bf-faq-item"><button type="button" class="bf-faq-question" aria-expanded="false">Q. 체지방률을 정확하게 측정하려면 어떻게 해야 하나요?</button><div class="bf-faq-answer"><p>측정 목적에 적합한 방법을 전문가와 상의할 수 있습니다. 둘레 기반 추정과 체성분 검사는 서로 다른 방식이며 결과의 정밀도와 한계도 다릅니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section bf-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 US Navy 신체 둘레 기반 공식을 활용하여 체지방률을 추정하는 도구입니다. 계산 결과는 실제 체지방률 측정값이 아닙니다.</p>
+          <p>신체 둘레 측정 위치와 방법, 개인의 체형 및 신체 특성 등에 따라 결과가 달라질 수 있습니다. 본 계산기는 일반 성인을 대상으로 하며 모든 개인에게 동일한 정확도를 보장하지 않습니다.</p>
+          <p>계산 결과만으로 건강 상태를 판단하거나 무리한 체중 관리 계획을 세우지 마세요. 보다 정확한 체성분 평가가 필요한 경우 적절한 검사와 전문가의 상담을 권장합니다.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/body-fat-main.js"></script>
+  </body>
+</html>

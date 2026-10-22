@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 영양소 비율 계산기</title>
+    <meta name="description" content="사용자가 설정한 하루 칼로리와 탄수화물·단백질·지방 비율로 영양소별 kcal와 g을 계산해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/macros-style.css" />
+  </head>
+  <body data-fitcalc-page="macros">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="macro-hero">
+        <div class="container macro-hero-content">
+          <div class="macro-hero-copy">
+            <p class="eyebrow">Nutrition Balance</p>
+            <h1>🥑 나에게 필요한 영양소는 얼마나 될까요?</h1>
+            <p class="macro-hero-lead">하루 섭취 칼로리와 영양소 비율을 입력하면<br />탄수화물, 단백질, 지방의 섭취량을 계산할 수 있어요.</p>
+            <p class="macro-hero-description">균형 잡힌 식생활을 계획할 때 탄수화물, 단백질, 지방의 구성 비율을 확인하는 것은 도움이 될 수 있습니다.<br />FITCALC에서 원하는 영양소 비율을 설정하고 하루 섭취량을 간편하게 계산해보세요.</p>
+            <a class="primary-btn macro-hero-button" href="#calculator">영양소 비율 계산하기 ↓</a>
+          </div>
+          <div class="macro-hero-visual" aria-hidden="true">
+            <div class="macro-hero-card">
+              <div class="macro-hero-card-head"><span>FITCALC / NUTRITION</span><span>2,000 kcal 예시</span></div>
+              <div class="macro-hero-plate"><div class="macro-plate-center">🥗<small>하루 구성</small></div></div>
+              <div class="macro-hero-legend"><span><i class="macro-carb-dot"></i>탄수화물 50%</span><span><i class="macro-protein-dot"></i>단백질 20%</span><span><i class="macro-fat-dot"></i>지방 30%</span></div>
+              <p>비율과 칼로리를 바탕으로 계산한 예시입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="macro-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Macro Calculator</p>
+            <h2>🥗 영양소 비율 계산기</h2>
+            <p>하루 섭취 칼로리와 영양소 비율을 입력하고<br />탄수화물, 단백질, 지방의 섭취량을 확인해보세요.</p>
+          </div>
+
+          <div class="macro-calculator-card">
+            <div class="macro-form-panel">
+              <div class="macro-field-group">
+                <label class="macro-field-label" for="dailyCalories">하루 섭취 칼로리를 입력해주세요</label>
+                <div class="macro-number-wrap"><input id="dailyCalories" type="number" min="500" max="5000" step="50" value="2000" inputmode="numeric" aria-describedby="calorieRangeNote calorieError" /><span>kcal</span></div>
+                <input id="dailyCaloriesSlider" class="macro-slider" type="range" min="500" max="5000" step="50" value="2000" aria-label="하루 섭취 칼로리 슬라이더" />
+                <div class="macro-slider-labels"><span>500 kcal</span><span>5,000 kcal</span></div>
+                <p id="calorieRangeNote" class="macro-helper">슬라이더와 숫자 입력은 50 kcal 단위로 맞춰집니다. 입력 범위는 조절 가능한 UI 범위이며, 모든 값이 건강한 섭취 목표라는 의미는 아닙니다. 이 값은 직접 설정하는 수치입니다.</p>
+                <p id="calorieError" class="macro-error" aria-live="polite"></p>
+              </div>
+
+              <fieldset class="macro-field-group macro-ratio-group">
+                <legend class="macro-field-label">탄수화물 / 단백질 / 지방 비율을 설정해주세요</legend>
+                <div class="macro-ratio-inputs">
+                  <div class="macro-ratio-row macro-carb-row">
+                    <label for="carbRatio"><span aria-hidden="true">🍚</span>탄수화물</label>
+                    <div class="macro-percent-wrap"><input id="carbRatio" type="number" min="0" max="100" step="0.5" value="50" inputmode="decimal" aria-describedby="carbRatioError" /><span>%</span></div>
+                    <input id="carbRatioSlider" class="macro-slider" type="range" min="0" max="100" step="0.5" value="50" aria-label="탄수화물 비율 슬라이더" />
+                    <p id="carbRatioError" class="macro-error" aria-live="polite"></p>
+                  </div>
+                  <div class="macro-ratio-row macro-protein-row">
+                    <label for="proteinRatio"><span aria-hidden="true">🥩</span>단백질</label>
+                    <div class="macro-percent-wrap"><input id="proteinRatio" type="number" min="0" max="100" step="0.5" value="20" inputmode="decimal" aria-describedby="proteinRatioError" /><span>%</span></div>
+                    <input id="proteinRatioSlider" class="macro-slider" type="range" min="0" max="100" step="0.5" value="20" aria-label="단백질 비율 슬라이더" />
+                    <p id="proteinRatioError" class="macro-error" aria-live="polite"></p>
+                  </div>
+                  <div class="macro-ratio-row macro-fat-row">
+                    <label for="fatRatio"><span aria-hidden="true">🥑</span>지방</label>
+                    <div class="macro-percent-wrap"><input id="fatRatio" type="number" min="0" max="100" step="0.5" value="30" inputmode="decimal" aria-describedby="fatRatioError" /><span>%</span></div>
+                    <input id="fatRatioSlider" class="macro-slider" type="range" min="0" max="100" step="0.5" value="30" aria-label="지방 비율 슬라이더" />
+                    <p id="fatRatioError" class="macro-error" aria-live="polite"></p>
+                  </div>
+                </div>
+                <div class="macro-total-status" aria-live="polite"><span>현재 비율 합계</span><strong id="macroTotal">100%</strong><p id="macroTotalMessage">✓ 영양소 비율 합계가 100%입니다.</p></div>
+                <p id="macroSumError" class="macro-error macro-sum-error" aria-live="polite"></p>
+              </fieldset>
+
+              <fieldset class="macro-field-group">
+                <legend class="macro-field-label">💡 비율을 빠르게 설정해보세요</legend>
+                <div class="macro-presets" role="group" aria-label="영양소 비율 프리셋">
+                  <button type="button" class="macro-preset is-selected" data-preset="balanced" aria-pressed="true"><strong>기본 예시</strong><span>50 / 20 / 30</span></button>
+                  <button type="button" class="macro-preset" data-preset="carb" aria-pressed="false"><strong>탄수화물 비중 높은 예시</strong><span>60 / 15 / 25</span></button>
+                  <button type="button" class="macro-preset" data-preset="protein" aria-pressed="false"><strong>단백질 비중 높은 예시</strong><span>40 / 30 / 30</span></button>
+                  <button type="button" class="macro-preset" data-preset="custom" aria-pressed="false"><strong>직접 설정</strong><span>비율 직접 입력</span></button>
+                </div>
+                <p class="macro-helper">프리셋은 계산 예시이며 개인에게 적합한 영양 비율을 처방하지 않습니다.</p>
+              </fieldset>
+
+              <button type="button" id="normalizeRatios" class="macro-normalize">비율 합계 100%로 맞추기</button>
+              <p id="normalizeError" class="macro-error" aria-live="polite"></p>
+              <button type="button" id="calculateMacros" class="primary-btn macro-submit">영양소 비율 계산하기 🥑</button>
+            </div>
+
+            <div class="macro-result-column">
+              <section id="macroResultCard" class="macro-result-card" aria-live="polite" aria-atomic="true">
+                <span id="macroResultBadge" class="macro-result-badge">🥑 영양소 계산 결과가 여기에 표시됩니다.</span>
+                <p id="macroResultPrompt" class="macro-result-prompt">하루 섭취 칼로리와 영양소 비율을 입력한 후 계산 버튼을 눌러주세요.</p>
+                <div id="macroResultContent" class="macro-result-content macro-is-hidden">
+                  <div class="macro-result-total"><span>하루 총 섭취 칼로리</span><strong id="resultDailyCalories">2,000 kcal</strong></div>
+                  <div class="macro-result-cards">
+                    <article class="macro-result-item macro-carb-card"><span aria-hidden="true">🍚</span><h3>탄수화물</h3><strong id="carbGrams">250g</strong><p><span id="carbKcal">1,000 kcal</span> / <span id="carbPercent">50%</span></p></article>
+                    <article class="macro-result-item macro-protein-card"><span aria-hidden="true">🥩</span><h3>단백질</h3><strong id="proteinGrams">100g</strong><p><span id="proteinKcal">400 kcal</span> / <span id="proteinPercent">20%</span></p></article>
+                    <article class="macro-result-item macro-fat-card"><span aria-hidden="true">🥑</span><h3>지방</h3><strong id="fatGrams">66.7g</strong><p><span id="fatKcal">600 kcal</span> / <span id="fatPercent">30%</span></p></article>
+                  </div>
+                  <p class="macro-result-note">이 결과는 사용자가 입력한 칼로리와 영양소 비율을 바탕으로 계산한 수치입니다. 개인에게 적합한 섭취량을 의학적으로 판정하는 결과는 아닙니다.</p>
+                </div>
+                <button type="button" id="resetMacros" class="secondary-btn macro-reset">다시 계산하기</button>
+              </section>
+
+              <div id="macroAnalysis" class="macro-analysis macro-is-hidden">
+                <section class="macro-visual-panel" aria-labelledby="macroDonutTitle">
+                  <div class="macro-panel-heading"><p class="eyebrow">Ratio Breakdown</p><h3 id="macroDonutTitle">📊 나의 영양소 비율</h3></div>
+                  <div class="macro-donut-layout">
+                    <div id="macroDonut" class="macro-donut" role="img" aria-label="탄수화물 50%, 단백질 20%, 지방 30% 도넛 차트"><span>총<strong>100%</strong></span></div>
+                    <ul class="macro-legend" aria-label="영양소 비율 범례">
+                      <li><i class="macro-legend-color macro-carb-color"></i><span>탄수화물</span><strong id="donutCarbPercent">50%</strong></li>
+                      <li><i class="macro-legend-color macro-protein-color"></i><span>단백질</span><strong id="donutProteinPercent">20%</strong></li>
+                      <li><i class="macro-legend-color macro-fat-color"></i><span>지방</span><strong id="donutFatPercent">30%</strong></li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section class="macro-visual-panel" aria-labelledby="macroBarTitle">
+                  <div class="macro-panel-heading"><p class="eyebrow">Energy Split</p><h3 id="macroBarTitle">🔥 영양소별 에너지 구성</h3></div>
+                  <div class="macro-bar-row"><span>탄수화물 kcal</span><div class="macro-bar-track"><i id="carbBar" class="macro-bar macro-carb-bar"></i></div><strong id="carbBarValue">1,000 kcal</strong></div>
+                  <div class="macro-bar-row"><span>단백질 kcal</span><div class="macro-bar-track"><i id="proteinBar" class="macro-bar macro-protein-bar"></i></div><strong id="proteinBarValue">400 kcal</strong></div>
+                  <div class="macro-bar-row"><span>지방 kcal</span><div class="macro-bar-track"><i id="fatBar" class="macro-bar macro-fat-bar"></i></div><strong id="fatBarValue">600 kcal</strong></div>
+                  <p class="macro-chart-total">영양소 kcal 합계 <strong id="macroKcalTotal">2,000 kcal</strong></p>
+                </section>
+              </div>
+
+              <section class="macro-preview" aria-labelledby="macroPreviewTitle" aria-live="polite">
+                <div class="macro-panel-heading"><p class="eyebrow">Live Preview</p><h3 id="macroPreviewTitle">실시간 미리보기</h3></div>
+                <div class="macro-preview-total"><span>현재 비율 합계</span><strong id="previewTotal">100%</strong></div>
+                <p id="previewMessage" class="macro-preview-message">현재 비율 합계가 100%일 때 예상량을 표시합니다.</p>
+                <div id="macroPreviewValues" class="macro-preview-values">
+                  <span>탄수화물 <strong id="previewCarb">250g</strong></span>
+                  <span>단백질 <strong id="previewProtein">100g</strong></span>
+                  <span>지방 <strong id="previewFat">66.7g</strong></span>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="macro-info-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">Three Macronutrients</p><h2>💡 3대 영양소 알아보기</h2></div>
+          <div class="macro-info-grid">
+            <article class="macro-info-card macro-carb-card"><span aria-hidden="true">🍚</span><h3>탄수화물</h3><p>탄수화물은 신체 활동과 일상생활에 필요한 주요 에너지원 중 하나입니다.</p><strong>1g당 약 4kcal</strong></article>
+            <article class="macro-info-card macro-protein-card"><span aria-hidden="true">🥩</span><h3>단백질</h3><p>단백질은 근육과 여러 신체 조직의 구성과 유지에 중요한 영양소입니다.</p><strong>1g당 약 4kcal</strong></article>
+            <article class="macro-info-card macro-fat-card"><span aria-hidden="true">🥑</span><h3>지방</h3><p>지방은 에너지를 제공하고 세포 구조와 여러 생리 기능에 관여합니다.</p><strong>1g당 약 9kcal</strong></article>
+          </div>
+          <p class="macro-info-note">알코올 등 다른 에너지원은 이 계산 범위에 포함하지 않습니다. 에너지 환산은 일반적인 기준이며 실제 식품 구성과 소화·대사 차이를 반영하지 않습니다.</p>
+        </div>
+      </section>
+
+      <section id="guide" class="macro-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="macro-guide-grid">
+            <article class="guide-card"><div class="guide-icon">🔥</div><span class="macro-step">STEP 01</span><h3>하루 섭취 칼로리 입력</h3><p>계산에 사용할 하루 총 섭취 칼로리를 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🥗</div><span class="macro-step">STEP 02</span><h3>영양소 비율 설정</h3><p>탄수화물, 단백질, 지방의 비율을 설정해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">📊</div><span class="macro-step">STEP 03</span><h3>영양소 섭취량 확인</h3><p>각 영양소의 칼로리와 g 단위 섭취량을 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="macro-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="macro-faq-list">
+            <div class="macro-faq-item is-open"><button type="button" class="macro-faq-question" aria-expanded="true">Q. 영양소 비율 계산기는 어떻게 사용하나요?</button><div class="macro-faq-answer"><p>하루 총 칼로리와 탄수화물·단백질·지방 비율을 입력하고, 세 비율의 합이 100%인지 확인한 뒤 계산 버튼을 누르면 각 영양소의 kcal와 g을 확인할 수 있습니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 탄수화물, 단백질, 지방의 칼로리는 어떻게 계산하나요?</button><div class="macro-faq-answer"><p>총 섭취 칼로리에 각 비율을 곱해 영양소별 kcal를 구합니다. 탄수화물과 단백질은 일반적으로 1g당 약 4kcal, 지방은 약 9kcal로 환산합니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 영양소 비율의 합계가 왜 100%여야 하나요?</button><div class="macro-faq-answer"><p>이 도구는 입력한 총 칼로리를 세 영양소에 나누어 계산하므로 전체 구성 비율을 100%로 맞춰야 합니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 영양소 비율은 모든 사람에게 동일하게 적용되나요?</button><div class="macro-faq-answer"><p>아닙니다. 필요한 영양 구성은 건강 상태, 활동량, 생활 습관 등 여러 요인에 따라 달라질 수 있습니다. 프리셋은 계산 예시일 뿐 개인별 권장값이 아닙니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 단백질 비율을 높이면 무조건 좋은가요?</button><div class="macro-faq-answer"><p>특정 영양소의 비율이 높다고 누구에게나 더 적합한 것은 아닙니다. 개인의 필요량이나 건강상 고려사항은 전문가와 상담해 확인하는 것이 좋습니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 하루 섭취 칼로리는 어떻게 정해야 하나요?</button><div class="macro-faq-answer"><p>이 계산기는 칼로리 목표를 처방하지 않습니다. 적절한 섭취량은 연령, 활동량, 건강 상태 등 개인 상황을 고려해 결정해야 합니다.</p></div></div>
+            <div class="macro-faq-item"><button type="button" class="macro-faq-question" aria-expanded="false">Q. 계산된 g 수치는 실제 식품의 무게와 같은가요?</button><div class="macro-faq-answer"><p>아닙니다. g 수치는 식품 전체 무게가 아니라 해당 영양소 자체의 추정 무게입니다. 실제 음식의 무게에는 수분과 다른 성분도 포함됩니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section macro-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 사용자가 입력한 하루 총 섭취 칼로리와 탄수화물, 단백질, 지방의 비율을 바탕으로 각 영양소의 에너지량과 무게를 계산합니다.</p>
+          <p>계산 결과는 수학적인 환산 결과이며 개인에게 적절한 식단을 처방하는 기능이 아닙니다. 필요한 영양소의 양은 나이, 활동량, 건강 상태, 개인의 생활 습관 등에 따라 달라질 수 있습니다.</p>
+          <p>특정 질환이나 특별한 영양 관리가 필요한 경우 의료 전문가 또는 영양 전문가와 상담해주세요. 극단적인 식사 제한이나 영양소의 과도한 제한을 권장하지 않습니다.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/macros-main.js"></script>
+  </body>
+</html>

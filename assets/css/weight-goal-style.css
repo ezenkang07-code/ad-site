@@ -1,0 +1,940 @@
+/* Goal calculator hero */
+.wg-hero {
+  padding: 72px 0 58px;
+  background: var(--mint-soft);
+}
+
+.wg-hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(330px, 0.9fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.wg-hero-copy {
+  max-width: 660px;
+}
+
+.wg-hero-copy h1 {
+  margin: 0 0 18px;
+  color: var(--dark);
+  font-size: 3.2rem;
+  line-height: 1.18;
+}
+
+.wg-hero-lead {
+  margin-bottom: 16px;
+  color: var(--dark);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.wg-hero-description {
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.wg-hero-button {
+  min-height: 56px;
+  padding: 0 24px;
+}
+
+.wg-hero-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wg-hero-card {
+  width: min(100%, 440px);
+  padding: 24px;
+  border: 1px solid rgba(53, 201, 165, 0.17);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.wg-hero-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.wg-hero-card-head span:last-child {
+  color: var(--gray);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.wg-hero-target {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 16px;
+  background: #f8fbfa;
+}
+
+.wg-hero-target-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border-radius: 15px;
+  background: #eaf7f1;
+  font-size: 1.55rem;
+}
+
+.wg-hero-target div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wg-hero-target small {
+  color: var(--gray);
+  font-size: 0.75rem;
+}
+
+.wg-hero-target strong {
+  color: var(--dark);
+  font-size: 2rem;
+}
+
+.wg-hero-target strong span {
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.wg-hero-timeline {
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+}
+
+.wg-timeline-start,
+.wg-timeline-end {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  box-shadow: 0 0 0 1px var(--mint-dark);
+}
+
+.wg-timeline-end {
+  background: #1c9e6d;
+  box-shadow: 0 0 0 1px #1c9e6d;
+}
+
+.wg-timeline-line {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mint), #1c9e6d);
+}
+
+.wg-hero-timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 10px 0 18px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.wg-hero-timeline-labels strong {
+  color: var(--mint-dark);
+}
+
+.wg-hero-card > p {
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+/* Calculator input and result */
+.wg-calculator-section {
+  padding: 72px 0 48px;
+}
+
+.wg-calculator-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 26px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.wg-form-panel,
+.wg-result-card,
+.wg-chart-panel,
+.wg-plan-panel {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(113, 128, 150, 0.1);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fff, #f8fbfa);
+}
+
+.wg-input-group {
+  min-width: 0;
+  margin: 0 0 22px;
+}
+
+.wg-field-label,
+.wg-input-group legend {
+  display: block;
+  margin-bottom: 10px;
+  padding: 0;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.wg-number-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wg-number-wrap input {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 13px 62px 13px 16px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.wg-number-wrap input:focus-visible,
+.wg-date-input:focus-visible,
+.wg-rate-option:focus-visible,
+.wg-submit:focus-visible,
+.wg-reset:focus-visible,
+.wg-faq-question:focus-visible {
+  outline: 3px solid rgba(21, 167, 126, 0.3);
+  outline-offset: 2px;
+}
+
+.wg-number-wrap input:focus,
+.wg-date-input:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 4px rgba(53, 201, 165, 0.1);
+}
+
+.wg-number-wrap > span {
+  position: absolute;
+  right: 15px;
+  color: var(--gray);
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wg-slider {
+  width: 100%;
+  min-height: 35px;
+  margin-top: 4px;
+  accent-color: var(--mint);
+  cursor: pointer;
+}
+
+.wg-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray);
+  font-size: 0.73rem;
+}
+
+.wg-error {
+  min-height: 18px;
+  margin-top: 5px;
+  color: #c74646;
+  font-size: 0.8rem;
+}
+
+.wg-number-wrap input.wg-invalid,
+.wg-date-input.wg-invalid {
+  border-color: #c74646;
+}
+
+.wg-goal-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--mint-soft);
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.wg-goal-type strong {
+  color: var(--mint-dark);
+  font-size: 0.85rem;
+}
+
+.wg-rate-group {
+  padding: 0;
+  border: 0;
+}
+
+.wg-helper {
+  margin: -3px 0 11px;
+  color: var(--gray);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.wg-rate-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.wg-rate-option {
+  min-height: 46px;
+  padding: 9px 10px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--dark-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.wg-rate-option:hover,
+.wg-rate-option.is-selected {
+  border-color: var(--mint);
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+}
+
+.wg-custom-rate {
+  margin-top: 12px;
+}
+
+.wg-custom-rate label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--dark-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.wg-date-input {
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-medium);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.wg-submit {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 16px;
+}
+
+.wg-result-column {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.wg-result-card {
+  border-color: rgba(53, 201, 165, 0.16);
+  background: linear-gradient(180deg, #f6fff9, #fff 75%);
+}
+
+.wg-result-status span {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 7px 11px;
+  border-radius: 99px;
+  background: var(--mint-soft);
+  color: var(--mint-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.wg-result-prompt {
+  margin-top: 16px;
+  line-height: 1.7;
+}
+
+.wg-result-content {
+  animation: wg-result-appear 0.38s ease both;
+}
+
+@keyframes wg-result-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wg-result-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 16px;
+  text-align: center;
+}
+
+.wg-result-label {
+  margin-bottom: 7px;
+  color: var(--dark-soft);
+  font-size: 0.9rem;
+}
+
+.wg-result-main > strong {
+  color: var(--dark);
+  font-size: 2.85rem;
+  line-height: 1.15;
+}
+
+.wg-result-main > span {
+  margin-top: 5px;
+  color: var(--mint-dark);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.wg-result-main > small {
+  margin-top: 4px;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.wg-target-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 15px;
+  border-radius: 13px;
+  background: rgba(53, 201, 165, 0.08);
+}
+
+.wg-target-date span {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.wg-target-date strong {
+  color: var(--dark);
+  font-size: 1.35rem;
+}
+
+.wg-goal-message {
+  margin: 14px 0;
+  color: var(--dark-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.wg-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+
+.wg-detail-list > div {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(53, 201, 165, 0.1);
+  border-radius: 11px;
+  background: rgba(53, 201, 165, 0.035);
+}
+
+.wg-detail-list dt {
+  margin-bottom: 5px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.wg-detail-list dd {
+  margin: 0;
+  color: var(--dark);
+  font-size: 0.86rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.wg-result-caveat {
+  margin-top: 14px;
+  color: var(--gray);
+  font-size: 0.77rem;
+  line-height: 1.65;
+}
+
+.wg-reset {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 15px;
+}
+
+.wg-is-hidden {
+  display: none;
+}
+
+.wg-analysis {
+  display: grid;
+  gap: 16px;
+  animation: wg-result-appear 0.42s ease both;
+}
+
+.wg-analysis.wg-is-hidden {
+  display: none;
+}
+
+/* Responsive weight projection chart */
+.wg-chart-panel,
+.wg-plan-panel {
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(23, 55, 43, 0.06);
+}
+
+.wg-panel-heading {
+  margin-bottom: 12px;
+}
+
+.wg-panel-heading h3 {
+  font-size: 1.08rem;
+}
+
+.wg-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 4px 0 6px;
+  color: var(--gray);
+  font-size: 0.73rem;
+}
+
+.wg-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wg-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint-dark);
+}
+
+.wg-target-dot {
+  background: #1c9e6d;
+}
+
+.wg-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.wg-chart-grid line {
+  stroke: #e8efec;
+  stroke-width: 1;
+}
+
+.wg-chart-axis {
+  stroke: #9aa9a3;
+  stroke-width: 1.4;
+}
+
+.wg-chart text {
+  fill: var(--gray);
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.wg-chart .wg-axis-title {
+  fill: var(--dark-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wg-chart-line {
+  fill: none;
+  stroke: var(--mint-dark);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wg-chart-point-start {
+  fill: #fff;
+  stroke: var(--mint-dark);
+  stroke-width: 4;
+}
+
+.wg-chart-point-target {
+  fill: #fff;
+  stroke: #1c9e6d;
+  stroke-width: 4;
+}
+
+.wg-chart-data {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wg-chart-data li {
+  padding: 6px 9px;
+  border-radius: 99px;
+  background: var(--mint-soft);
+  color: var(--dark-soft);
+  font-size: 0.72rem;
+}
+
+.wg-chart-note,
+.wg-plan-note {
+  margin-top: 11px;
+  color: var(--gray);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+/* Plan endpoints and summary cards */
+.wg-plan-track {
+  position: relative;
+  height: 28px;
+  margin: 24px 12px 12px;
+}
+
+.wg-plan-connector {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--mint-light);
+}
+
+.wg-plan-marker {
+  position: absolute;
+  top: 5px;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: var(--mint-dark);
+  box-shadow: 0 0 0 1px var(--mint-dark);
+}
+
+.wg-plan-origin {
+  left: 0;
+}
+
+.wg-plan-target {
+  right: 0;
+  background: #1c9e6d;
+  box-shadow: 0 0 0 1px #1c9e6d;
+}
+
+.wg-plan-track.is-maintain .wg-plan-origin {
+  left: calc(50% - 9px);
+}
+
+.wg-plan-track.is-maintain .wg-plan-target {
+  right: auto;
+  left: calc(50% - 9px);
+  transform: scale(0.72);
+}
+
+.wg-plan-labels {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 8px;
+}
+
+.wg-plan-labels > span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wg-plan-labels > span:last-child {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.wg-plan-labels small {
+  color: var(--gray);
+  font-size: 0.7rem;
+}
+
+.wg-plan-labels strong {
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.wg-plan-labels .wg-plan-change {
+  align-items: center;
+  padding-top: 10px;
+  color: var(--mint-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wg-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.wg-summary-card {
+  min-width: 0;
+  padding: 15px 13px;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(23, 55, 43, 0.05);
+}
+
+.wg-summary-card > span {
+  font-size: 1.2rem;
+}
+
+.wg-summary-card h3 {
+  margin: 8px 0 6px;
+  color: var(--gray);
+  font-size: 0.72rem;
+}
+
+.wg-summary-card strong {
+  display: block;
+  color: var(--dark);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* Guide, information, FAQ, and notice */
+.wg-guide-section,
+.wg-info-section,
+.wg-faq-section {
+  padding: 72px 0;
+}
+
+.wg-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.wg-guide-grid .guide-card {
+  min-width: 0;
+}
+
+.wg-step {
+  display: block;
+  margin: 8px 0;
+  color: var(--mint-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.wg-info-panel {
+  padding: 28px;
+  border: 1px solid rgba(53, 201, 165, 0.13);
+  border-radius: var(--radius-lg);
+  background: var(--mint-soft);
+}
+
+.wg-info-panel h2 {
+  margin-bottom: 15px;
+}
+
+.wg-info-panel p:not(.eyebrow) {
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.wg-faq-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wg-faq-item {
+  margin-bottom: 11px;
+  overflow: hidden;
+  border: 1px solid rgba(113, 128, 150, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.wg-faq-question {
+  display: flex;
+  width: 100%;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 17px;
+  color: var(--dark);
+  font-weight: 700;
+  text-align: left;
+}
+
+.wg-faq-question::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--mint-dark);
+  font-size: 1.2rem;
+}
+
+.wg-faq-item.is-open .wg-faq-question::after {
+  content: "−";
+}
+
+.wg-faq-answer {
+  display: none;
+  padding: 0 17px 17px;
+}
+
+.wg-faq-item.is-open .wg-faq-answer {
+  display: block;
+}
+
+.wg-faq-answer p {
+  line-height: 1.75;
+}
+
+.wg-notice-section {
+  padding-bottom: 72px;
+}
+
+.wg-notice-section .notice-box p {
+  margin-top: 10px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1024px) {
+  .wg-hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 0.85fr);
+    gap: 28px;
+  }
+
+  .wg-hero-copy h1 {
+    font-size: 2.75rem;
+  }
+
+  .wg-calculator-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .wg-hero {
+    padding: 45px 0 42px;
+  }
+
+  .wg-hero-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .wg-hero-copy h1 {
+    font-size: 2rem;
+  }
+
+  .wg-hero-lead {
+    font-size: 1.05rem;
+  }
+
+  .wg-hero-button {
+    width: 100%;
+  }
+
+  .wg-hero-card {
+    padding: 19px;
+  }
+
+  .wg-calculator-section,
+  .wg-guide-section,
+  .wg-info-section,
+  .wg-faq-section {
+    padding: 52px 0;
+  }
+
+  .wg-calculator-card {
+    gap: 16px;
+    padding: 13px;
+  }
+
+  .wg-form-panel,
+  .wg-result-card,
+  .wg-chart-panel,
+  .wg-plan-panel {
+    padding: 16px;
+  }
+
+  .wg-summary-grid,
+  .wg-guide-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wg-summary-card {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  .wg-summary-card > span {
+    grid-row: span 2;
+  }
+
+  .wg-summary-card h3,
+  .wg-summary-card strong {
+    margin: 0;
+  }
+
+  .wg-detail-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wg-info-panel {
+    padding: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wg-result-content,
+  .wg-analysis {
+    animation: none;
+  }
+}

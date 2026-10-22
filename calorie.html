@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITCALC | 하루 권장 칼로리 계산기</title>
+    <meta name="description" content="신체 정보와 활동량을 바탕으로 체중 유지를 위한 하루 예상 에너지 필요량을 계산해보세요." />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/calorie-style.css" />
+  </head>
+  <body data-fitcalc-page="calorie">
+    <div id="site-header"></div>
+
+    <main id="home">
+      <section class="cal-hero">
+        <div class="container cal-hero-content">
+          <div class="cal-hero-copy">
+            <span class="cal-hero-badge">Nutrition • Daily Energy</span>
+            <h1>🥗 하루에 얼마나 먹어야 할까요?</h1>
+            <p class="cal-hero-subtitle">나의 신체 정보와 활동량을 입력하면<br />하루 예상 에너지 필요량을 간편하게 계산할 수 있어요.</p>
+            <p class="cal-hero-description">
+              하루에 필요한 에너지량은 사람마다 다릅니다.<br />
+              나이, 키, 몸무게, 활동량 등을 바탕으로 나의 하루 예상 에너지 소비량을 확인하고<br class="cal-desktop-break" />
+              균형 잡힌 식생활을 계획하는 데 참고해보세요.
+            </p>
+            <a class="primary-btn cal-hero-btn" href="#calculator">하루 권장 칼로리 계산하기 ↓</a>
+          </div>
+          <div class="cal-hero-visual" aria-hidden="true">
+            <div class="cal-visual-card">
+              <span class="cal-visual-badge">Daily Balance</span>
+              <div class="cal-visual-number">
+                <span>DAILY ENERGY</span>
+                <strong>2,468</strong>
+                <small>kcal / day</small>
+              </div>
+              <div class="cal-visual-scale"><span></span></div>
+              <p>나에게 맞는 에너지 균형 찾기</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="cal-calculator-section">
+        <div class="container">
+          <div class="section-heading center">
+            <p class="eyebrow">Daily Nutrition</p>
+            <h2>🥗 하루 권장 칼로리 계산기</h2>
+            <p>나의 신체 정보와 평소 활동량을 입력하고<br />체중 유지를 위한 하루 예상 칼로리를 확인해보세요.</p>
+          </div>
+
+          <div class="cal-calculator-card">
+            <div class="cal-form-panel">
+              <div class="cal-input-group">
+                <span class="cal-field-label">성별을 선택해주세요</span>
+                <p class="cal-field-note">계산식에 적용할 성별 계수를 선택합니다.</p>
+                <div class="cal-choice-row" role="group" aria-label="성별 선택">
+                  <button type="button" class="cal-gender-option" data-gender="male" aria-pressed="false"><span class="cal-check" aria-hidden="true">✓</span>남성</button>
+                  <button type="button" class="cal-gender-option" data-gender="female" aria-pressed="false"><span class="cal-check" aria-hidden="true">✓</span>여성</button>
+                </div>
+                <p id="calGenderError" class="cal-error" aria-live="polite"></p>
+              </div>
+
+              <div class="cal-input-group">
+                <label class="cal-field-label" for="calAge">나이를 입력해주세요</label>
+                <div class="cal-number-wrap"><input id="calAge" type="number" min="18" max="100" step="1" value="25" inputmode="numeric" aria-describedby="calAgeError" /><span>세</span></div>
+                <p class="cal-field-note">성인용 계산기입니다. (18세 ~ 100세)</p>
+                <p id="calAgeError" class="cal-error" aria-live="polite"></p>
+              </div>
+
+              <div class="cal-input-group">
+                <label class="cal-field-label" for="calHeight">키를 입력해주세요</label>
+                <div class="cal-number-wrap"><input id="calHeight" type="number" min="100" max="220" step="0.1" value="170" inputmode="decimal" aria-describedby="calHeightError" /><span>cm</span></div>
+                <input id="calHeightSlider" class="cal-slider" type="range" min="100" max="220" step="0.1" value="170" aria-label="키 슬라이더" />
+                <div class="cal-slider-labels"><span>100cm</span><span>220cm</span></div>
+                <p id="calHeightError" class="cal-error" aria-live="polite"></p>
+              </div>
+
+              <div class="cal-input-group">
+                <label class="cal-field-label" for="calWeight">몸무게를 입력해주세요</label>
+                <div class="cal-number-wrap"><input id="calWeight" type="number" min="20" max="200" step="0.1" value="65" inputmode="decimal" aria-describedby="calWeightError" /><span>kg</span></div>
+                <input id="calWeightSlider" class="cal-slider" type="range" min="20" max="200" step="0.1" value="65" aria-label="몸무게 슬라이더" />
+                <div class="cal-slider-labels"><span>20kg</span><span>200kg</span></div>
+                <p id="calWeightError" class="cal-error" aria-live="polite"></p>
+              </div>
+
+              <fieldset class="cal-choice-group">
+                <legend>🏃 평소 활동량을 선택해주세요</legend>
+                <p class="cal-field-note">생활 습관과 운동량에 가장 가까운 항목을 선택하세요.</p>
+                <div class="cal-activity-options">
+                  <button type="button" class="cal-activity-option is-selected" data-factor="1.2" aria-pressed="true">
+                    <span class="cal-activity-title">거의 활동하지 않음</span><span class="cal-activity-desc">주로 앉아서 생활하며 운동이 거의 없는 경우</span><strong>1.2</strong>
+                  </button>
+                  <button type="button" class="cal-activity-option" data-factor="1.375" aria-pressed="false">
+                    <span class="cal-activity-title">가벼운 활동</span><span class="cal-activity-desc">가벼운 운동을 주 1~3일 하는 경우</span><strong>1.375</strong>
+                  </button>
+                  <button type="button" class="cal-activity-option" data-factor="1.55" aria-pressed="false">
+                    <span class="cal-activity-title">보통 활동</span><span class="cal-activity-desc">중간 강도의 운동을 주 3~5일 하는 경우</span><strong>1.55</strong>
+                  </button>
+                  <button type="button" class="cal-activity-option" data-factor="1.725" aria-pressed="false">
+                    <span class="cal-activity-title">활동량이 많음</span><span class="cal-activity-desc">강도 높은 운동을 주 6~7일 하는 경우</span><strong>1.725</strong>
+                  </button>
+                  <button type="button" class="cal-activity-option" data-factor="1.9" aria-pressed="false">
+                    <span class="cal-activity-title">매우 높은 활동량</span><span class="cal-activity-desc">매우 강한 운동이나 육체 노동을 자주 하는 경우</span><strong>1.9</strong>
+                  </button>
+                </div>
+                <p id="calActivityError" class="cal-error" aria-live="polite"></p>
+              </fieldset>
+
+              <fieldset class="cal-choice-group cal-goal-group">
+                <legend>🎯 나의 건강 관리 목표는?</legend>
+                <div class="cal-goal-options">
+                  <button type="button" class="cal-goal-option is-selected" data-goal="maintain" aria-pressed="true"><span aria-hidden="true">⚖️</span><strong>체중 유지</strong><small>현재 체중 유지를 위한 예상 에너지량 확인</small></button>
+                  <button type="button" class="cal-goal-option" data-goal="lose" aria-pressed="false"><span aria-hidden="true">🌿</span><strong>체중 감량</strong><small>체중 관리 시 참고할 에너지 정보 확인</small></button>
+                  <button type="button" class="cal-goal-option" data-goal="gain" aria-pressed="false"><span aria-hidden="true">🍽️</span><strong>체중 증가</strong><small>체중 증가 계획 시 참고할 에너지 정보 확인</small></button>
+                </div>
+                <p id="calGoalError" class="cal-error" aria-live="polite"></p>
+              </fieldset>
+
+              <button type="button" id="calCalculate" class="primary-btn cal-submit">나의 권장 칼로리 계산하기 🥗</button>
+            </div>
+
+            <div class="cal-result-column">
+              <section id="calResultCard" class="cal-result-card" aria-live="polite" aria-atomic="true">
+                <div class="cal-result-heading"><span id="calResultBadge">🥗 하루 칼로리 결과가 여기에 표시됩니다.</span></div>
+                <div class="cal-result-main">
+                  <p class="cal-result-label">나의 하루 예상 체중 유지 칼로리는</p>
+                  <strong id="calMaintenanceValue">--</strong>
+                  <span class="cal-kcal-unit">kcal / day</span>
+                  <p id="calGoalMessage" class="cal-goal-message">정보를 입력한 후 계산 버튼을 눌러주세요.</p>
+                </div>
+                <dl class="cal-detail-list">
+                  <div><dt>성별</dt><dd id="calResultGender">-</dd></div>
+                  <div><dt>나이</dt><dd id="calResultAge">-</dd></div>
+                  <div><dt>키</dt><dd id="calResultHeight">-</dd></div>
+                  <div><dt>몸무게</dt><dd id="calResultWeight">-</dd></div>
+                  <div><dt>활동량</dt><dd id="calResultActivity">-</dd></div>
+                  <div><dt>기초대사량</dt><dd id="calResultBmr">-</dd></div>
+                  <div><dt>하루 총 에너지 소비량</dt><dd id="calResultTdee">-</dd></div>
+                  <div><dt>건강 관리 목표</dt><dd id="calResultGoal">-</dd></div>
+                </dl>
+                <p class="cal-result-disclaimer">계산 결과는 추정치이며 실제 필요량 및 개인에게 적합한 섭취량과 차이가 날 수 있습니다.</p>
+                <button type="button" id="calReset" class="secondary-btn cal-reset">다시 계산하기</button>
+              </section>
+
+              <section class="cal-chart" aria-labelledby="calChartTitle">
+                <div class="cal-chart-heading"><p class="eyebrow">Energy Estimate</p><h3 id="calChartTitle">📊 나의 하루 에너지 소비량</h3></div>
+                <div class="cal-chart-row"><div class="cal-chart-label">기초대사량(BMR)</div><div class="cal-chart-track"><span id="calBmrBar" class="cal-chart-bar cal-bmr-bar"></span></div><strong id="calBmrChartValue">-- kcal</strong></div>
+                <div class="cal-chart-row"><div class="cal-chart-label">총 에너지 소비량(TDEE)</div><div class="cal-chart-track"><span id="calTdeeBar" class="cal-chart-bar cal-tdee-bar"></span></div><strong id="calTdeeChartValue">-- kcal</strong></div>
+              </section>
+            </div>
+          </div>
+
+          <div class="cal-energy-cards" aria-label="하루 에너지 정보">
+            <article class="cal-energy-card"><span aria-hidden="true">🔥</span><h3>기초대사량</h3><p>휴식 상태에서 생명 유지에 사용하는 하루 기본 에너지 소비량입니다.</p></article>
+            <article class="cal-energy-card"><span aria-hidden="true">🏃</span><h3>활동 에너지</h3><p>신체 활동과 생활 패턴에 따라 하루 에너지 소비량이 달라질 수 있습니다.</p></article>
+            <article class="cal-energy-card"><span aria-hidden="true">🥗</span><h3>체중 유지 칼로리</h3><p>현재 체중을 유지하는 데 필요한 하루 에너지량의 추정치입니다.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="guide" class="cal-guide-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">How to Use</p><h2>💚 이렇게 사용해보세요</h2></div>
+          <div class="cal-guide-grid">
+            <article class="guide-card"><div class="guide-icon">📋</div><h3>신체 정보 입력</h3><p>성별, 나이, 키, 몸무게를 입력해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🏃</div><h3>활동량 선택</h3><p>평소 생활 습관과 운동량에 맞는 활동량을 선택해주세요.</p></article>
+            <article class="guide-card"><div class="guide-icon">🥗</div><h3>하루 칼로리 확인</h3><p>체중 유지를 위한 하루 예상 에너지 필요량을 확인해주세요.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cal-info-section">
+        <div class="container"><article class="cal-info-panel">
+          <p class="eyebrow">Daily Energy Guide</p><h2>🥗 하루 권장 칼로리란?</h2>
+          <p>하루에 필요한 에너지량은 나이, 성별, 키, 몸무게, 활동량, 건강 상태 등에 따라 달라질 수 있습니다.</p>
+          <p>기초대사량은 휴식 상태에서 사용하는 에너지량이며, 총 에너지 소비량(TDEE)은 일상생활과 활동량을 고려한 하루 에너지 소비량의 추정치입니다. 체중 유지를 위한 에너지 필요량은 TDEE를 참고하여 추정할 수 있습니다.</p>
+          <p>실제 필요량은 개인마다 차이가 있으므로 계산 결과를 절대적인 섭취 기준으로 사용하지 마세요.</p>
+        </article></div>
+      </section>
+
+      <section class="cal-faq-section">
+        <div class="container">
+          <div class="section-heading center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+          <div class="cal-faq-list">
+            <div class="cal-faq-item is-open"><button type="button" class="cal-faq-question" aria-expanded="true">Q. 하루 권장 칼로리는 어떻게 계산하나요?</button><div class="cal-faq-answer"><p>성별, 나이, 키, 몸무게로 Mifflin-St Jeor 공식을 사용해 기초대사량을 추정하고, 선택한 활동계수를 곱해 하루 총 에너지 소비량(TDEE)을 계산합니다.</p></div></div>
+            <div class="cal-faq-item"><button type="button" class="cal-faq-question" aria-expanded="false">Q. 기초대사량과 하루 권장 칼로리는 무엇이 다른가요?</button><div class="cal-faq-answer"><p>기초대사량은 휴식 중 생명 유지에 필요한 에너지량입니다. 하루 총 에너지 소비량은 기초대사량에 일상 활동과 운동량을 반영한 추정치입니다.</p></div></div>
+            <div class="cal-faq-item"><button type="button" class="cal-faq-question" aria-expanded="false">Q. 운동을 많이 하면 필요한 칼로리도 증가하나요?</button><div class="cal-faq-answer"><p>활동량이 늘면 총 에너지 소비량도 달라질 수 있습니다. 이 계산기는 활동계수로 이를 추정하지만 실제 소비량은 운동 종류와 개인 상태에 따라 다릅니다.</p></div></div>
+            <div class="cal-faq-item"><button type="button" class="cal-faq-question" aria-expanded="false">Q. 체중 감량을 위해 무조건 적게 먹어야 하나요?</button><div class="cal-faq-answer"><p>그렇지 않습니다. 과도한 제한은 건강에 해로울 수 있습니다. 감량 계획은 건강 상태와 적절한 에너지 조절 범위를 함께 고려하고, 필요하면 전문가와 상담하세요.</p></div></div>
+            <div class="cal-faq-item"><button type="button" class="cal-faq-question" aria-expanded="false">Q. 하루 권장 칼로리를 정확하게 알 수 있나요?</button><div class="cal-faq-answer"><p>계산값은 공식과 활동계수를 이용한 추정치입니다. 실제 필요량은 체성분, 건강 상태, 생활 패턴 등에 따라 달라질 수 있습니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notice-section cal-notice-section">
+        <div class="container"><div class="notice-box"><h3>꼭 확인해주세요</h3>
+          <p>본 계산기는 일반 성인을 대상으로 Mifflin-St Jeor 공식과 활동계수를 이용하여 하루 에너지 필요량을 추정하는 도구입니다.</p>
+          <p>계산 결과는 실제 에너지 소비량 및 개인에게 적합한 섭취량과 차이가 있을 수 있습니다. 임신, 수유, 성장기, 특정 질환 등의 상황에서는 일반적인 계산식이 적절하지 않을 수 있습니다.</p>
+          <p>계산 결과만을 근거로 과도하게 식사를 제한하거나 급격한 체중 변화를 시도하지 마세요. 개인에게 적합한 식사 계획은 의료 전문가 또는 영양 전문가와 상담하여 결정하는 것이 좋습니다.</p>
+        </div></div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/calorie-main.js"></script>
+  </body>
+</html>
