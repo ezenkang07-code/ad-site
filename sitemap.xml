@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 메인 홈 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- BMI 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/bmi.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 기초대사량(BMR) 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/bmr.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 일일 권장 칼로리 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/calorie.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 목표 체중 기간 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/weight-goal.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 체중 변화 분석기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/weight-log.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 운동 칼로리 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/exercise.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 영양소 비율(탄단지) 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/macros.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 체지방률 추정 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/body-fat.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 일일 수분 섭취량 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/water.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 음식 칼로리 계산기 -->
+  <url>
+    <loc>https://ezenkang07-code.github.io/ad-site/food-calorie.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
