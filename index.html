@@ -1,231 +1,240 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FITCALC | 건강한 하루의 시작</title>
-    <meta name="description" content="BMI, 기초대사량, 하루 권장 칼로리 등 일상 속 건강 정보를 FITCALC에서 쉽고 빠르게 계산해보세요." />
-    <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="assets/css/normalize.css" />
-    <link rel="stylesheet" href="assets/css/commons.css" />
-    <link rel="stylesheet" href="assets/css/home-style.css" />
-  </head>
-  <body data-fitcalc-page="home">
-    <div id="site-header"></div>
 
-    <main>
-      <section id="home" class="home-hero">
-        <div class="container home-hero-content">
-          <div class="home-hero-copy">
-            <p class="home-eyebrow"><span class="home-eyebrow-mark" aria-hidden="true"></span> HEALTH TOOLS FOR EVERYDAY</p>
-            <h1>건강한 하루의 시작,<br />FITCALC</h1>
-            <p class="home-hero-lead">나에게 필요한 건강 정보를 쉽고 빠르게 계산해보세요.</p>
-            <p class="home-hero-description">
-              BMI부터 기초대사량, 하루 권장 칼로리까지.<br />
-              복잡한 건강 계산을 누구나 쉽고 간편하게 이용할 수 있도록 FITCALC가 도와드립니다.
-            </p>
-            <div class="home-hero-actions">
-              <a class="primary-btn" href="#calculator">계산기 둘러보기 →</a>
-              <a class="home-secondary-btn" href="#about">FITCALC 알아보기</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FITCALC | 건강한 하루의 시작</title>
+  <meta name="description" content="BMI, 기초대사량, 하루 권장 칼로리 등 일상 속 건강 정보를 FITCALC에서 쉽고 빠르게 계산해보세요." />
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+  <link rel="stylesheet" href="assets/css/commons.css" />
+  <link rel="stylesheet" href="assets/css/home-style.css" />
+
+
+  <meta name="google-site-verification" content="pJQ1WJ2_wdYSkDpVFIU6YDC9wxGQxHXvxY8ogcakA48" />
+</head>
+
+<body data-fitcalc-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <section id="home" class="home-hero">
+      <div class="container home-hero-content">
+        <div class="home-hero-copy">
+          <p class="home-eyebrow"><span class="home-eyebrow-mark" aria-hidden="true"></span> HEALTH TOOLS FOR EVERYDAY
+          </p>
+          <h1>건강한 하루의 시작,<br />FITCALC</h1>
+          <p class="home-hero-lead">나에게 필요한 건강 정보를 쉽고 빠르게 계산해보세요.</p>
+          <p class="home-hero-description">
+            BMI부터 기초대사량, 하루 권장 칼로리까지.<br />
+            복잡한 건강 계산을 누구나 쉽고 간편하게 이용할 수 있도록 FITCALC가 도와드립니다.
+          </p>
+          <div class="home-hero-actions">
+            <a class="primary-btn" href="#calculator">계산기 둘러보기 →</a>
+            <a class="home-secondary-btn" href="#about">FITCALC 알아보기</a>
+          </div>
+        </div>
+
+        <figure class="home-dashboard" aria-label="FITCALC 샘플 건강 계산 결과">
+          <div class="home-dashboard-top">
+            <div class="home-dashboard-title">FITCALC / DAILY SNAPSHOT</div>
+            <span class="home-demo-label">예시 데이터</span>
+          </div>
+          <div class="home-dashboard-stats">
+            <div class="home-dashboard-stat">
+              <span>기초대사량</span>
+              <strong>1,593</strong>
+              <small>BMR · kcal/day</small>
+            </div>
+            <div class="home-dashboard-stat">
+              <span>하루 에너지</span>
+              <strong>2,468</strong>
+              <small>TDEE · kcal/day</small>
             </div>
           </div>
-
-          <figure class="home-dashboard" aria-label="FITCALC 샘플 건강 계산 결과">
-            <div class="home-dashboard-top">
-              <div class="home-dashboard-title">FITCALC / DAILY SNAPSHOT</div>
-              <span class="home-demo-label">예시 데이터</span>
+          <div class="home-chart">
+            <div class="home-chart-head"><strong>일상 속 건강 지표</strong><span>계산 결과 예시</span></div>
+            <div class="home-chart-bars" aria-hidden="true">
+              <span class="home-chart-bar home-chart-bar-1"></span>
+              <span class="home-chart-bar home-chart-bar-2"></span>
+              <span class="home-chart-bar home-chart-bar-3"></span>
+              <span class="home-chart-bar home-chart-bar-4"></span>
+              <span class="home-chart-bar home-chart-bar-5"></span>
+              <span class="home-chart-bar home-chart-bar-6"></span>
+              <span class="home-chart-bar home-chart-bar-7"></span>
             </div>
-            <div class="home-dashboard-stats">
-              <div class="home-dashboard-stat">
-                <span>기초대사량</span>
-                <strong>1,593</strong>
-                <small>BMR · kcal/day</small>
-              </div>
-              <div class="home-dashboard-stat">
-                <span>하루 에너지</span>
-                <strong>2,468</strong>
-                <small>TDEE · kcal/day</small>
-              </div>
+            <div class="home-chart-days" aria-hidden="true">
+              <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>
+            <div class="home-chart-legend" aria-hidden="true">
+              <span class="home-legend-item"><i class="home-legend-dot"></i> BMR</span>
+              <span class="home-legend-item"><i class="home-legend-dot home-legend-tdee"></i> TDEE</span>
             </div>
-            <div class="home-chart">
-              <div class="home-chart-head"><strong>일상 속 건강 지표</strong><span>계산 결과 예시</span></div>
-              <div class="home-chart-bars" aria-hidden="true">
-                <span class="home-chart-bar home-chart-bar-1"></span>
-                <span class="home-chart-bar home-chart-bar-2"></span>
-                <span class="home-chart-bar home-chart-bar-3"></span>
-                <span class="home-chart-bar home-chart-bar-4"></span>
-                <span class="home-chart-bar home-chart-bar-5"></span>
-                <span class="home-chart-bar home-chart-bar-6"></span>
-                <span class="home-chart-bar home-chart-bar-7"></span>
-              </div>
-              <div class="home-chart-days" aria-hidden="true"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>
-              <div class="home-chart-legend" aria-hidden="true">
-                <span class="home-legend-item"><i class="home-legend-dot"></i> BMR</span>
-                <span class="home-legend-item"><i class="home-legend-dot home-legend-tdee"></i> TDEE</span>
-              </div>
-            </div>
-          </figure>
-        </div>
-      </section>
+          </div>
+        </figure>
+      </div>
+    </section>
 
-      <section id="about" class="home-section home-service-section">
-        <div class="container">
-          <div class="home-section-heading home-reveal">
-            <p class="eyebrow">About FITCALC</p>
-            <h2>🌿 FITCALC는 어떤 서비스인가요?</h2>
-            <p>FITCALC는 일상에서 필요한 다양한 건강 관련 수치를 간편하게 계산할 수 있도록 도와주는 웹서비스입니다.<br />복잡한 공식이나 전문 지식 없이도 기본 정보를 입력하면 계산 결과를 확인할 수 있습니다.</p>
-          </div>
-          <div class="home-service-grid">
-            <article class="home-service-card home-reveal">
-              <span class="home-service-icon" aria-hidden="true">⚡</span>
-              <h3>빠르고 간편한 계산</h3>
-              <p>복잡한 과정 없이 몇 가지 정보만 입력하면 필요한 건강 수치를 확인할 수 있습니다.</p>
-            </article>
-            <article class="home-service-card home-reveal">
-              <span class="home-service-icon" aria-hidden="true">📊</span>
-              <h3>직관적인 결과</h3>
-              <p>계산 결과를 숫자와 그래프로 제공하여 누구나 쉽게 이해할 수 있도록 도와드립니다.</p>
-            </article>
-            <article class="home-service-card home-reveal">
-              <span class="home-service-icon" aria-hidden="true">💚</span>
-              <h3>일상 속 건강 관리</h3>
-              <p>다양한 건강 지표를 확인하고 건강한 생활 습관을 계획하는 데 참고할 수 있습니다.</p>
-            </article>
-          </div>
+    <section id="about" class="home-section home-service-section">
+      <div class="container">
+        <div class="home-section-heading home-reveal">
+          <p class="eyebrow">About FITCALC</p>
+          <h2>🌿 FITCALC는 어떤 서비스인가요?</h2>
+          <p>FITCALC는 일상에서 필요한 다양한 건강 관련 수치를 간편하게 계산할 수 있도록 도와주는 웹서비스입니다.<br />복잡한 공식이나 전문 지식 없이도 기본 정보를 입력하면 계산 결과를 확인할
+            수 있습니다.</p>
         </div>
-      </section>
-
-      <section id="calculator" class="home-section home-calculator-section">
-        <div class="container">
-          <div class="home-section-heading home-reveal">
-            <p class="eyebrow">Available Calculators</p>
-            <h2>🧮 나에게 필요한 계산기를 선택해보세요</h2>
-            <p>건강 관리에 필요한 다양한 계산기를 한곳에서 쉽고 편리하게 이용할 수 있습니다.</p>
-          </div>
-          <div class="home-calculator-grid">
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">⚖️</span>
-              <h3>BMI 계산기</h3>
-              <p>키와 몸무게를 입력하여 나의 체질량지수와 체중 분류를 확인해보세요.</p>
-              <a class="home-card-link" href="bmi.html#home">BMI 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🔥</span>
-              <h3>기초대사량 계산기</h3>
-              <p>나이, 성별, 키, 몸무게를 바탕으로 하루 기초대사량을 추정해보세요.</p>
-              <a class="home-card-link" href="bmr.html#home">기초대사량 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🥗</span>
-              <h3>하루 권장 칼로리 계산기</h3>
-              <p>신체 정보와 활동량을 바탕으로 체중 유지를 위한 하루 예상 에너지 필요량을 확인해보세요.</p>
-              <a class="home-card-link" href="calorie.html#home">권장 칼로리 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🎯</span>
-              <h3>목표 체중 기간 계산기</h3>
-              <p>현재 체중과 목표 체중을 입력하고 목표까지 걸리는 예상 기간을 확인해보세요.</p>
-              <a class="home-card-link" href="weight-goal.html#home">목표 기간 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <div class="home-card-icon" aria-hidden="true">📈</div>
-              <h3>체중 변화 분석기</h3>
-              <p>매일의 체중을 기록하고 실제 변화 추이와 목표까지 남은 체중을 확인하세요.</p>
-              <a class="home-card-link" href="weight-log.html#home">체중 기록하고 분석하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🏃</span>
-              <h3>운동 칼로리 계산기</h3>
-              <p>운동 종류와 시간, 체중을 입력하고 운동 중 소비한 예상 칼로리를 확인해보세요.</p>
-              <a class="home-card-link" href="exercise.html#home">운동 칼로리 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🥑</span>
-              <h3>영양소 비율 계산기</h3>
-              <p>하루 섭취 칼로리와 탄수화물, 단백질, 지방의 비율을 입력하여 영양소별 섭취량을 계산해보세요.</p>
-              <a class="home-card-link" href="macros.html#home">영양소 비율 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">📏</span>
-              <h3>체지방률 추정 계산기</h3>
-              <p>신체 둘레와 기본 정보를 입력하여 예상 체지방률과 체지방량을 확인해보세요.</p>
-              <a class="home-card-link" href="body-fat.html#home">체지방률 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">💧</span>
-              <h3>하루 물 섭취량 계산기</h3>
-              <p>체중과 활동 정보를 입력하고 하루 물 섭취 참고량을 확인해보세요.</p>
-              <a class="home-card-link" href="water.html#home">물 섭취량 계산하기</a>
-            </article>
-            <article class="home-calculator-card home-reveal">
-              <span class="home-calculator-icon" aria-hidden="true">🍱</span>
-              <h3>음식 칼로리 계산기</h3>
-              <p>음식을 검색하고 섭취량을 입력하여 칼로리와 영양소를 계산하고 하루 식단을 확인해보세요.</p>
-              <a class="home-card-link" href="food-calorie.html#home">음식 칼로리 계산하기</a>
-            </article>
-          </div>
+        <div class="home-service-grid">
+          <article class="home-service-card home-reveal">
+            <span class="home-service-icon" aria-hidden="true">⚡</span>
+            <h3>빠르고 간편한 계산</h3>
+            <p>복잡한 과정 없이 몇 가지 정보만 입력하면 필요한 건강 수치를 확인할 수 있습니다.</p>
+          </article>
+          <article class="home-service-card home-reveal">
+            <span class="home-service-icon" aria-hidden="true">📊</span>
+            <h3>직관적인 결과</h3>
+            <p>계산 결과를 숫자와 그래프로 제공하여 누구나 쉽게 이해할 수 있도록 도와드립니다.</p>
+          </article>
+          <article class="home-service-card home-reveal">
+            <span class="home-service-icon" aria-hidden="true">💚</span>
+            <h3>일상 속 건강 관리</h3>
+            <p>다양한 건강 지표를 확인하고 건강한 생활 습관을 계획하는 데 참고할 수 있습니다.</p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="guide" class="home-section home-guide-section">
-        <div class="container">
-          <div class="home-section-heading home-reveal">
-            <p class="eyebrow">Simple Steps</p>
-            <h2>💡 FITCALC 이용 방법</h2>
-          </div>
-          <div class="home-guide-grid">
-            <article class="home-step-card home-reveal">
-              <span class="home-step-number">STEP 01</span>
-              <span class="home-step-icon" aria-hidden="true">🧮</span>
-              <h3>계산기 선택</h3>
-              <p>원하는 건강 계산기를 선택해주세요.</p>
-            </article>
-            <article class="home-step-card home-reveal">
-              <span class="home-step-number">STEP 02</span>
-              <span class="home-step-icon" aria-hidden="true">✏️</span>
-              <h3>정보 입력</h3>
-              <p>계산에 필요한 신체 정보나 활동량을 입력해주세요.</p>
-            </article>
-            <article class="home-step-card home-reveal">
-              <span class="home-step-number">STEP 03</span>
-              <span class="home-step-icon" aria-hidden="true">📊</span>
-              <h3>결과 확인</h3>
-              <p>계산된 수치와 안내 정보를 확인하고 건강 관리에 참고해보세요.</p>
-            </article>
-          </div>
+    <section id="calculator" class="home-section home-calculator-section">
+      <div class="container">
+        <div class="home-section-heading home-reveal">
+          <p class="eyebrow">Available Calculators</p>
+          <h2>🧮 나에게 필요한 계산기를 선택해보세요</h2>
+          <p>건강 관리에 필요한 다양한 계산기를 한곳에서 쉽고 편리하게 이용할 수 있습니다.</p>
         </div>
-      </section>
-
-      <section id="health" class="home-section home-health-section">
-        <div class="container home-health-content">
-          <div class="home-health-copy home-reveal">
-            <p class="eyebrow">Everyday Wellness</p>
-            <h2>🌱 작은 관심이 건강한 습관을 만듭니다</h2>
-            <p>건강 관리는 자신의 몸을 이해하는 것에서 시작됩니다.<br />FITCALC의 다양한 계산기로 현재의 건강 지표를 확인하고 일상 속 건강 관리에 참고해보세요.</p>
-          </div>
-          <div class="home-health-chips">
-            <div class="home-health-chip home-reveal"><span aria-hidden="true">🥗</span>균형 잡힌 식사</div>
-            <div class="home-health-chip home-reveal"><span aria-hidden="true">🏃</span>규칙적인 운동</div>
-            <div class="home-health-chip home-reveal"><span aria-hidden="true">🌙</span>충분한 수면</div>
-            <div class="home-health-chip home-reveal"><span aria-hidden="true">💚</span>꾸준한 건강 관리</div>
-          </div>
+        <div class="home-calculator-grid">
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">⚖️</span>
+            <h3>BMI 계산기</h3>
+            <p>키와 몸무게를 입력하여 나의 체질량지수와 체중 분류를 확인해보세요.</p>
+            <a class="home-card-link" href="bmi.html#home">BMI 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🔥</span>
+            <h3>기초대사량 계산기</h3>
+            <p>나이, 성별, 키, 몸무게를 바탕으로 하루 기초대사량을 추정해보세요.</p>
+            <a class="home-card-link" href="bmr.html#home">기초대사량 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🥗</span>
+            <h3>하루 권장 칼로리 계산기</h3>
+            <p>신체 정보와 활동량을 바탕으로 체중 유지를 위한 하루 예상 에너지 필요량을 확인해보세요.</p>
+            <a class="home-card-link" href="calorie.html#home">권장 칼로리 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🎯</span>
+            <h3>목표 체중 기간 계산기</h3>
+            <p>현재 체중과 목표 체중을 입력하고 목표까지 걸리는 예상 기간을 확인해보세요.</p>
+            <a class="home-card-link" href="weight-goal.html#home">목표 기간 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <div class="home-card-icon" aria-hidden="true">📈</div>
+            <h3>체중 변화 분석기</h3>
+            <p>매일의 체중을 기록하고 실제 변화 추이와 목표까지 남은 체중을 확인하세요.</p>
+            <a class="home-card-link" href="weight-log.html#home">체중 기록하고 분석하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🏃</span>
+            <h3>운동 칼로리 계산기</h3>
+            <p>운동 종류와 시간, 체중을 입력하고 운동 중 소비한 예상 칼로리를 확인해보세요.</p>
+            <a class="home-card-link" href="exercise.html#home">운동 칼로리 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🥑</span>
+            <h3>영양소 비율 계산기</h3>
+            <p>하루 섭취 칼로리와 탄수화물, 단백질, 지방의 비율을 입력하여 영양소별 섭취량을 계산해보세요.</p>
+            <a class="home-card-link" href="macros.html#home">영양소 비율 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">📏</span>
+            <h3>체지방률 추정 계산기</h3>
+            <p>신체 둘레와 기본 정보를 입력하여 예상 체지방률과 체지방량을 확인해보세요.</p>
+            <a class="home-card-link" href="body-fat.html#home">체지방률 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">💧</span>
+            <h3>하루 물 섭취량 계산기</h3>
+            <p>체중과 활동 정보를 입력하고 하루 물 섭취 참고량을 확인해보세요.</p>
+            <a class="home-card-link" href="water.html#home">물 섭취량 계산하기</a>
+          </article>
+          <article class="home-calculator-card home-reveal">
+            <span class="home-calculator-icon" aria-hidden="true">🍱</span>
+            <h3>음식 칼로리 계산기</h3>
+            <p>음식을 검색하고 섭취량을 입력하여 칼로리와 영양소를 계산하고 하루 식단을 확인해보세요.</p>
+            <a class="home-card-link" href="food-calorie.html#home">음식 칼로리 계산하기</a>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="home-cta-section">
-        <div class="container home-cta-content home-reveal">
-          <h2>💚 지금 나의 건강 지표를 확인해보세요!</h2>
-          <p>간단한 정보 입력만으로 나에게 필요한 건강 수치를 확인할 수 있습니다.</p>
-          <a class="home-cta-button" href="#calculator">계산기 시작하기 →</a>
+    <section id="guide" class="home-section home-guide-section">
+      <div class="container">
+        <div class="home-section-heading home-reveal">
+          <p class="eyebrow">Simple Steps</p>
+          <h2>💡 FITCALC 이용 방법</h2>
         </div>
-      </section>
-    </main>
+        <div class="home-guide-grid">
+          <article class="home-step-card home-reveal">
+            <span class="home-step-number">STEP 01</span>
+            <span class="home-step-icon" aria-hidden="true">🧮</span>
+            <h3>계산기 선택</h3>
+            <p>원하는 건강 계산기를 선택해주세요.</p>
+          </article>
+          <article class="home-step-card home-reveal">
+            <span class="home-step-number">STEP 02</span>
+            <span class="home-step-icon" aria-hidden="true">✏️</span>
+            <h3>정보 입력</h3>
+            <p>계산에 필요한 신체 정보나 활동량을 입력해주세요.</p>
+          </article>
+          <article class="home-step-card home-reveal">
+            <span class="home-step-number">STEP 03</span>
+            <span class="home-step-icon" aria-hidden="true">📊</span>
+            <h3>결과 확인</h3>
+            <p>계산된 수치와 안내 정보를 확인하고 건강 관리에 참고해보세요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <div id="site-footer"></div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/footer.js"></script>
-    <script src="assets/js/components.js"></script>
-    <script src="assets/js/home-main.js"></script>
-  </body>
+    <section id="health" class="home-section home-health-section">
+      <div class="container home-health-content">
+        <div class="home-health-copy home-reveal">
+          <p class="eyebrow">Everyday Wellness</p>
+          <h2>🌱 작은 관심이 건강한 습관을 만듭니다</h2>
+          <p>건강 관리는 자신의 몸을 이해하는 것에서 시작됩니다.<br />FITCALC의 다양한 계산기로 현재의 건강 지표를 확인하고 일상 속 건강 관리에 참고해보세요.</p>
+        </div>
+        <div class="home-health-chips">
+          <div class="home-health-chip home-reveal"><span aria-hidden="true">🥗</span>균형 잡힌 식사</div>
+          <div class="home-health-chip home-reveal"><span aria-hidden="true">🏃</span>규칙적인 운동</div>
+          <div class="home-health-chip home-reveal"><span aria-hidden="true">🌙</span>충분한 수면</div>
+          <div class="home-health-chip home-reveal"><span aria-hidden="true">💚</span>꾸준한 건강 관리</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-cta-section">
+      <div class="container home-cta-content home-reveal">
+        <h2>💚 지금 나의 건강 지표를 확인해보세요!</h2>
+        <p>간단한 정보 입력만으로 나에게 필요한 건강 수치를 확인할 수 있습니다.</p>
+        <a class="home-cta-button" href="#calculator">계산기 시작하기 →</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/home-main.js"></script>
+</body>
+
 </html>
