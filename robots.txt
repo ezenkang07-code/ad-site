@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap URL
-Sitemap: https://ezenkang07-code.github.io/ad-site/sitemap.xml
+Sitemap: https://ad-site-nu.vercel.app/sitemap.xml
