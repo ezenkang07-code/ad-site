@@ -6,17 +6,17 @@
   'use strict';
 
   const FOOTER_LINKS = [
-    { label: 'HOME', href: 'index.html#home' },
-    { label: 'BMI 계산기', href: 'bmi.html#home' },
-    { label: '기초대사량 계산기', href: 'bmr.html#home' },
-    { label: '권장 칼로리 계산기', href: 'calorie.html#home' },
-    { label: '목표 체중 기간 계산기', href: 'weight-goal.html#home' },
-    { label: '체중 변화 분석기', href: 'weight-log.html#home' },
-    { label: '운동 칼로리 계산기', href: 'exercise.html#home' },
-    { label: '영양소 비율 계산기', href: 'macros.html#home' },
-    { label: '체지방률 추정 계산기', href: 'body-fat.html#home' },
-    { label: '물 섭취량 계산기', href: 'water.html#home' },
-    { label: '음식 칼로리 계산기', href: 'food-calorie.html#home' }
+    { label: 'HOME', href: 'index.html' },
+    { label: 'BMI 계산기', href: 'bmi.html' },
+    { label: '기초대사량 계산기', href: 'bmr.html' },
+    { label: '권장 칼로리 계산기', href: 'calorie.html' },
+    { label: '목표 체중 기간 계산기', href: 'weight-goal.html' },
+    { label: '체중 변화 분석기', href: 'weight-log.html' },
+    { label: '운동 칼로리 계산기', href: 'exercise.html' },
+    { label: '영양소 비율 계산기', href: 'macros.html' },
+    { label: '체지방률 추정 계산기', href: 'body-fat.html' },
+    { label: '물 섭취량 계산기', href: 'water.html' },
+    { label: '음식 칼로리 계산기', href: 'food-calorie.html' }
   ];
 
   // 푸터 마크업 생성

@@ -49,7 +49,7 @@
       page: pageConfig.page || document.body.dataset.fitcalcPage || (window.FITCALC_HEADER && window.FITCALC_HEADER.detectActivePage ? window.FITCALC_HEADER.detectActivePage() : 'bmi'),
       header: Object.assign({
         logo: 'FITCALC',
-        logoHref: 'index.html#home'
+        logoHref: 'index.html'
       }, pageConfig.header || {}),
       footer: Object.assign({
         brand: 'FITCALC',

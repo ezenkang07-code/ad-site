@@ -9,16 +9,16 @@
 
   // 전체 계산기 목록 정의
   const CALCULATORS = [
-    { key: 'bmi', label: '⚖️ BMI 계산기', href: 'bmi.html#home' },
-    { key: 'bmr', label: '🔥 기초대사량 계산기', href: 'bmr.html#home' },
-    { key: 'calorie', label: '🥗 권장 칼로리 계산기', href: 'calorie.html#home' },
-    { key: 'goal', label: '🎯 목표 체중 기간 계산기', href: 'weight-goal.html#home' },
-    { key: 'weightlog', label: '📈 체중 변화 분석기', href: 'weight-log.html#home' },
-    { key: 'exercise', label: '🏃 운동 칼로리 계산기', href: 'exercise.html#home' },
-    { key: 'macros', label: '🥑 영양소 비율 계산기', href: 'macros.html#home' },
-    { key: 'bodyfat', label: '📏 체지방률 추정 계산기', href: 'body-fat.html#home' },
-    { key: 'water', label: '💧 물 섭취량 계산기', href: 'water.html#home' },
-    { key: 'food', label: '🍱 음식 칼로리 계산기', href: 'food-calorie.html#home' }
+    { key: 'bmi', label: '⚖️ BMI 계산기', href: 'bmi.html' },
+    { key: 'bmr', label: '🔥 기초대사량 계산기', href: 'bmr.html' },
+    { key: 'calorie', label: '🥗 권장 칼로리 계산기', href: 'calorie.html' },
+    { key: 'goal', label: '🎯 목표 체중 기간 계산기', href: 'weight-goal.html' },
+    { key: 'weightlog', label: '📈 체중 변화 분석기', href: 'weight-log.html' },
+    { key: 'exercise', label: '🏃 운동 칼로리 계산기', href: 'exercise.html' },
+    { key: 'macros', label: '🥑 영양소 비율 계산기', href: 'macros.html' },
+    { key: 'bodyfat', label: '📏 체지방률 추정 계산기', href: 'body-fat.html' },
+    { key: 'water', label: '💧 물 섭취량 계산기', href: 'water.html' },
+    { key: 'food', label: '🍱 음식 칼로리 계산기', href: 'food-calorie.html' }
   ];
 
   // 현재 활성화된 페이지 키 감지
@@ -48,7 +48,7 @@
   function createHeaderMarkup(options) {
     const opts = options || {};
     const logo = opts.logo || 'FITCALC';
-    const logoHref = opts.logoHref || 'index.html#home';
+    const logoHref = opts.logoHref || 'index.html';
     const activePage = opts.activePage || detectActivePage();
     const isCalculator = CALCULATORS.some(function (c) { return c.key === activePage; });
     const guideHref = activePage === 'home' ? '#guide' : 'index.html#guide';
@@ -70,7 +70,7 @@
           </button>
 
           <nav class="nav" aria-label="주요 메뉴">
-            <a href="index.html#home" class="nav-link ${activePage === 'home' ? 'is-active' : ''}" data-nav-key="home" ${activePage === 'home' ? 'aria-current="page"' : ''}>HOME</a>
+            <a href="index.html" class="nav-link ${activePage === 'home' ? 'is-active' : ''}" data-nav-key="home" ${activePage === 'home' ? 'aria-current="page"' : ''}>HOME</a>
             <div class="nav-dropdown ${isCalculator ? 'is-active' : ''}">
               <button class="nav-dropdown-toggle ${isCalculator ? 'is-active' : ''}" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="calculatorDropdownMenu" data-nav-key="calculator">
                 CALCULATOR <span class="dropdown-caret" aria-hidden="true">⌄</span>
@@ -144,7 +144,18 @@
         if (!this.contains(event.relatedTarget)) setDropdownOpen(false);
       });
 
-      $header.find('.nav a').off('click.headerNav').on('click.headerNav', function () {
+      $header.find('.logo, .nav a').off('click.headerNav').on('click.headerNav', function (e) {
+        const href = $(this).attr('href');
+        if (href) {
+          const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+          const targetPath = href.split('#')[0];
+          if (targetPath === currentPath || (currentPath === '' && targetPath === 'index.html')) {
+            if (!href.includes('#') || href.endsWith('#home') || href === '#') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }
+        }
         $header.removeClass('nav-open');
         $toggle.attr('aria-expanded', 'false');
         $toggle.attr('aria-label', '메뉴 열기');
@@ -277,6 +288,12 @@
 
   // 초기화 함수: 기본 타깃(#site-header 또는 <site-header>)에 자동 렌더링
   function initHeader() {
+    if (window.location.hash === '#home') {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      window.scrollTo(0, 0);
+    }
     const siteHeader = document.getElementById('site-header');
     if (siteHeader) {
       renderHeader(siteHeader);

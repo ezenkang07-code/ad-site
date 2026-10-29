@@ -18,11 +18,19 @@
     });
 
     if (window.location.hash) {
-      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
-      if (target) {
-        window.requestAnimationFrame(() => {
-          $('html, body').stop().animate({ scrollTop: $(target).offset().top - 88 }, 480);
-        });
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      if (hash === 'home') {
+        window.scrollTo(0, 0);
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      } else {
+        const target = document.getElementById(hash);
+        if (target) {
+          window.requestAnimationFrame(() => {
+            $('html, body').stop().animate({ scrollTop: $(target).offset().top - 88 }, 480);
+          });
+        }
       }
     }
   }

@@ -34,10 +34,11 @@
   <meta name="naver-site-verification" content="5502ad1577a2ee64ded0e0f56666f6bf2eb7b508" />
 </head>
 
-<body data-fitcalc-page="bmi">
+<body id="home" data-fitcalc-page="bmi">
   <div id="site-header"></div>
+  <div id="site-ad-banner"></div>
 
-  <main id="home">
+  <main>
     <section class="hero">
       <div class="container hero-content">
         <div class="hero-copy">
@@ -365,12 +366,12 @@
       page: 'bmi',
       header: {
         logo: 'FITCALC',
-        logoHref: 'index.html#home',
+        logoHref: 'index.html',
         nav: [
-          { key: 'home', label: 'HOME', href: 'index.html#home' },
-          { key: 'bmi', label: 'BMI 계산기', href: 'bmi.html#home' },
-          { key: 'bmr', label: '기초대사량 계산기', href: 'bmr.html#home' },
-          { key: 'calorie', label: '권장 칼로리 계산기', href: 'calorie.html#home' },
+          { key: 'home', label: 'HOME', href: 'index.html' },
+          { key: 'bmi', label: 'BMI 계산기', href: 'bmi.html' },
+          { key: 'bmr', label: '기초대사량 계산기', href: 'bmr.html' },
+          { key: 'calorie', label: '권장 칼로리 계산기', href: 'calorie.html' },
           { key: 'guide', label: 'GUIDE', href: 'index.html#guide' }
         ]
       },
@@ -390,6 +391,7 @@
   <!-- 헤더 & 푸터 컴포넌트 분리 로드 -->
   <script src="assets/js/header.js"></script>
   <script src="assets/js/footer.js"></script>
+  <script src="assets/js/ad-banner.js"></script>
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
 </body>

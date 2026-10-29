@@ -32,9 +32,10 @@
     <meta name="google-site-verification" content="V3TmEqt0qlZOa10JpxGZDKdtC7RnwIc-zLoTYZeJcOs" />
     <meta name="naver-site-verification" content="5502ad1577a2ee64ded0e0f56666f6bf2eb7b508" />
   </head>
-  <body data-fitcalc-page="food">
+  <body id="home" data-fitcalc-page="food">
     <div id="site-header"></div>
-    <main id="home" class="food-page">
+    <div id="site-ad-banner"></div>
+    <main class="food-page">
       <!-- Hero -->
       <section class="food-hero">
         <div class="container food-hero-grid">
@@ -135,7 +136,7 @@
               <p id="food-goal-error" class="food-error" aria-live="polite"></p>
               <progress id="food-progress" max="100" value="0" aria-label="칼로리 목표 대비 진행률"></progress><p id="food-progress-text"></p>
               <p class="food-small">목표는 의학적 처방이 아닌 사용자 설정 참고값입니다. 진행률은 건강 상태나 식사의 적절성을 판정하지 않습니다.</p>
-              <a href="calorie.html#home" class="food-text-button">권장 칼로리 계산기 바로가기 →</a>
+              <a href="calorie.html" class="food-text-button">권장 칼로리 계산기 바로가기 →</a>
             </div>
             <div class="food-card"><h3>📊 하루 영양소 분석</h3><div id="food-daily-macros" class="food-three food-macro-cards"></div><div class="food-donut-layout"><svg id="food-donut" viewBox="0 0 160 160" role="img" aria-label="영양소 환산 에너지 비율"><circle class="food-donut-track" cx="80" cy="80" r="59" /><g id="food-donut-parts"></g><text x="80" y="78" text-anchor="middle">영양소</text><text x="80" y="99" text-anchor="middle">에너지 비율</text></svg><div id="food-donut-legend"></div></div><p id="food-missing-note" class="food-small"></p><p class="food-small">탄수화물·단백질 4kcal/g, 지방 9kcal/g으로 환산한 합계가 100%입니다. 식이섬유와 데이터 기준 등으로 식품의 원본 열량 합계와 다를 수 있습니다.</p></div>
           </div>
@@ -162,6 +163,7 @@
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/footer.js"></script>
+    <script src="assets/js/ad-banner.js"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/food-data.js"></script>
     <script src="assets/js/food-core.js"></script>
