@@ -1,6 +1,6 @@
 /**
  * FITCALC - Components Bridge (하위 호환성 유지)
- * header.js 및 footer.js 컴포넌트를 조율하는 브리지 파일입니다.
+ * header.js, footer.js, ad-banner.js 컴포넌트를 조율하는 브리지 파일입니다.
  */
 (function ($) {
   'use strict';
@@ -31,6 +31,15 @@
       document.head.appendChild(s2);
     }
 
+    if (!window.FITCALC_BANNER) {
+      pending++;
+      const s3 = document.createElement('script');
+      s3.src = 'assets/js/ad-banner.js';
+      s3.onload = function () { pending--; checkDone(); };
+      s3.onerror = function () { pending--; checkDone(); };
+      document.head.appendChild(s3);
+    }
+
     checkDone();
   }
 
@@ -46,7 +55,8 @@
         brand: 'FITCALC',
         description: '건강한 일상을 위한 스마트한 건강 계산기',
         year: '2026'
-      }, pageConfig.footer || {})
+      }, pageConfig.footer || {}),
+      ad: Object.assign({}, pageConfig.ad || {})
     };
   }
 
@@ -62,17 +72,25 @@
     }
   }
 
+  function renderAdBanner(config) {
+    if (window.FITCALC_BANNER && window.FITCALC_BANNER.render) {
+      return window.FITCALC_BANNER.render('#site-ad-banner', config);
+    }
+  }
+
   $(function () {
     ensureScripts(function () {
       const config = getPageConfig();
       renderHeader(config.header);
       renderFooter(config.footer);
+      renderAdBanner(config.ad);
     });
   });
 
   window.FITCALC_COMPONENTS = {
     renderHeader: renderHeader,
     renderFooter: renderFooter,
+    renderAdBanner: renderAdBanner,
     getPageConfig: getPageConfig
   };
 })(window.jQuery || function (fn) {
