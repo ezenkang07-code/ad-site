@@ -40,6 +40,7 @@
     if (path.includes('body-fat')) return 'bodyfat';
     if (path.includes('water')) return 'water';
     if (path.includes('food')) return 'food';
+    if (path.includes('game')) return 'game';
     if (path.includes('index') || path.endsWith('/') || path === '') return 'home';
     return 'bmi';
   }
@@ -79,6 +80,7 @@
                 ${dropdownLinksHtml}
               </div>
             </div>
+            <a href="game.html" class="nav-link ${activePage === 'game' ? 'is-active' : ''}" data-nav-key="game" ${activePage === 'game' ? 'aria-current="page"' : ''}>🎮 GAME</a>
             <a href="${guideHref}" class="nav-link" data-nav-key="guide">GUIDE</a>
           </nav>
         </div>

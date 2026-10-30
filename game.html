@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FITCALC 드라이브 매드 | 3D 복셀 오프로드 지프 게임</title>
+  <meta name="description" content="쨍한 색감의 3D 복셀 지프 트럭을 타고 험난한 지형을 돌파하세요! 총 10단계의 물리 기반 스턴트 주행 게임을 FITCALC에서 무료로 즐겨보세요." />
+  <meta name="keywords" content="드라이브 매드, Drive Mad, 지프 게임, 3D 복셀 게임, 오프로드 게임, 자동차 게임, 웹게임" />
+  <meta name="author" content="FITCALC" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+  <link rel="stylesheet" href="assets/css/commons.css" />
+  <link rel="stylesheet" href="assets/css/game.css" />
+</head>
+
+<body id="home" data-fitcalc-page="game">
+
+  <!-- 공통 상단 헤더 컴포넌트 -->
+  <div id="site-header"></div>
+
+  <!-- 공통 쿠팡 파트너스 와이드 배너 컴포넌트 -->
+  <div id="site-ad-banner"></div>
+
+  <main class="game-page">
+    <section class="game-hero">
+      <div class="container">
+        <div class="game-header-area">
+          <div class="game-title-wrap">
+            <span class="game-badge">🎮 3D Voxel Stunt Drive</span>
+            <h1>🚙 드라이브 매드 (Drive Mad)</h1>
+            <p>노란색 6륜 오프로드 몬스터 트럭으로 3단계부터 등장하는 끊어진 다리를 고속 도약하여 돌파하세요!</p>
+          </div>
+        </div>
+
+        <!-- 3D 뷰포트 카드 영역 -->
+        <div class="game-viewport-card">
+          <!-- 상단 HUD 오버레이 -->
+          <div class="game-hud">
+            <div class="hud-pill">
+              <span>🚩 LEVEL</span>
+              <span class="hud-level-number" id="hudLevel">1</span>
+              <span>/ 10</span>
+              <span style="opacity: 0.5;">|</span>
+              <span id="hudLevelName" style="color: #93c5fd; font-size: 0.85rem;">기초 주행</span>
+            </div>
+
+            <div class="hud-controls-hint">
+              <span>조작:</span>
+              <span class="hud-key">← 뒤로</span>
+              <span class="hud-key">→ 앞으로</span>
+              <span class="hud-key">Enter 다음</span>
+              <span class="hud-key">R 재시작</span>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="hud-btn-action" id="hudAudioBtn" aria-label="사운드 토글">
+                🔊 사운드 ON
+              </button>
+              <button type="button" class="hud-btn-action" id="hudResetBtn" aria-label="스테이지 재도전">
+                🔄 재도전 [R]
+              </button>
+            </div>
+          </div>
+
+          <!-- 실제 Three.js 렌더링 컨테이너 -->
+          <div class="game-canvas-container" id="gameViewport"></div>
+
+          <!-- 모바일 터치 온스크린 컨트롤 -->
+          <div class="game-touch-controls" aria-hidden="true">
+            <button type="button" class="touch-btn" id="btnLeft" aria-label="후진">◀</button>
+            <button type="button" class="touch-btn" id="btnRight" aria-label="전진">▶</button>
+          </div>
+
+          <!-- 레벨 클리어 / 전복 모달 오버레이 -->
+          <div class="game-modal-overlay" id="gameModal" role="dialog" aria-modal="true">
+            <div class="game-modal-card">
+              <span class="modal-icon-badge" id="modalIcon">🏆</span>
+              <h2 id="modalTitle">LEVEL CLEAR!</h2>
+              <p id="modalDesc">다음 단계에 도전할 준비가 되셨나요?</p>
+              <button type="button" class="game-primary-btn" id="gameModalBtn">
+                다음 단계로 <span class="btn-key-badge">[Enter]</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10단계 진행률 도트 바 -->
+        <div class="game-level-dots" aria-label="10단계 진행 현황">
+          <span class="level-dot is-current">1</span>
+          <span class="level-dot">2</span>
+          <span class="level-dot">3</span>
+          <span class="level-dot">4</span>
+          <span class="level-dot">5</span>
+          <span class="level-dot">6</span>
+          <span class="level-dot">7</span>
+          <span class="level-dot">8</span>
+          <span class="level-dot">9</span>
+          <span class="level-dot">10</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 게임 플레이 가이드 & 팁 섹션 -->
+    <section class="game-info-section">
+      <div class="container">
+        <div class="section-heading left">
+          <p class="eyebrow">How to Play</p>
+          <h2>💡 드라이브 매드 공략 & 조작 안내</h2>
+        </div>
+
+        <div class="game-guide-grid">
+          <article class="game-guide-card">
+            <h3>🕹️ 기본 조작키</h3>
+            <p>
+              • <strong>오른쪽 방향키 (→)</strong>: 전진 및 가속<br />
+              • <strong>왼쪽 방향키 (←)</strong>: 후진 및 브레이크<br />
+              • <strong>엔터키 (Enter)</strong>: 다음 단계 이동 / 재도전<br />
+              • <strong>R 키</strong>: 언제든지 현재 단계 즉시 재시작
+            </p>
+          </article>
+
+          <article class="game-guide-card">
+            <h3>⚖️ 무게중심과 서스펜션</h3>
+            <p>
+              지프 트럭은 급가속 시 앞바퀴가 들리고, 급제동 시 뒷바퀴가 들립니다. 
+              언덕이나 턱을 넘을 때 차체가 130도 이상 뒤집히지 않도록 액셀과 브레이크를 부드럽게 번갈아 조절하세요.
+            </p>
+          </article>
+
+          <article class="game-guide-card">
+            <h3>🪜 3단계부터 끊어진 다리 점프!</h3>
+            <p>
+              1~2단계는 안전한 다리 주행이지만, <strong>3단계부터는 다리가 끊어진 구간</strong>이 등장합니다.
+              망설이지 말고 오른쪽 키(→)를 꾹 눌러 최고 속도로 가속해 바다 건너편으로 뛰어넘으세요!
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 하단 푸터 컴포넌트 -->
+  <div id="site-footer"></div>
+
+  <!-- Three.js 3D 렌더링 엔진 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- 공통 컴포넌트 (헤더, 푸터, 배너) -->
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/ad-banner.js"></script>
+  <script src="assets/js/components.js"></script>
+  <!-- 게임 로직 스크립트 -->
+  <script src="assets/js/game.js"></script>
+</body>
+
+</html>
+

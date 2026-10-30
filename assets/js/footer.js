@@ -16,7 +16,8 @@
     { label: '영양소 비율 계산기', href: 'macros.html' },
     { label: '체지방률 추정 계산기', href: 'body-fat.html' },
     { label: '물 섭취량 계산기', href: 'water.html' },
-    { label: '음식 칼로리 계산기', href: 'food-calorie.html' }
+    { label: '음식 칼로리 계산기', href: 'food-calorie.html' },
+    { label: '🎮 드라이브 매드 게임', href: 'game.html' }
   ];
 
   // 푸터 마크업 생성
