@@ -704,79 +704,83 @@
 
       const t = this.truck;
       const g = -28; // Realistic Gravity
-
       t.vy += g * dt;
 
-      // 3 Contact Points for the 6-wheel truck: Front (+1.15), Middle (-0.55), Rear (-1.55)
       const cosA = Math.cos(t.angle);
       const sinA = Math.sin(t.angle);
 
-      const fWx = t.x + 1.15 * cosA;
-      const fWy = t.y + 1.15 * sinA - 0.48;
+      // Contact points defined on vehicle body:
+      // Front wheel, Middle wheel, Rear wheel, plus Front & Rear bumper guards to prevent nose-diving
+      const contacts = [
+        { name: 'front', lx: 1.15, ly: -0.48, k: 180, d: 16 },
+        { name: 'mid',   lx: -0.55, ly: -0.48, k: 140, d: 13 },
+        { name: 'rear',  lx: -1.55, ly: -0.48, k: 140, d: 13 },
+        { name: 'frontBumper', lx: 1.75, ly: -0.15, k: 280, d: 22 },
+        { name: 'rearBumper',  lx: -1.95, ly: -0.15, k: 280, d: 22 }
+      ];
 
-      const mWx = t.x - 0.55 * cosA;
-      const mWy = t.y - 0.55 * sinA - 0.48;
+      let groundedWheels = 0;
+      let frontGx = 0, frontGy = -999;
+      let rearGx = 0, rearGy = -999;
 
-      const rWx = t.x - 1.55 * cosA;
-      const rWy = t.y - 1.55 * sinA - 0.48;
+      contacts.forEach(c => {
+        // Exact 2D world rotation
+        const rx = c.lx * cosA - c.ly * sinA;
+        const ry = c.lx * sinA + c.ly * cosA;
+        const wx = t.x + rx;
+        const wy = t.y + ry;
+        const gy = this.getGroundHeightAt(wx);
 
-      const fG = this.getGroundHeightAt(fWx);
-      const mG = this.getGroundHeightAt(mWx);
-      const rG = this.getGroundHeightAt(rWx);
+        if (c.name === 'front') { frontGx = wx; frontGy = gy; }
+        if (c.name === 'rear')  { rearGx = wx; rearGy = gy; }
 
-      const fTouch = (fWy <= fG);
-      const mTouch = (mWy <= mG);
-      const rTouch = (rWy <= rG);
+        if (wy < gy) {
+          if (c.name === 'front' || c.name === 'mid' || c.name === 'rear') {
+            groundedWheels++;
+          }
+          const pen = gy - wy;
+          // Contact point vertical velocity
+          const vPoint = t.vy + t.angVel * rx;
+          const fn = Math.max(0, pen * c.k - vPoint * c.d);
 
-      const anyGrounded = fTouch || mTouch || rTouch;
+          // Upward spring force
+          t.vy += fn * 0.35 * dt;
+
+          // Pure Newtonian rotational torque: tau = rx * fn
+          // When rx > 0 (front): torque > 0 (CCW) -> lifts the front UP (stops nose-dive!)
+          // When rx < 0 (rear):  torque < 0 (CW)  -> lifts the rear UP
+          const torque = rx * fn * 0.35;
+          t.angVel += torque * dt;
+        }
+      });
+
+      const isGrounded = groundedWheels > 0;
 
       // Engine Acceleration Input
       let driveForce = 0;
-      if (this.keys.right) driveForce += 24; // Forward
+      if (this.keys.right) driveForce += 25; // Forward
       if (this.keys.left) driveForce -= 16;  // Reverse / Brake
 
-      if (driveForce !== 0) {
+      if (driveForce !== 0 && isGrounded) {
         SoundFX.playEngine(t.vx);
       }
 
-      // Ground Normal & Traction Physics
-      if (anyGrounded) {
+      if (isGrounded) {
         t.inAirTime = 0;
-
-        // Spring stiffness & suspension damping
-        const k = 130;
-        const damp = 9.0;
-
-        let totalNormal = 0;
-
-        // Front Wheel Interaction
-        if (fTouch && fG > -50) {
-          const pen = fG - fWy;
-          const fn = Math.max(0, pen * k - t.vy * damp);
-          t.vy += fn * 0.4 * dt;
-          t.angVel -= fn * 0.28 * dt; // Tilts back when front hits
-          totalNormal += fn;
-        }
-
-        // Tandem Rear Wheels Interaction
-        if ((mTouch || rTouch) && (mG > -50 || rG > -50)) {
-          const rearG = Math.max(mG, rG);
-          const rearWy = Math.min(mWy, rWy);
-          const pen = rearG - rearWy;
-          const fn = Math.max(0, pen * k - t.vy * damp);
-          t.vy += fn * 0.6 * dt;
-          t.angVel += fn * 0.25 * dt; // Pushes front down
-          totalNormal += fn;
-        }
-
-        // Traction: Drive forward smoothly
-        t.vx += driveForce * 0.8 * dt;
-
-        // Center-of-mass natural level alignment on bridge
-        const avgSlope = (fG > -50 && rG > -50) ? Math.atan2(fG - rG, 2.7) : 0;
-        t.angVel += (avgSlope - t.angle) * 12 * dt;
-
         t.grounded = true;
+
+        // Traction
+        t.vx += driveForce * dt;
+
+        // Ground slope following torque: Keeps truck flat & glued to bridge!
+        let targetSlope = 0;
+        if (frontGy > -50 && rearGy > -50 && frontGx !== rearGx) {
+          targetSlope = Math.atan2(frontGy - rearGy, frontGx - rearGx);
+        }
+        const angleDiff = targetSlope - t.angle;
+        t.angVel += angleDiff * 22 * dt;
+        t.angVel *= 0.85; // Strong damping on ground to stay stable
+        t.vx *= 0.985;
       } else {
         // IN AIR (Jumping over broken bridge gaps!)
         t.inAirTime += dt;
@@ -786,13 +790,9 @@
         if (this.keys.right) t.angVel -= 3.5 * dt;
         if (this.keys.left) t.angVel += 3.5 * dt;
 
-        // Natural aerodynamic damping in air
         t.angVel *= 0.96;
+        t.vx *= 0.996;
       }
-
-      // Drag
-      t.vx *= t.grounded ? 0.985 : 0.996;
-      t.angVel *= 0.92;
 
       // Kinematic update
       t.x += t.vx * dt;
@@ -815,12 +815,11 @@
 
       // Crash Condition Check:
       // 1. Fallen into water gap (y < -2.2)
-      // 2. Flipped upside down (angle > 115 deg) near ground
-      const absA = Math.abs(t.angle % (Math.PI * 2));
-      const isUpsideDown = (absA > 1.95 && absA < (Math.PI * 2 - 1.95));
+      // 2. Flipped upside down (> 75 degrees / 1.31 rad near ground)
+      const absA = Math.abs(t.angle);
       const groundBelow = this.getGroundHeightAt(t.x);
 
-      if (t.y < -2.2 || (isUpsideDown && t.y <= groundBelow + 1.3)) {
+      if (t.y < -2.2 || (absA > 1.31 && t.y <= groundBelow + 1.2)) {
         this.gameState = 'CRASHED';
         SoundFX.playCrash();
         this.showModal('crash');
